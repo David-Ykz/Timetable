@@ -1,0 +1,76 @@
+import java.util.Arrays;
+public class Individual {
+    private int[] chromosome;
+    private double fitness = -1;
+
+    public Individual(Timetable timetable) {
+        int numClasses = timetable.getNumClasses();
+        //the length of the chromosome is equal to the number of classes * 3 (number of genes referring to a single claass
+        int chromosomeLength = numClasses * 3;
+        
+        int newChromosome[] = new int[chromosomeLength];
+        int chromosomeIndex = 0;
+        
+        //creating a random chromosome
+        for (Group group : timetable.getGroupsAsArray()) {
+            // Add random time
+            int timeslotId = (int)(Math.random() * (4) + 1);
+            newChromosome[chromosomeIndex] = timeslotId;
+            chromosomeIndex++;
+            
+            // Add random room
+            int roomId = timetable.getRandomRoom().getRoomId();
+            newChromosome[chromosomeIndex] = roomId;
+            chromosomeIndex++;
+            
+            // Add random professor
+            //Group newGroup = timetable.getGroup(group.getCourseCode());
+            int randomProfessorIndex = (int)(Math.random() * timetable.getTeachers().size());
+            newChromosome[chromosomeIndex] = randomProfessorIndex;
+            chromosomeIndex++;
+        }
+        
+        this.chromosome = newChromosome;        
+    }
+    
+    public Individual(int chromosomeLength) {
+        int[] newChromosome = new int[chromosomeLength];
+        this.chromosome = newChromosome;
+    }
+    
+    public Individual(int[] chromosome) {
+        this.chromosome = chromosome;
+    }
+    
+    public int[] getChromosome() {
+        return this.chromosome;
+    }
+    
+    public int getChromosomeLength() {
+        return this.chromosome.length;
+    }
+    
+    public int getGene(int offset) {
+        return this.chromosome[offset];
+    }
+    
+    public void setGene(int offset, int gene) {
+        this.chromosome[offset] = gene;
+    }
+    
+    public void setFitness(double fitness) {
+        this.fitness = fitness;
+    }
+    
+    public double getFitness() {
+        return this.fitness;
+    }
+    
+    public String toString() {
+        String output = "";
+        for (int gene = 0; gene < this.chromosome.length; gene++) {
+            output += this.chromosome[gene] + ",";
+        }
+        return output;
+    }
+}
