@@ -24,8 +24,8 @@ public class Group {
     }
     
     public void addStudent(int studentId){
-     studentIds.add(studentId);
-     groupSize++;
+        studentIds.add(studentId);
+        groupSize++;
     }
     
 

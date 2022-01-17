@@ -1,5 +1,5 @@
 public class Class {
-	private final int classId;
+ private final int classId;
     private final int groupId;
     private final String courseCode;
     private int teacherId;
@@ -17,11 +17,11 @@ public class Class {
     }
     
     public void setRoomId(int roomId) {
-    	this.roomId = groupId;
+     this.roomId = roomId;
     }
     
     public void setPeriod(int period) {
-    	this.period = period;
+     this.period = period;
     }
     
     public int getClassId(){
