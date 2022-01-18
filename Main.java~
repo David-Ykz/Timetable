@@ -11,10 +11,9 @@ public class Main {
     private static int courseCount = 0;
 
     public static void main(String[] args) {
-        CSVReader csvReader = new CSVReader("StudentDataObfuscated.csv", "Course Master List.csv", "Room Utilization.csv", "FakeTeacherList.csv");
+        CSVReader csvReader = new CSVReader("StudentDataObfuscated.csv", "CourseInfo.csv", "Room Utilization.csv", "FakeTeacherList.csv");
         studentList = csvReader.getStudentList();
         courseList = csvReader.getCourseList();
-        System.out.println(courseList.size());
         roomList = csvReader.getRoomList();
         teacherList = csvReader.getTeacherList();
 

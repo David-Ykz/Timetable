@@ -1,0 +1,900 @@
+course_code,course_title,credit_value,dept_description
+ADA3MO,Dramatic Arts,1,Alternative Education
+ALEP1B,ALEP SEM 1 - 2 CREDITS - OUT,2,Alternative Education
+ALEP1K,ALEP SEM 1-1 CREDIT IN-SCHOOL,1,Alternative Education
+ALEP1O,ALEP SEM 1 - 1 CREDIT OUT,1,Alternative Education
+ALEP2B,ALEP SEM 2-2 CREDITS OUT,2,Alternative Education
+ALEP2K,ALEP SEM 2-1 CREDIT IN SCHOOL,1,Alternative Education
+ALEP2O,ALEP SEM 2 - 1 CREDIT OUT,1,Alternative Education
+AMI1OA,Instrumental Music-Band,1,Alternative Education
+ASM2OK,Media Arts,1,Alternative Education
+AVI1OA,Visual Arts,1,Alternative Education
+AVI2OA,Visual Arts,1,Alternative Education
+AVI2OO,Visual Arts,1,Alternative Education
+AWQ3MO,Visual Arts - Photography,1,Alternative Education
+BAF3MB,Financial Accounting Fundamentals,2,Alternative Education
+BBB4MA,International Business Fundamentals,1,Alternative Education
+BBB4MK,International Business Fundamentals,1,Alternative Education
+BBB4MO,International Business Fundamentals,1,Alternative Education
+BBI2OK,Introduction to Business,1,Alternative Education
+BDI3CA,Entrepreneurship:  The Venture,1,Alternative Education
+BDI3CB,Entrepreneurship:  The Venture,2,Alternative Education
+BMI3CK,Marketing,1,Alternative Education
+BMI3CO,"Marketing:  Goods, Services, Events",1,Alternative Education
+BOH4MB,Business Leadership:  Management Fu,2,Alternative Education
+BOH4MK,Business Leadership:  Management Fu,1,Alternative Education
+BOH4MO,Business Leadership:  Management Fu,1,Alternative Education
+BTA3OK,Information and Communication Techn,1,Alternative Education
+BTT1OA,Information and Communication Techn,1,Alternative Education
+BTT1OK,Information and Communication Techn,1,Alternative Education
+BTT1OO,Information and Communication Techn,1,Alternative Education
+BTT2OK,Information and Communication Techn,1,Alternative Education
+CGC1DA,Geography of Canada,1,Alternative Education
+CGC1DK,Geography of Canada,1,Alternative Education
+CGC1DO,Geography of Canada,1,Alternative Education
+CGC1PA,Geography of Canada,1,Alternative Education
+CGC1PB,Geography of Canada,2,Alternative Education
+CGC1PK,Geography of Canada,1,Alternative Education
+CGC1PO,Geography of Canada,1,Alternative Education
+CGG3OA,Travel and Tourism:A Geographic Perspective,1,Alternative Education
+CGG3OB,Travel and Tourism:A Geographic Perspective,2,Alternative Education
+CGG3OO,Regional Geography:  Travel and Tou,1,Alternative Education
+CGW4UK,World Issues:  A Geographic Analysi,1,Alternative Education
+CHA3UB,America History,2,Alternative Education
+CHA3UO,American History,1,Alternative Education
+CHC2DA,Canadian History in the 20th Century,1,Alternative Education
+CHC2DB,Canadian History in the 20th Century,2,Alternative Education
+CHC2DK,Canadian History Since World War I,1,Alternative Education
+CHC2DO,Canadian History in the 20th Century,1,Alternative Education
+CHC2PA,Canadian History in the 20th Century,1,Alternative Education
+CHC2PB,Canadian History in the 20th Century,2,Alternative Education
+CHC2PK,Canadian History in the 20th Century,1,Alternative Education
+CHC2PO,Canadian History in the 20th Century,1,Alternative Education
+CHE3OA,Origins and Citizenship: The Histor,1,Alternative Education
+CHT3OA,World History Since 1900:Global & Regional Interactions,1,Alternative Education
+CHT3OK,World History Since 1900:Global & Regional Interactions,1,Alternative Education
+CHV2OA,Civics and Citizenship,0.5,Alternative Education
+CHV2OK,Civics and Citizenship,0.5,Alternative Education
+CHW3MB,World History to the Fifteenth Century,2,Alternative Education
+CHW3MK,World History to the Sixteenth Cent,1,Alternative Education
+CHY4CK,World History: The West and the World,1,Alternative Education
+CHY4UK,World History since the Fifteenth C,1,Alternative Education
+DCO3OO,Creating Opportunities through Co-o,1,Alternative Education
+EBT4OB,Communications in the World of Business,2,Alternative Education
+EBT4OK,Communications in the World of Business,1,Alternative Education
+EMS3OA,Media Studies,1,Alternative Education
+EMS3OB,Media Studies,2,Alternative Education
+EMS3OK,Media Studies,1,Alternative Education
+EMS3OO,Media Studies,1,Alternative Education
+ENG1DA,English,1,Alternative Education
+ENG1DB,English,2,Alternative Education
+ENG1DK,English,1,Alternative Education
+ENG1DO,English,1,Alternative Education
+ENG1PA,English,1,Alternative Education
+ENG1PB,English,2,Alternative Education
+ENG1PK,English,1,Alternative Education
+ENG1PO,English,1,Alternative Education
+ENG2DA,English,1,Alternative Education
+ENG2DB,English,2,Alternative Education
+ENG2DK,English,1,Alternative Education
+ENG2DO,English,1,Alternative Education
+ENG2PA,English,1,Alternative Education
+ENG2PB,English,2,Alternative Education
+ENG2PK,English,1,Alternative Education
+ENG2PO,English,1,Alternative Education
+ENG2PS,English,1,Alternative Education
+ENG3CA,English,1,Alternative Education
+ENG3CB,English,2,Alternative Education
+ENG3CK,English,1,Alternative Education
+ENG3CO,English,1,Alternative Education
+ENG3EA,English,1,Alternative Education
+ENG3EB,English,2,Alternative Education
+ENG3EK,English,1,Alternative Education
+ENG3EO,English,1,Alternative Education
+ENG3UA,English,1,Alternative Education
+ENG3UB,English,2,Alternative Education
+ENG3UK,English,1,Alternative Education
+ENG3UO,English,1,Alternative Education
+ENG4CA,English,1,Alternative Education
+ENG4CB,English,2,Alternative Education
+ENG4CK,English,1,Alternative Education
+ENG4CO,English,1,Alternative Education
+ENG4EA,English,1,Alternative Education
+ENG4EB,English,2,Alternative Education
+ENG4EK,English,1,Alternative Education
+ENG4EO,English,1,Alternative Education
+ENG4UB,English,2,Alternative Education
+ENG4UK,English,1,Alternative Education
+ENG4UO,English,1,Alternative Education
+ENG4US,English,1,Alternative Education
+EWC4UA,The Writer's Craft,1,Alternative Education
+EWC4UK,The Writer's Craft,1,Alternative Education
+EWC4UO,The Writer's Craft,1,Alternative Education
+GLC2OA,Career Studies,0.5,Alternative Education
+GLC2OK,Career Studies,0.5,Alternative Education
+GLC2OO,Career Studies,1,Alternative Education
+GLD2OA,Discovering the Workplace,1,Alternative Education
+GLD2OB,Discovering the Workplace,2,Alternative Education
+GLD2OK,Discovering the Workplace,1,Alternative Education
+GLD2OO,Discovering the Workplace,1,Alternative Education
+GLN4OA,Navigating the Workplace,1,Alternative Education
+GLN4OB,Navigating the Workplace,2,Alternative Education
+GLN4OK,Navigating the Workplace,1,Alternative Education
+GLN4OO,Navigating the Workplace,1,Alternative Education
+GPP3OA,Leadership and Peer Support,1,Alternative Education
+GPP3OK,Leadership and Peer Support,1,Alternative Education
+GPP3OO,Leadership and Peer Support,1,Alternative Education
+GWL3OA,Designing Your Future,1,Alternative Education
+GWL3OB,Designing Your Future,2,Alternative Education
+GWL3OK,Designing Your Future,1,Alternative Education
+GWL3OO,Designing Your Future,1,Alternative Education
+HFC3MK,Food and Culture,1,Alternative Education
+HFN2OB,Food and Nutrition,2,Alternative Education
+HFN2OO,Food and Nutrition,1,Alternative Education
+HHD3OK,Dynamics of Human Relationships,1,Alternative Education
+HHG4MB,Issues in Human Growth and Developm,2,Alternative Education
+HHG4MK,Issues in Human Growth and Development,1,Alternative Education
+HHG4MO,Issues in Human Growth and Development,1,Alternative Education
+HHS4CK,Families in Canada,1,Alternative Education
+HHS4UK,Families in Canada,1,Alternative Education
+HIP4OK,Personal Life Management,1,Alternative Education
+HPC3OB,Parenting,2,Alternative Education
+HPC3OK,Parenting,1,Alternative Education
+HPC3OO,Parenting,1,Alternative Education
+HSB4UA,Challenge and Change in Society,1,Alternative Education
+HSB4UK,Challenge and Change in Society,1,Alternative Education
+HSC4MK,World Cultures,1,Alternative Education
+HSE4MK,"Equity, Diversity and Social Justice",1,Alternative Education
+HSG3MK,Gender Studies,1,Alternative Education
+HSP3UB,"Introduction to Anthropology, Psych",2,Alternative Education
+HSP3UK,"Introduction to Anthropology, Psych",1,Alternative Education
+HZB3MK,Philosophy,1,Alternative Education
+HZT4UK,Philosophy: Questions and Theories,1,Alternative Education
+MAP4CA,Foundations for College Mathematics,1,Alternative Education
+MAP4CB,Foundations for College Mathematics,2,Alternative Education
+MAP4CK,Foundations for College Mathematics,1,Alternative Education
+MBF3CK,Foundations for College Mathematics,1,Alternative Education
+MBF3CO,Foundations for College Mathematics,1,Alternative Education
+MCF3MA,Functions and Applications,1,Alternative Education
+MCF3MB,Functions and Applications,2,Alternative Education
+MCF3MK,Functions and Applications,1,Alternative Education
+MCF3MO,Functions and Applications,1,Alternative Education
+MCF3MY,Functions and Applications,1,Alternative Education
+MCR3UB,Functions,2,Alternative Education
+MCR3UK,Functions,1,Alternative Education
+MCR3UO,Functions,1,Alternative Education
+MDM4UK,Mathematics and Data Management,1,Alternative Education
+MEL3EA,Mathematics for Work and Everyday Life,1,Alternative Education
+MEL3EB,Mathematics for Work and Everyday Life,2,Alternative Education
+MEL3EK,Mathematics for Work and Everyday Life,1,Alternative Education
+MEL3EO,Mathematics for Work and Everyday Life,1,Alternative Education
+MEL4EA,Mathematics for Work and Everyday Life,1,Alternative Education
+MEL4EB,Mathematics for Work and Everyday Life,2,Alternative Education
+MEL4EK,Mathematics for Work and Everyday Life,1,Alternative Education
+MEL4EO,Mathematics for Work and Everyday Life,1,Alternative Education
+MFM2PA,Foundations of Mathematics,1,Alternative Education
+MFM2PB,Foundations of Mathematics,2,Alternative Education
+MFM2PK,Foundations of Mathematics,1,Alternative Education
+MFM2PO,Foundations of Mathematics,1,Alternative Education
+MHF4UA,Advanced Functions,1,Alternative Education
+MHF4UK,Advanced Functions,2,Alternative Education
+MHF4UO,Advanced Functions,1,Alternative Education
+MPM2DA,Principles of Mathematics,1,Alternative Education
+MPM2DB,Principles of Mathematics,2,Alternative Education
+MPM2DK,Principles of Mathematics,1,Alternative Education
+MPM2DO,Principles of Mathematics,1,Alternative Education
+MTH1WK,Mathematics,1,Alternative Education
+OLC4OA,Ontario Secondary School Literacy,1,Alternative Education
+OLC4OB,Ontario Secondary School Literacy,2,Alternative Education
+OLC4OK,Ontario Secondary School Literacy,1,Alternative Education
+OLC4OO,Ontario Secondary School Literacy,1,Alternative Education
+OLC4OY,Ontario Secondary School Literacy,1,Alternative Education
+PAF3OK,Personal and Fitness Activities,1,Alternative Education
+PAF4OO,Personal and Fitness Activities,1,Alternative Education
+PAF4OS,Personal and Fitness Activities,1,Alternative Education
+PPL1OB,Healthy Active Living Education,2,Alternative Education
+PPL1OO,Healthy Active Living Education,1,Alternative Education
+PPL3OK,Healthy Active Living Education,1,Alternative Education
+PPL3OO,Healthy Active Living Education,1,Alternative Education
+PPZ3CK,Health for Life,1,Alternative Education
+PSK4UK,Introductory Kinesiology,1,Alternative Education
+QUAD1A,QUAD 1 SEM 1 - A.M.,1,Alternative Education
+QUAD1P,QUAD 1 SEM 1 - P.M.,1,Alternative Education
+QUAD2A,QUAD 2 SEM 1 - A.M.,1,Alternative Education
+QUAD2P,QUAD 2 SEM 1 - P.M.,1,Alternative Education
+QUAD3A,QUAD 3 SEM 2 - A.M.,1,Alternative Education
+QUAD3P,QUAD 3 SEM 2 - P.M.,1,Alternative Education
+QUAD4A,QUAD 4 SEM 2 - A.M.,1,Alternative Education
+QUAD4P,QUAD 4 SEM 2 - P.M.,1,Alternative Education
+SALHLD,SAL HOLDING CODE,0,Alternative Education
+SBI3CB,Biology,2,Alternative Education
+SBI3CK,Biology,1,Alternative Education
+SBI3CO,Biology,1,Alternative Education
+SBI3UK,Biology,1,Alternative Education
+SBI4UO,Biology,1,Alternative Education
+SCH3UK,Chemistry,1,Alternative Education
+SCH3UO,Chemistry,1,Alternative Education
+SCH4CB,Chemistry,2,Alternative Education
+SCH4CK,Chemistry,1,Alternative Education
+SNC1D+,Science,1,Alternative Education
+SNC1DA,Science,1,Alternative Education
+SNC1DB,Science,2,Alternative Education
+SNC1DK,Science,1,Alternative Education
+SNC1DO,Science,1,Alternative Education
+SNC1PA,Science,1,Alternative Education
+SNC1PB,Science,2,Alternative Education
+SNC1PK,Science,1,Alternative Education
+SNC1PO,Science,1,Alternative Education
+SNC2DA,Science,1,Alternative Education
+SNC2DB,Science,2,Alternative Education
+SNC2DK,Science,1,Alternative Education
+SNC2DO,Science,1,Alternative Education
+SNC2PA,Science,1,Alternative Education
+SNC2PB,Science,2,Alternative Education
+SNC2PK,Science,1,Alternative Education
+SNC2PO,Science,1,Alternative Education
+SNC4EK,Science,1,Alternative Education
+SPH3UK,Physics,1,Alternative Education
+SPH4CB,Physics,2,Alternative Education
+SPH4CK,Physics,1,Alternative Education
+SVN3EA,Environmental Science,1,Alternative Education
+SVN3EB,Environmental Science,2,Alternative Education
+SVN3EK,Environmental Science,1,Alternative Education
+SVN3EO,Environmental Science,1,Alternative Education
+SVN3MK,Environmental Science,1,Alternative Education
+TGJ2OK,Communication Technology,1,Alternative Education
+TGJ2OO,Communications Technology,1,Alternative Education
+TGJ3MO,Communications Technology,1,Alternative Education
+TGJ4MB,Communications Technology,2,Alternative Education
+TGJ4MK,Communication Technology,1,Alternative Education
+TGJ4MO,Communication Technology,2,Alternative Education
+TTJ3CO,Transportation Technology,1,Alternative Education
+BAF3M1,Financial Accounting Fundamentals,1,Business Studies
+BAI3E1,Introduction to Accounting,1,Business Studies
+BAN4E1,Accounting for a Small Business,1,Business Studies
+BAT4M1,Financial Accounting Principles,1,Business Studies
+BBB4M1,International Business Fundamentals,1,Business Studies
+BBI2O1,Introduction to Business,1,Business Studies
+BBI2O7,Introduction to Business,1,Business Studies
+BMI3C1,"Marketing:Goods, Services, Events",1,Business Studies
+BOH4M1,Business Leadership:  Management Fu,1,Business Studies
+BTT1O1,Information and Communication Techn,1,Business Studies
+BTT1OL,Information and Communication Techn,1,Business Studies
+BTT1OY,Information and Communication Techn,0,Business Studies
+CLN4C1,Legal Studies,1,Business Studies
+CLN4U1,Canadian and International Law,1,Business Studies
+CLU3M1,Understanding Canadian Law,1,Business Studies
+IDC4U1,Interdisciplinary Studies,1,Business Studies
+IDC4U3,Interdisciplinary Studies,1,Business Studies
+ADA1OC,Dramatic Arts,2,Community Based Education
+ADA2OC,Dramatic Arts,2,Community Based Education
+ADA3MC,Dramatic Arts,2,Community Based Education
+ADA4MC,Dramatic Arts,2,Community Based Education
+AMI1OC,Instrumental Music-Band,2,Community Based Education
+AMI3MC,Instrumental Music-Band,2,Community Based Education
+AMI4MC,Instrumental Music-Band,2,Community Based Education
+AMV2OC,Music - Vocal/Choral,2,Community Based Education
+AVI2OC,Visual Arts,2,Community Based Education
+AVI3MC,Visual Arts,2,Community Based Education
+AVI3MI,Visual Arts,1,Community Based Education
+AVI4MC,Visual Arts,2,Community Based Education
+AVI4MI,Visual Arts,1,Community Based Education
+AWL3MC,Visual Arts - Drawing,2,Community Based Education
+AWL3MQ,Visual Arts - Drawing,1,Community Based Education
+AWQ3MC,Visual Arts-Photography,2,Community Based Education
+AWQ3MQ,Visual Arts - Photography,1,Community Based Education
+AWQ3MT,Visual Arts - Photography,2,Community Based Education
+AWQ4MC,Visual Arts - Photography,2,Community Based Education
+AWR4MC,Visual Arts - Film/Video,2,Community Based Education
+BAF3MC,Financial Accounting Fundamentals,2,Community Based Education
+BAF3MI,Financial Accounting Fundamentals,1,Community Based Education
+BAT4MC,Financial Accounting Principles,2,Community Based Education
+BBB4MC,International Business Fundamentals,2,Community Based Education
+BBB4MQ,International Business Fundamentals,1,Community Based Education
+BBI2OC,Introduction to Business,2,Community Based Education
+BDI3CT,Entrepreneurship:  The Venture,2,Community Based Education
+BMI3CC,"Marketing:Goods, Services, Events",2,Community Based Education
+BMI3CI,"Marketing: Goods, Services, Events",1,Community Based Education
+BOH4MC,Business Leadership:  Management Fu,2,Community Based Education
+BOH4MT,Business Leadership:  Management Fu,2,Community Based Education
+CGC1DC,Geography of Canada,2,Community Based Education
+CGC1PI,Geography of Canada,1,Community Based Education
+CGG3OQ,Travel and Tourism:A Geographic Perspective,1,Community Based Education
+CGW4UC,Canadian and World Issues:  A Geogr,2,Community Based Education
+CHC2DC,Canadian History in the 20th Century,2,Community Based Education
+CHC2PC,Canadian History in the 20th Century,2,Community Based Education
+CHT3OC,World History Since 1900:Global & Regional Interactions,2,Community Based Education
+CHT3OI,World History Since 1900:Global & Regional Interactions,1,Community Based Education
+CHW3MC,World History to the Fifteenth Century,2,Community Based Education
+CHY4UI,World History Since the Fifteenth Century,1,Community Based Education
+CIA4UC,Analysing Current Economic Issues,2,Community Based Education
+CIE3MC,The Individual and the Economy,2,Community Based Education
+CIE3MI,The Individual and the Economy,1,Community Based Education
+CLN4UC,Canadian and International Law,2,Community Based Education
+CLU3MC,Understanding Canadian Law,2,Community Based Education
+COP1X7,grade 9 CoOp Out-Of-School HPA-1 Credit,1,Community Based Education
+COP2X7,grade 10 CoOp Out-Of-School HPA-1 Credit,1,Community Based Education
+COP3X#,Co Op Sem 1 or 2 Am or Pm,2,Community Based Education
+COP3X&,CoOp Sem 1 or 2 PM,2,Community Based Education
+COP3X0,CoOp Sem 1 or 2 AM ,2,Community Based Education
+COP3X1,CoOp Out-of-School 2 Credit,2,Community Based Education
+COP3X2,CoOp Sem 1 PM,2,Community Based Education
+COP3X3,CoOp Out-of-School 1 Credit,1,Community Based Education
+COP3X4,CoOp Out-of-School 4 Credits,4,Community Based Education
+COP3X5,CoOp 2 Credit - Sem 1 - AM ONLY,2,Community Based Education
+COP3X6,CoOp 2 Credit - Sem 1 - PM Only,2,Community Based Education
+COP3X7,CoOp 2 Credit - Sem 2 - AM ONLY,2,Community Based Education
+COP3X7,grade 11  CoOp Out-Of-School HPA-1 Credit,1,Community Based Education
+COP3X8,CoOp 2 Credit - Sem 2 - PM ONLY,2,Community Based Education
+COP3X9,CoOp Sem 2 Am or PM,2,Community Based Education
+COP4X1,Co-Op Grade 12,2,Community Based Education
+COP4X7,grade 12 CoOp Out-Of-School HPA-1 Credit,1,Community Based Education
+DCO3OC,Creating Opportunities through Co-o,2,Community Based Education
+DCO3OI,Creating Opportunities through Co-o,1,Community Based Education
+DCO3OT,Creating Opportunities through Co-o,2,Community Based Education
+EMS3OC,Media Studies,2,Community Based Education
+ENG1DC,English,2,Community Based Education
+ENG1DI,English,1,Community Based Education
+ENG1PC,English,2,Community Based Education
+ENG2DC,English,2,Community Based Education
+ENG2DI,English,1,Community Based Education
+ENG2DQ,English,1,Community Based Education
+ENG2DT,English,2,Community Based Education
+ENG2PC,English,2,Community Based Education
+ENG2PI,English,1,Community Based Education
+ENG2PQ,English,1,Community Based Education
+ENG2PT,English,2,Community Based Education
+ENG3CC,English,2,Community Based Education
+ENG3CI,English,1,Community Based Education
+ENG3CQ,English,1,Community Based Education
+ENG3CT,English,2,Community Based Education
+ENG3EC,English,2,Community Based Education
+ENG3ET,English,2,Community Based Education
+ENG3UC,English,2,Community Based Education
+ENG3UI,English,1,Community Based Education
+ENG3UQ,English,1,Community Based Education
+ENG3UT,English,2,Community Based Education
+ENG4CC,English,2,Community Based Education
+ENG4CI,English,1,Community Based Education
+ENG4CQ,English,1,Community Based Education
+ENG4CT,English,2,Community Based Education
+ENG4EC,English,2,Community Based Education
+ENG4UC,English,2,Community Based Education
+ENG4UI,English,1,Community Based Education
+ENG4UQ,English,1,Community Based Education
+ENG4UT,English,2,Community Based Education
+ESLBOC,English as a Second Language,2,Community Based Education
+ESLBOT,English as a Second Language,2,Community Based Education
+ESLCOC,English as a Second Language,2,Community Based Education
+ESLCOT,English as a Second Language,2,Community Based Education
+ESLDOC,English as a Second Language,2,Community Based Education
+ESLEOC,English as a Second Language,2,Community Based Education
+FSF1DC,Core French,2,Community Based Education
+FSF1DI,Core French,1,Community Based Education
+FSF1PC,CoOp French 2 Credits,2,Community Based Education
+FSF3UC,Core French,2,Community Based Education
+GLC2OC,Career Studies,2,Community Based Education
+GLC2OI,Career Studies,1,Community Based Education
+GLC2OQ,Career Studies,1,Community Based Education
+GLC2OT,Career Studies,2,Community Based Education
+GLE1OI,Learning Strategies 1: Skills for Success in Secondary School,1,Community Based Education
+GLE2OC,Learning Strategies 1: Skills for Success in Secondary School,2,Community Based Education
+GLE3OC,Advanced Learning Strategies: Skills for Success After Secondary School,2,Community Based Education
+GLE3OI,Advanced Learning Strategies: Skills for Success After Secondary School,1,Community Based Education
+GLE3OT,Advanced Learning Strategies: Skills for Success After Secondary School,2,Community Based Education
+GLE4OC,Advanced Learning Strategies: Skills for Success After Secondary School,2,Community Based Education
+GLN4OC,Navigating the Workplace,2,Community Based Education
+GPP3OC,Leadership and Peer Support,2,Community Based Education
+HFA4UT,Nutrition and Health,2,Community Based Education
+HFC3MC,Food and Culture,2,Community Based Education
+HFC3MI,Food and Culture,1,Community Based Education
+HFC3MT,Food and Culture,2,Community Based Education
+HFN2OC,Food and Nutrition,2,Community Based Education
+HFN2OT,Food and Nutrition,2,Community Based Education
+HHG4MC,Issues in Human Growth and Development,2,Community Based Education
+HHG4MI,Issues in Human Growth and Development,1,Community Based Education
+HHG4MT,Issues in Human Growth and Development,2,Community Based Education
+HIF1OC,"Individual, Family and Social Living",2,Community Based Education
+HIF1OI,"Individual, Family and Social Living",1,Community Based Education
+HPA1X1,HPA Grade 9 Semester 1,0,Community Based Education
+HPA1X2,HPA Grade 9 Semester 2,0,Community Based Education
+HPA2X1,HPA Grade 10 Semester 1,0,Community Based Education
+HPA2X2,HPA Grade 10 Semester 2,0,Community Based Education
+HPA3X1,HPA Grade 11 Semester 1,0,Community Based Education
+HPA3X2,HPA Grade 11 Semester 2,0,Community Based Education
+HPA4X1,HPA Grade 12 Semester 1,0,Community Based Education
+HPA4X2,HPA Grade 12 Semester 2,0,Community Based Education
+HPC3OC,Parenting,2,Community Based Education
+HPC3OQ,Parenting,1,Community Based Education
+HPC3OT,Parenting,2,Community Based Education
+HPW3CC,Living and Working with Children,2,Community Based Education
+HPW3CI,Living and Working with Children,1,Community Based Education
+HSB4UC,Challenge and Change in Society,2,Community Based Education
+HSP3UC,Introduction to Anthropology and Psychology,2,Community Based Education
+ICS2OC,Introduction to Computer Studies,2,Community Based Education
+ICS3UC,Introduction to Computer Studies,2,Community Based Education
+ICS4UC,Computer and Information Science,2,Community Based Education
+IDC4UC,Interdisciplinary Studies,2,Community Based Education
+IDC4UI,Interdisciplinary Studies,1,Community Based Education
+IDC4UT,Interdisciplinary Studies,2,Community Based Education
+IDP4UC,Interdisciplinary Studies,2,Community Based Education
+MAP4CC,Foundations for College Mathematics,2,Community Based Education
+MAP4CI,Foundations for College Mathematics,1,Community Based Education
+MAP4CQ,Foundations for College Mathematics,1,Community Based Education
+MAP4CT,Foundations for College Mathematics,2,Community Based Education
+MBF3CI,Foundations for College Mathematics,1,Community Based Education
+MBF3CQ,Foundations for College Mathematics,1,Community Based Education
+MCF3MC,Functions and Applications,2,Community Based Education
+MCF3MQ,Functions and Applications,1,Community Based Education
+MCF3MT,Functions and Applications,2,Community Based Education
+MCR3UC,Functions,2,Community Based Education
+MCR3UI,Functions,1,Community Based Education
+MCR3UQ,Functions,1,Community Based Education
+MCR3UT,Functions,2,Community Based Education
+MCT4CC,Mathematics for College Technology,2,Community Based Education
+MCT4CI,Mathematics for College Technology,1,Community Based Education
+MCT4CQ,Mathematics for College Technology,1,Community Based Education
+MCT4CT,Mathematics for College Technology,2,Community Based Education
+MCV4UC,Calculus and Vectors,2,Community Based Education
+MEL3EC,Mathematics for Work and Everyday Life,2,Community Based Education
+MEL3EQ,Mathematics for Work and Everyday Life,1,Community Based Education
+MEL3ET,Mathematics for Work and Everyday Life,2,Community Based Education
+MEL4EC,Mathematics for Work and Everyday Life,2,Community Based Education
+MFM2PC,Foundations of Mathematics,2,Community Based Education
+MFM2PI,Foundations of Mathematics,1,Community Based Education
+MFM2PQ,Foundations of Mathematics,1,Community Based Education
+MFM2PT,Foundations of Mathematics,2,Community Based Education
+MHF4UC,Advanced Functions,2,Community Based Education
+MHF4UT,Advanced Functions,2,Community Based Education
+MPM2DC,Principles of Mathematics,2,Community Based Education
+MPM2DI,Principles of Mathematics,1,Community Based Education
+MPM2DQ,Principles of Mathematics,1,Community Based Education
+MPM2DT,Principles of Mathematics,2,Community Based Education
+OLC4OQ,Ontario Secondary School Literacy,1,Community Based Education
+PAD3OI,Outdoor Activities,1,Community Based Education
+PAF2OI,Personal and Fitness Activities,1,Community Based Education
+PAF3OC,Personal and Fitness Activities,2,Community Based Education
+PAF4OC,Personal and Fitness Activities,2,Community Based Education
+PAF4OI,Personal and Fitness Activities,1,Community Based Education
+PAF4OQ,Personal and Fitness Activities,1,Community Based Education
+PAF4OT,Personal and Fitness Activities,2,Community Based Education
+PAI3OC,Individual & Small Group Activities,2,Community Based Education
+PAI3OT,Individual & Small Group Activities,2,Community Based Education
+PAL3OC,Large Group Activities,2,Community Based Education
+PAL3OQ,Large Group Activities,1,Community Based Education
+PAL3OT,Large Group Activities,2,Community Based Education
+PLF4MC,Recreation and Fitness Leadership,2,Community Based Education
+PPL1OC,Healthy Active Living Education,2,Community Based Education
+PPL1OI,Healthy Active Living Education,1,Community Based Education
+PPL2OC,Healthy Active Living Education,2,Community Based Education
+PPL2OI,Healthy Active Living Education,1,Community Based Education
+PPL2OT,Healthy Active Living Education,2,Community Based Education
+PPL3OC,Healthy Active Living Education,2,Community Based Education
+PPL3OI,Healthy Active Living Education,1,Community Based Education
+PPL3OQ,Healthy Active Living Education,1,Community Based Education
+PPL3OT,Healthy Active Living Education,2,Community Based Education
+PPL4OC,Healthy Active Living Education,2,Community Based Education
+PPL4OQ,Healthy Active Living Education,1,Community Based Education
+PPL4OT,Healthy Active Living Education,2,Community Based Education
+PSK4UC,Introductory Kinesiology,2,Community Based Education
+PSK4UI,Introductory Kinesiology,1,Community Based Education
+SBI3CC,Biology,2,Community Based Education
+SBI3CQ,Biology,1,Community Based Education
+SBI3UC,Biology,2,Community Based Education
+SBI3UI,Biology,1,Community Based Education
+SBI4UC,Biology,2,Community Based Education
+SCH3UC,Chemistry,2,Community Based Education
+SCH3UI,Chemistry,1,Community Based Education
+SCH3UQ,Chemistry,1,Community Based Education
+SCH4UC,Chemistry,2,Community Based Education
+SCH4UI,Chemistry,1,Community Based Education
+SNC1DC,Science,2,Community Based Education
+SNC1DI,Science,1,Community Based Education
+SNC1PC,Science,2,Community Based Education
+SNC2DC,Science,2,Community Based Education
+SNC2DI,Science,1,Community Based Education
+SNC2DT,Science,2,Community Based Education
+SNC2PC,Science,2,Community Based Education
+SNC2PQ,Science,1,Community Based Education
+SNC2PT,Science,2,Community Based Education
+SPH3UC,Physics,2,Community Based Education
+SPH3UQ,Physics,1,Community Based Education
+SPH3UT,Physics,2,Community Based Education
+SPH4CC,Physics,2,Community Based Education
+SPH4CT,Physics,2,Community Based Education
+SPH4UC,Physics,2,Community Based Education
+SPH4UT,Physics,2,Community Based Education
+TDJ3MC,Technological Design,2,Community Based Education
+TEJ3MC,Exploring Computer Technology,2,Community Based Education
+TGJ2OC,Communications Technology,2,Community Based Education
+TGJ2OI,Communications Technology,1,Community Based Education
+TGJ3MC,Communications Technology,2,Community Based Education
+TGJ3MT,Communication Technology,2,Community Based Education
+TGV3MC,"Communications Technology: TV, Video & Movie Production",2,Community Based Education
+TGV3MI,Vocational Art,1,Community Based Education
+TGV4MC,"Communications Technology: TV, Video & Movie Production",2,Community Based Education
+TTJ3CT,Transportation Technology,2,Community Based Education
+YYY4X1,Dual Credit - College-Delivered,0,Community Based Education
+YYY4X2,Dual Credit - College-Delivered,0,Community Based Education
+YYY4X3,Dual Credit - College-Delivered,0,Community Based Education
+YYY4X4,Dual Credit - College-Delivered,0,Community Based Education
+ICS2O1,Introduction to Computer Studies,1,Computer Studies
+ICS2O2,Intro to Computer Studies,1,Computer Studies
+ICS2OG,Intro to Computer Studies,1,Computer Studies
+ICS3C1,Introduction to Computer Programming,1,Computer Studies
+ICS3U1,Introduction to Computer Science,1,Computer Studies
+ICS3U6,Introduction to Computer Science ,1,Computer Studies
+ICS4C1,"Computer Programming, Grade 12, Col",1,Computer Studies
+ICS4U1,Computer Science ,1,Computer Studies
+ICS4UE,Computer Science,1,Computer Studies
+IDC3OE,Interdisciplinary Studies,1,Computer Studies
+ADA1O1,Drama,1,Drama
+ADA2O1,Drama,1,Drama
+ADA3M1,Drama,1,Drama
+ADA4M1,Drama,1,Drama
+ADB2O1,Drama - Musical Theatre,1,Drama
+ADB3M1,Drama - Musical Theatre,1,Drama
+ADB4M1,Drama - Musical Theatre,1,Drama
+ADD301,Drama- Production,1,Drama
+ADD4M1,Drama- Production,1,Drama
+AEA301,Exploring And Creating in the Arts,1,Drama
+AEA401,Exploring and Creating in the Arts,1,Drama
+ELS2O1,Literacy Skills: Reading and Writing,1,English
+EMS3O1,Media Studies,1,English
+ENG1D1,English,1,English
+ENG1D2,English,1,English
+ENG1DG,English,1,English
+ENG1P1,English,1,English
+ENG1P7,English,1,English
+ENG2D+,English,1,English
+ENG2D1,English,1,English
+ENG2D2,English,1,English
+ENG2DG,English,1,English
+ENG2P1,English,1,English
+ENG3C1,English,1,English
+ENG3E1,English Workplace,1,English
+ENG3U1,English,1,English
+ENG3UE,English,1,English
+ENG4C1,English,1,English
+ENG4E1,English Workplace,1,English
+ENG4U1,English,1,English
+ENG4UE,English,1,English
+EPS3O1,Presentation and Speaking Skills,1,English
+ETS4U1,Studies in Literature,1,English
+EWC4U1,The Writer's Craft,1,English
+NBE3C1,English: Understanding Contemporary,1,English
+NBE3U1,English: Understanding Contemporary,1,English
+OLC4O1,Ontario Secondary School Literacy Course,1,English
+ESLAO1,"English as a Second Language, Level 1",1,English as a Second Language 
+ESLBO1,"English as a Second Language, Level 2",1,English as a Second Language 
+ESLCO1,"English as a Second Language, Level 3",1,English as a Second Language 
+ESLDO1,"English as a Second Language, Level 4",1,English as a Second Language 
+ESLEO1,"English as a Second Language, Level 5",1,English as a Second Language 
+HFA4C1,Nutrition and Health,1,Family Studies
+HFA4CL,Nutrition and Health-ESL,1,Family Studies
+HFA4U1,Nutrition and Health,1,Family Studies
+HFC3M1,Food and Culture,1,Family Studies
+HFN2O1,Food and Nutrition,1,Family Studies
+HFN2OL,Food and Nutrition,1,Family Studies
+HFN2OY,Food and Nutrition,0,Family Studies
+HHG4M1,Issues in Human Growth and Development,1,Family Studies
+HIF1O1,"Individual, Family and Social Living",1,Family Studies
+HIF1OL,"Individual, Family and Social Living",1,Family Studies
+HIF1OY,"Individual, Family and Social Living",0,Family Studies
+HPC3O1,Parenting,1,Family Studies
+HPW3C1,Living and Working with Children,1,Family Studies
+HPW3CY,Living and Working with Children,0,Family Studies
+HSG3M1,Gender Studies,1,Family Studies
+IDC3O1,Interdisciplinary Studies,1,Family Studies
+IDC4UE,Interdisciplinary Studies,1,Family Studies
+CGC1D+,Issues in Canadian Geography,1,Geography
+CGC1D1,Issues in Canadian Geography,1,Geography
+CGC1D2,Issues in Canadian Geography,1,Geography
+CGC1DG,Issues in Canadian Geography,1,Geography
+CGC1DL,Issues in Canadian Geography,1,Geography
+CGC1P+,Issues in Canadian Geography,1,Geography
+CGC1P1,Geography of Canada,1,Geography
+CGC1P4,Geography of Canada,1,Geography
+CGC1PY,Geography of Canada,0,Geography
+CGF3M1,"Physical Geography: Patterns, Proce",1,Geography
+CGG3O1,Travel and Tourism:A Geographic Perspective,1,Geography
+CGW4U1,Canadian and World Issues:  A Geogr,1,Geography
+CGW4UE,World Issues:  A Geographic Perspective,1,Geography
+GLC2O1,Career Studies,0.5,Guidance/Career
+GLC2OL,Career Studies,0.5,Guidance/Career
+GPP3O1,Leadership and Peer Support,1,Guidance/Career
+CHA3U=,American History,1,History
+CHC2D1,Canadian History Since World War I,1,History
+CHC2D2,Canadian History Since World War I,1,History
+CHC2DG,Canadian History Since World War I,1,History
+CHC2DL,Canadian History Since World War I,1,History
+CHC2P1,Canadian History Since World War I,1,History
+CHT3O1,20th Century History Through Film - World History Since 1900: Global and Regional Interactions,1,History
+CHV2O1,Civics and Citizenship,0.5,History
+CHV2OL,Civics and Citizenship,0.5,History
+CHW3M1,World History to the End of the 15th Century,1,History
+CHY4U1,World History: The West and the Wor,1,History
+CIA4U1,Analysing Current Economic Issues,1,History
+CIA4UE,Analysing Current Economic Issues,1,History
+CIE3M1,The Individual and the Economy,1,History
+CPW4U1,Canadian and World Politics,1,History
+HSB4U1,Challenge and Change in Society,1,History
+HSP3U1,"Introduction to Anthropology, Psychology & Sociology",1,History
+HZT4U1,Philosophy: Questions and Theories,1,History
+NDA3M1,"Indigenous People in Canada: Past, Present & Future",1,History
+MAP4C1,Foundations for College Mathematics,1,Mathematics
+MBF3C1,Foundations for College Mathematics,1,Mathematics
+MCF3M1,Functions and Applications,1,Mathematics
+MCR3U+,Functions,1,Mathematics
+MCR3U1,Functions,1,Mathematics
+MCR3U6,Functions,1,Mathematics
+MCT4C=,Mathematics for College Technology,1,Mathematics
+MCT4C1,Mathematics for College Technology,1,Mathematics
+MCV4U1,Calculus and Vectors,1,Mathematics
+MCV4UE,Calculus and Vectors,1,Mathematics
+MDM4U1,Mathematics of Data Management,1,Mathematics
+MDM4UE,Mathematics of Data Management,1,Mathematics
+MEL3E1,Mathematics for Work and Everyday Life,1,Mathematics
+MEL4E1,Mathematics for Work and Everyday Life,1,Mathematics
+MFM2P1,Foundations of Mathematics,1,Mathematics
+MHF4U1,Advanced Functions,1,Mathematics
+MHF4U6,Advanced Functions,1,Mathematics
+MHF4UE,Advanced Functions,1,Mathematics
+MPM2D=,Principles of Mathematics,1,Mathematics
+MPM2D1,Principles of Mathematics,1,Mathematics
+MPM2D2,Principles of Mathematics,1,Mathematics
+MPM2DG,Principles of Mathematics,1,Mathematics
+MPM2DL,Principles of Mathematics,1,Mathematics
+MTH1W1,Mathematics,1,Mathematics
+MTH1W2,Mathematics,1,Mathematics
+MTH1W7,Mathematics,1,Mathematics
+MTH1WG,Mathematics,1,Mathematics
+FSF1D1,Core French,1,Moderns
+FSF1D2,Core French,1,Moderns
+FSF1D4,Core French,1,Moderns
+FSF1DG,Core French,1,Moderns
+FSF1O1,Core French,1,Moderns
+FSF1OL,Core French,1,Moderns
+FSF1P1,Core French,1,Moderns
+FSF2D1,Core French,1,Moderns
+FSF2D2,Core French,1,Moderns
+FSF2DG,Core French,1,Moderns
+FSF2P1,Core French,1,Moderns
+FSF3O1,Core French,1,Moderns
+FSF3U1,Core French,1,Moderns
+FSF4U1,Core French,1,Moderns
+FSF4UE,Core French,1,Moderns
+LWSBD1,Spanish,1,Moderns
+AMI1O1,Instrumental Music-Band,1,Music
+AMI1O4,Instrumental Music-Band,1,Music
+AMI2O1,Instrumental Music-Band,1,Music
+AMI3M1,Instrumental Music-Band,1,Music
+AMI4M1,Instrumental Music-Band,1,Music
+AMR1O1,Repertoire,1,Music
+AMR2O1,Repertoire,1,Music
+AMR3M1,Repertoire,1,Music
+AMR4M1,Repertoire,1,Music
+AMV1O1,Music - Vocal/Choral,1,Music
+AMV1OY,Music - Vocal/Choral,0,Music
+AMV2O1,Music - Vocal/Choral,1,Music
+AMV3M1,Music - Vocal/Choral,1,Music
+AMV3MY,Music - Vocal/Choral,0,Music
+AMV4M1,Music - Vocal/Choral,1,Music
+PAD3O1,Outdoor Activities,1,Physical & Health Education
+PAF2O8,Healthy Living and Personal and Fit,1,Physical & Health Education
+PAF2O9,Personal and Fitness Activities-Male,1,Physical & Health Education
+PAF3O1,Healthy Living and Personal and Fit,1,Physical & Health Education
+PAF3O8,Personal and Fitness Activities-Female,1,Physical & Health Education
+PAF3O9,Personal and Fitness Activities-Male,1,Physical & Health Education
+PAF4O1,Healthy Living and Personal and Fit,1,Physical & Health Education
+PAF4O8,Personal & Fitness Activities-Female,1,Physical & Health Education
+PAF4O9,Personal & Fitness Activities-Male,1,Physical & Health Education
+PAI1O1,Individual & Small Group Activities,1,Physical & Health Education
+PAI2O1,Individual & Small Group Activities,1,Physical & Health Education
+PAI3O1,Healthy Living and Individual and S,1,Physical & Health Education
+PLF4M1,Recreation and Fitness Leadership,1,Physical & Health Education
+PPL1O1,Healthy Active Living Education,1,Physical & Health Education
+PPL1O8,Healthy Active Living-Female,1,Physical & Health Education
+PPL1O9,Healthy Active Living-Male,1,Physical & Health Education
+PPL2O8,Healthy Active Living Education-Female,1,Physical & Health Education
+PPL2O9,Healthy Active Living Education-Male,1,Physical & Health Education
+PPL3O1,Healthy Active Living Education,1,Physical & Health Education
+PPL3O8,Healthy Active Living Education-Female,1,Physical & Health Education
+PPL3O9,Healthy Active Living Education-Male,1,Physical & Health Education
+PPL4O1,Healthy Active Living Education,1,Physical & Health Education
+PPL4O8,Healthy Active Living Education,1,Physical & Health Education
+PPL4O9,Healthy Active Living Education,1,Physical & Health Education
+PPZ3C8,Health for Life-Female,1,Physical & Health Education
+PPZ3C9,Health for Life-Male,1,Physical & Health Education
+PSK4U1,Introductory Kinesiology,1,Physical & Health Education
+SBI3C1,Biology,1,Science
+SBI3U1,Biology,1,Science
+SBI3U6,Biology,1,Science
+SBI4U1,Biology,1,Science
+SBI4UE,Biology,1,Science
+SCH3U1,Chemistry,1,Science
+SCH3U6,Chemistry,1,Science
+SCH4C1,Chemistry,1,Science
+SCH4U1,Chemistry,1,Science
+SCH4UE,Chemistry,1,Science
+SNC1D1,Science,1,Science
+SNC1D2,Science,1,Science
+SNC1D7,Science,1,Science
+SNC1DG,Science,1,Science
+SNC1DL,Science,1,Science
+SNC1P1,Science,1,Science
+SNC1P7,Science,1,Science
+SNC2D1,Science,1,Science
+SNC2D2,Science,1,Science
+SNC2DG,Science,1,Science
+SNC2DL,Science,1,Science
+SNC2P1,Science,1,Science
+SPH3U1,Physics,1,Science
+SPH3U6,Physics,1,Science
+SPH4C1,Physics,1,Science
+SPH4U1,Physics,1,Science
+SPH4UE,Physics,1,Science
+ADA1OY,Drama,0,Special Education
+AMI1OY,Instrumental Music - Band,0,Special Education
+AWC3OY,Visual Arts- Ceramics,0,Special Education
+CHV2OY,Civics and Citizenship,0,Special Education
+ENG1DY,English,0,Special Education
+ESLBOY,"English as a Second Language, Level",0,Special Education
+GLC2OY,Career Studies,0,Special Education
+GLE1O1,Learning Strategies 1: Skills for Success in Secondary School,1,Special Education
+GLE1OY,Learning Strategies 1: Skills for Success in Secondary School,0,Special Education
+GLE2O1,Learning Strategies 1: Skills for Success in Secondary School,1,Special Education
+GLE2OY,Learning Strategies 1: Skills for Success in Secondary School,0,Special Education
+GLE3O1,Advanced Learning Strategies: Skills for Success After Secondary School,1,Special Education
+GLE4O1,Advanced Learning Strategies: Skills for Success After Secondary School,1,Special Education
+GLN4O1,Navigating the Workplace,1,Special Education
+GLS1O1,Learning Strategies 1: Skills for Success in Secondary School,1,Special Education
+GLS4O1,Advanced Learning Strategies: Skills for Success after Secondary School,1,Special Education
+GPP3OY,Leadership and Peer Support,0,Special Education
+KALANR,Creative Arts for Enjoyment and Exp,0,Special Education
+KALBNR,Creative Arts for Enjoyment and Exp,0,Special Education
+KALCNR,Creative Arts for Enjoyment and Exp,0,Special Education
+KALDND,Creative Arts for Enjoyment and Exp,0,Special Education
+KALDNR,Creative Arts for Enjoyment and Exp,0,Special Education
+KALENR,Creative Arts for Enjoyment and Exp,0,Special Education
+KALFNR,Creative Arts for Enjoyment and Exp,0,Special Education
+KALGNR,Creative Arts for Enjoyment and Exp,0,Special Education
+KCCAND,Life Skills,0,Special Education
+KCCBND,Life Skills,0,Special Education
+KCCCND,Life Skills,0,Special Education
+KCCCNR,Life Skills,0,Special Education
+KCCDND,Life Skills,0,Special Education
+KCCEND,Life Skills,0,Special Education
+KCCFND,Transit Training and Community Expl,0,Special Education
+KCCGND,Transit Training and Community Expl,0,Special Education
+KCWAND,Exploring Our World,0,Special Education
+KCWANR,Exploring Our World,0,Special Education
+KCWBND,Exploring Our World,0,Special Education
+KCWBNR,Exploring Our World,0,Special Education
+KCWCND,Exploring Our World,0,Special Education
+KCWCNR,Exploring Our World,0,Special Education
+KCWDND,Exploring Our World,0,Special Education
+KCWDNR,Exploring Our World,0,Special Education
+KCWEND,Exploring Our World,0,Special Education
+KCWENR,Exploring Our World,0,Special Education
+KENAND,Language and Communication Developm,0,Special Education
+KENANR,Language and Communication Developm,0,Special Education
+KENBND,Language and Communication Developm,0,Special Education
+KENBNR,Language and Communication Developm,0,Special Education
+KENCND,Language and Communication Developm,0,Special Education
+KENCNR,Language and Communication Developm,0,Special Education
+KENDND,Language and Communication Developm,0,Special Education
+KENDNR,Language and Communication Developm,0,Special Education
+KENEND,Language and Communication Developm,0,Special Education
+KENENR,Language and Communication Developm,0,Special Education
+KENFND,Language and Communication Developm,0,Special Education
+KENFNR,Language and Communication Developm,0,Special Education
+KENGND,Language and Communication Developm,0,Special Education
+KENGNR,Language and Communication Developm,0,Special Education
+KGLAND,Personal Life Skills,0,Special Education
+KGLANR,Personal Life Skills,0,Special Education
+KGLBND,Personal Life Skills,0,Special Education
+KGLBNR,Personal Life Skills,0,Special Education
+KGLCND,Personal Life Skills,0,Special Education
+KGLCNR,Personal Life Skills,0,Special Education
+KGLDND,Personal Life Skills,0,Special Education
+KGLDNR,Personal Life Skills,0,Special Education
+KGLEND,Personal Life Skills,0,Special Education
+KGLENR,Personal Life Skills,0,Special Education
+KGLFND,Personal Life Skills,0,Special Education
+KGLFNR,Personal Life Skills,0,Special Education
+KGLGND,Personal Life Skills,0,Special Education
+KGLGNR,Personal Life Skills,0,Special Education
+KGWANR,Exploring the World of Work,0,Special Education
+KGWBNR,Exploring the World of Work,0,Special Education
+KGWCNR,Exploring the World of Work,0,Special Education
+KGWDNR,Exploring the World of Work,0,Special Education
+KGWENR,Exploring the World of Work,0,Special Education
+KMMAND,Numeracy and Numbers,0,Special Education
+KMMANR,Numeracy and Numbers,0,Special Education
+KMMBND,Numeracy and Numbers,0,Special Education
+KMMBNR,Numeracy and Numbers,0,Special Education
+KMMCND,Numeracy and Numbers,0,Special Education
+KMMCNR,Numeracy and Numbers,0,Special Education
+KMMDND,Numeracy and Numbers,0,Special Education
+KMMDNR,Numeracy and Numbers,0,Special Education
+KMMEND,Numeracy and Numbers,0,Special Education
+KMMENR,Numeracy and Numbers,0,Special Education
+KMMFND,Numeracy and Numbers,0,Special Education
+KMMFNR,Numeracy and Numbers,0,Special Education
+KMMGND,Numeracy and Numbers,0,Special Education
+KMMGNR,Numeracy and Numbers,0,Special Education
+KPFAND,Personal Health and Fitness,0,Special Education
+KPFANR,Personal Health and Fitness,0,Special Education
+KPFBND,Personal Health and Fitness,0,Special Education
+KPFBNR,Personal Health and Fitness,0,Special Education
+KPFCND,Personal Health and Fitness,0,Special Education
+KPFCNR,Personal Health and Fitness,0,Special Education
+KPFDND,Personal Health and Fitness,0,Special Education
+KPFDNR,Personal Health and Fitness,0,Special Education
+KPFEND,Personal Health and Fitness,0,Special Education
+KPFENR,Personal Health and Fitness,0,Special Education
+KPFFND,Personal Health and Fitness,0,Special Education
+KPFFNR,Personal Health and Fitness,0,Special Education
+KPFGND,Personal Health and Fitness,0,Special Education
+KPHANR,Choice Making for Healthy Living,0,Special Education
+KPHBNR,Choice Making for Healthy Living,0,Special Education
+KPHCNR,Choice Making for Healthy Living,0,Special Education
+KPHENR,Choice Making for Healthy Living,0,Special Education
+KPHFNR,Choice Making for Healthy Living,0,Special Education
+PPL1OY,Healthy Active Living Education,0,Special Education
+PPL3OY,Healthy Active Living Education,0,Special Education
+PPL4OY,Healthy Active Living Education,0,Special Education
+TDJ3M1,Technological Design,1,Technological Studies
+TDJ4M1,Technological Design,1,Technological Studies
+TEJ2O1,Computer Technology,1,Technological Studies
+TEJ3M1,Computer Engineering Technology,1,Technological Studies
+TEJ4M1,Computer Engineering Technology,1,Technological Studies
+TGJ1O7,Communication Technology,1,Technological Studies
+TGJ2O1,Communications Technology,1,Technological Studies
+TGV3M1,"Communications Technology: TV, Video & Movie Production",1,Technological Studies
+TGV4M1,"Communications Technology: TV, Video & Movie Production",1,Technological Studies
+TIJ1O1,Exploring Technologies,1,Technological Studies
+AEA4O1,Exploring and Creating in the Arts,1,Visual Arts
+AVI1O1,Visual Arts,1,Visual Arts
+AVI1O7,Visual Arts,1,Visual Arts
+AVI2O1,Visual Arts,1,Visual Arts
+AVI3M1,Visual Arts,1,Visual Arts
+AVI4M1,Visual Arts,1,Visual Arts
+AWC2O1,Visual Arts- Ceramics,1,Visual Arts
+AWC2OY,Visual Arts- Ceramics,0,Visual Arts
+AWC3O1,Visual Arts- Ceramics,1,Visual Arts
+AWC3O4,Visual Arts- Ceramics,1,Visual Arts
+AWC4M1,Visual Arts- Ceramics,1,Visual Arts
+AWD3M1,Visual Arts - Visual Design,1,Visual Arts
+AWD4M1,Visual Arts - Visual Design,1,Visual Arts
+AWJ2O1,Visual Arts- Stage Design,1,Visual Arts
+AWL3M1,Visual Arts - Drawing,1,Visual Arts
+AWQ3M1,Visual Arts - Photography,1,Visual Arts
+AWQ3O1,Visual Arts - Photography,1,Visual Arts
+AWQ4M1,Visual Arts - Photography,1,Visual Arts
+AWR4M1,Visual Arts - Film/Video,1,Visual Arts
+AWS4M1,Visual Arts - Digital Media,1,Visual Arts
+BMI3CQ,"Marketing:  Goods, Services, Events",1,
+BMI3CT,"Marketing:  Goods, Services, Events",2,
+BTA3OB,Information and Communication Techn,2,
+CIVCAL,Civics Careers ESL,0,
+CIVCAR,Civics and Careers Reg,0,
+DUALCR,DUALCREDIT,0,
+GR10ST,Grade 10 STEAM,0,
+GR9STE,Grade 9 STEAM,0,
+MU1112,Vocal Music 10-12,0,
+MUS910,Vocal Music 9/10,0,
+MUSTHE,Musical Theatre,0,
+OLC4OC,Ontario Secondary School Literacy,2,
+PAD3OC,Outdoor Activities,2,
+SCH4CQ,Chemistry,1,
+SHAL.1,Semester 1 Study Hall,0,
+SHAL.2,Semester 2 Study Hall,0,
+ZLU3A.,LUNCH Gr 9 Sem1 P3,0,
+ZLU3B.,LUNCH Gr 9 Sem 2 P3,0,
+ZLU4A.,LUNCH Gr 10 Sem 1 P4,0,
+ZLU4B.,LUNCH Gr 10 Sem 2 P4,0,
+ZLUS1.,LUNCH Sem 1 Gr 11 & 12,0,
+ZLUS2.,LUNCH Sem 2 Gr 11 & 12,0,
+ZREMOT,Remote Holding Code,0,

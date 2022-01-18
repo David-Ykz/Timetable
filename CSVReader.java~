@@ -36,8 +36,11 @@ class CSVReader {
             Scanner courseDataScanner = new Scanner(courseData);
             courseDataScanner.nextLine();
             while (courseDataScanner.hasNext()) {
-                Course course = createCourse(parseString(courseDataScanner.nextLine()));
-                courseList.put(course.getCourseCode(), course);
+                String message = courseDataScanner.nextLine();
+                String courseCode = message.substring(0, message.indexOf(","));
+                if (numOccurrences("]", message) <= 3 && !courseCode.contains("PV")) {
+                    courseList.put(courseCode, createCourse(parseString(message)));
+                }
             }
             // Reads room data
             File roomData = new File(roomDataFileName);
@@ -106,10 +109,29 @@ class CSVReader {
     public Course createCourse(ArrayList<String> message) {
         String code = message.get(0);
         String title = message.get(1);
-        double credits = Double.parseDouble(message.get(2));
+        int grade = Integer.parseInt(message.get(2));
         String type = message.get(3);
-        int cap = 30;
-        Course course = new Course(courseList.size(), code, title, credits, type, cap);
+        int credits = Integer.parseInt(message.get(4));
+        ArrayList<String> prerequisites = new ArrayList<>();
+        // Removes the quotation marks around the message
+        message.set(5, message.get(5).substring(1, message.get(5).length() - 1));
+        String[] prerequisiteInfo = message.get(5).split(",", -1);
+        for (String prerequisite : prerequisiteInfo) {
+            prerequisites.add(prerequisite);
+        }
+        ArrayList<String> corequisites = new ArrayList<>();
+        message.set(6, message.get(6).substring(1, message.get(6).length() - 1));
+        String[] corequisiteInfo = message.get(6).split(",", -1);
+        for (String corequisite : corequisiteInfo) {
+            corequisites.add(corequisite);
+        }
+        String special = message.get(7);
+        // If there are no special requirements, the field will be set to empty
+        if (special.equals("[]")) {
+            special = "";
+        }
+        int cap = Integer.parseInt(message.get(8));
+        Course course = new Course(courseList.size(), code, title, grade, type, credits, prerequisites, corequisites, special, cap);
         return course;
     }
     
