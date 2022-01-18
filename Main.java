@@ -32,7 +32,7 @@ public class Main {
         //evolution loop
         //THIS ENTIRE SECTION CURRENTLY DOES NOT WORK. WE FIRST HAVE TO WORK ON FITNESS ALG.
         System.out.println(alg.isMaxFit(population));
-        while (alg.isMaxFit(population) == false && generation < 5000) {
+        while (alg.isMaxFit(population) == false && generation < 200) {
             //print fitness
             System.out.println("G" + generation + " Best fitness: " + population.getFittest(0).getFitness());
 
@@ -47,6 +47,31 @@ public class Main {
 
             //increment the current generation
             generation++;
+        }
+        
+        System.out.println();
+        timetable.createClasses(population.getFittest(0));
+        System.out.println("Solution found in " + generation + " generations");
+        System.out.println("Final solution fitness: " + population.getFittest(0).getFitness());
+        System.out.println("Clashes: " + timetable.calculateConflicts());
+        
+        Class classes[] = timetable.getClasses();
+        int classIndex = 1;
+        
+        for (Class bestClass : classes) {
+            System.out.println("Class " + classIndex + ":");
+            System.out.println("Course: " + 
+                               timetable.getCourse(bestClass.getCourseId()).getCourseName());
+            System.out.println("Group: " + 
+                               timetable.getGroup(bestClass.getGroupId()).getGroupId());
+            System.out.println("Room: " + 
+                               timetable.getRoom(bestClass.getRoomId()).getRoomNum());
+            System.out.println("Teacher: " + 
+                               timetable.getTeacher(bestClass.getTeacherId()).getTeacherName());
+            System.out.println("Period: " + 
+                               bestClass.getPeriod());
+            System.out.println("-----");
+            classIndex++;
         }
         
         System.out.println("NO ERRORS");
