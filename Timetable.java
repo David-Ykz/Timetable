@@ -51,8 +51,16 @@ public class Timetable {
         return this.students;
     }
     
+    public Class[] getClasses() {
+        return this.classes;
+    }
+    
     public Teacher getTeacher(int teacherId) {
         return (Teacher) this.teachers.get(teacherId);
+    }
+    
+    public Room getRoom(int roomId) {
+        return (Room) this.rooms.get(roomId);
     }
     
     public Course getCourse(String string) {
