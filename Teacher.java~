@@ -9,11 +9,11 @@ public class Teacher {
         this.qualifications = qualifications;
     }
     
-    public int getId(){
+    public int getTeacherId(){
         return this.teacherId;
     }
     
-    public String getName(){
+    public String getTeacherName(){
         return this.teacherName;
     }
     

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 class Student {
     private int studentId;
@@ -68,13 +67,4 @@ class Student {
     public int getStudentId() {
         return studentId;
     }
-    
-    public void moveIntoGroup(HashMap<Integer, Group> groupList) {
-        for (Group group : groupList.values()) {
-            if (alternates.contains(group.getCourseCode()) && !group.isFull()) {
-                group.addStudent(studentId);
-            }
-        }
-    }
-    
 }

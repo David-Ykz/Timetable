@@ -17,10 +17,10 @@ import java.util.HashMap;
  */
 
 class CSVReader {
-    private ArrayList<Student> studentList = new ArrayList<>();
+    private HashMap<Integer, Student> studentList = new HashMap<>();
     private HashMap<String, Course> courseList = new HashMap<>();
     private HashMap<String, Room> roomList = new HashMap<>();
-    private ArrayList<Teacher> teacherList = new ArrayList<>();
+    private HashMap<Integer, Teacher> teacherList = new HashMap<>();
     
     CSVReader(String studentDataFileName, String courseDataFileName, String roomDataFileName, String teacherDataFileName) {
         try {
@@ -29,7 +29,8 @@ class CSVReader {
             Scanner studentDataScanner = new Scanner(studentData);
             studentDataScanner.nextLine();
             while (studentDataScanner.hasNext()) {
-                studentList.add(createStudent(parseString(studentDataScanner.nextLine())));
+                Student student = createStudent(parseString(studentDataScanner.nextLine()));
+                studentList.put(student.getId(), student);
             }
             // Reads course data
             File courseData = new File(courseDataFileName);
@@ -43,21 +44,22 @@ class CSVReader {
             File roomData = new File(roomDataFileName);
             Scanner roomDataScanner = new Scanner(roomData);
             while (roomDataScanner.hasNext()) {
-                ArrayList<String> message = parseString(roomDataScanner.nextLine());
-                roomList.put(message.get(0), createRoom(message));
+                Room room = createRoom(parseString(roomDataScanner.nextLine()));
+                roomList.put(room.getRoomNum(), room);
             }
             // Reads teacher data
             File teacherData = new File(teacherDataFileName);
             Scanner teacherDataScanner = new Scanner(teacherData);
             while (teacherDataScanner.hasNext()) {
-                teacherList.add(createTeacher(parseString(teacherDataScanner.nextLine())));
+                Teacher teacher = createTeacher(parseString(teacherDataScanner.nextLine()));
+                teacherList.put(teacher.getId(), teacher);
             }
         } catch (Exception e) {
             System.out.println(e);
         }
     }
      
-    public ArrayList<Student> getStudentList() {
+    public HashMap<Integer, Student> getStudentList() {
         return studentList;
     }
     public HashMap<String, Course> getCourseList() {
@@ -66,7 +68,7 @@ class CSVReader {
     public HashMap<String, Room> getRoomList() {
         return roomList;
     }
-    public ArrayList<Teacher> getTeacherList() {
+    public HashMap<Integer, Teacher> getTeacherList() {
         return teacherList;
     }
     
