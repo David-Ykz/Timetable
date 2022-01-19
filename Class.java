@@ -5,6 +5,7 @@ public class Class {
     private int teacherId;
     private int roomId;
     private int period;
+    private int semester;
     
     public Class(int classId, int groupId, String courseCode){
         this.classId = classId;
@@ -23,6 +24,10 @@ public class Class {
     public void setPeriod(int period) {
     	this.period = period;
     }
+    
+    public void setSemester(int semester) {
+    	this.semester = semester;
+    }   
     
     public int getClassId(){
         return this.classId;
@@ -47,4 +52,8 @@ public class Class {
     public int getPeriod(){
         return this.period;
     }
+    
+    public int getSemester() {
+    	return this.semester;
+    }  
 }
