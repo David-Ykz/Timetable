@@ -19,7 +19,7 @@ import java.util.HashMap;
 class CSVReader {
     private HashMap<Integer, Student> studentList = new HashMap<>();
     private HashMap<String, Course> courseList = new HashMap<>();
-    private HashMap<String, Room> roomList = new HashMap<>();
+    private HashMap<Integer, Room> roomList = new HashMap<>();
     private HashMap<Integer, Teacher> teacherList = new HashMap<>();
     
     CSVReader(String studentDataFileName, String courseDataFileName, String roomDataFileName, String teacherDataFileName) {
@@ -45,14 +45,14 @@ class CSVReader {
             Scanner roomDataScanner = new Scanner(roomData);
             while (roomDataScanner.hasNext()) {
                 Room room = createRoom(parseString(roomDataScanner.nextLine()));
-                roomList.put(room.getRoomNum(), room);
+                roomList.put(room.getRoomId(), room);
             }
             // Reads teacher data
             File teacherData = new File(teacherDataFileName);
             Scanner teacherDataScanner = new Scanner(teacherData);
             while (teacherDataScanner.hasNext()) {
                 Teacher teacher = createTeacher(parseString(teacherDataScanner.nextLine()));
-                teacherList.put(teacher.getId(), teacher);
+                teacherList.put(teacher.getTeacherId(), teacher);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -65,7 +65,7 @@ class CSVReader {
     public HashMap<String, Course> getCourseList() {
         return courseList;
     }
-    public HashMap<String, Room> getRoomList() {
+    public HashMap<Integer, Room> getRoomList() {
         return roomList;
     }
     public HashMap<Integer, Teacher> getTeacherList() {

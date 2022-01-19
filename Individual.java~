@@ -1,12 +1,14 @@
+
 public class Individual {
-    private int[] chromosome;
+	private int[] chromosome;
     private double fitness = -1;
 
-    public Individual(Timetable timetable) {
-        int numClasses = timetable.getNumClasses();
+	public Individual(Timetable timetable) {
+		int numClasses = timetable.getNumClasses();
+        
         //the length of the chromosome is equal to the number of classes * 3 (number of genes referring to a single claass
         int chromosomeLength = numClasses * 3;
-        
+
         int newChromosome[] = new int[chromosomeLength];
         int chromosomeIndex = 0;
         
@@ -23,25 +25,25 @@ public class Individual {
             chromosomeIndex++;
             
             // Add random professor
-            //Group newGroup = timetable.getGroup(group.getCourseCode());
-            int randomProfessorIndex = (int)(Math.random() * timetable.getTeachers().size());
-            newChromosome[chromosomeIndex] = randomProfessorIndex;
+            Course course = timetable.getCourse(group.getCourseCode());
+            newChromosome[chromosomeIndex] = course.getRandomProfessorId();
             chromosomeIndex++;
         }
         
-        this.chromosome = newChromosome;        
-    }
-    
-    public Individual(int chromosomeLength) {
-        int[] newChromosome = new int[chromosomeLength];
         this.chromosome = newChromosome;
-    }
-    
-    public Individual(int[] chromosome) {
+	}
+	
+	public Individual(int chromosomeLength) {
+        int[] newChromosome = new int[chromosomeLength];
+        
+        this.chromosome = newChromosome;
+	}
+	
+	public Individual(int[] chromosome) {
         this.chromosome = chromosome;
     }
-    
-    public int[] getChromosome() {
+	
+	public int[] getChromosome() {
         return this.chromosome;
     }
     

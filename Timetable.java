@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Timetable {
-    private final HashMap<String, Room> rooms;
+    private final HashMap<Integer, Room> rooms;
     private final HashMap<Integer, Teacher> teachers;
     private final HashMap<Integer, Student> students;
     private final HashMap<String, Course> courses;
@@ -11,11 +11,7 @@ public class Timetable {
     
     private int numClasses = 0;
 
-    Timetable(HashMap<String, Room> rooms, 
-              HashMap<Integer, Teacher> teachers, 
-              HashMap<Integer, Student> students, 
-              HashMap<String, Course> courses, 
-              HashMap<Integer, Group> groups) {
+    Timetable(HashMap<Integer, Room> rooms, HashMap<Integer, Teacher> teachers, HashMap<Integer, Student> students, HashMap<String, Course> courses, HashMap<Integer, Group> groups) {
         
         this.rooms = rooms;
         this.teachers = teachers;
@@ -48,7 +44,7 @@ public class Timetable {
         return this.teachers;
     }
     
-    public HashMap<String, Room> getRooms() {
+    public HashMap<Integer, Room> getRooms() {
         return this.rooms;
     }
     
@@ -187,6 +183,27 @@ public class Timetable {
         }
         
         return conflicts;
+    }
+    
+    public void printConflicts() {
+    	for (Class classA : this.classes) {
+    		for (Class classB : this.classes) {
+                if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
+                        && classA.getClassId() != classB.getClassId()) {
+                	System.out.println(this.courses.get(classA.getCourseId()).getCourseName() + " conflicts with " + this.courses.get(classB.getCourseId()).getCourseName());
+                    break;
+                }
+            }
+            
+            // Check if teacher is available
+            for (Class classB : this.classes) {
+                if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
+                        && classA.getClassId() != classB.getClassId()) {
+                	System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with " + this.teachers.get(classB.getTeacherId()).getTeacherName());
+                    break;
+                }
+            }
+    	}
     }
     
     public void printTimetable() {

@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Timetable {
-    private final HashMap<Integer, Room> rooms;
+	private final HashMap<Integer, Room> rooms;
     private final HashMap<Integer, Teacher> teachers;
     private final HashMap<Integer, Student> students;
     private final HashMap<String, Course> courses;
@@ -26,8 +26,6 @@ public class Timetable {
         this.students = copy.getStudents();
         this.courses = copy.getCourses();
         this.groups = copy.getGroups();
-        this.numClasses = copy.getNumClasses();
-        
     }
     
     //getters
@@ -39,7 +37,7 @@ public class Timetable {
         return this.courses;
     }
     
-    public HashMap<Integer, Teacher> getTeachers() {
+    private HashMap<Integer, Teacher> getTeachers() {
         return this.teachers;
     }
     
@@ -51,16 +49,8 @@ public class Timetable {
         return this.students;
     }
     
-    public Class[] getClasses() {
-        return this.classes;
-    }
-    
     public Teacher getTeacher(int teacherId) {
         return (Teacher) this.teachers.get(teacherId);
-    }
-    
-    public Room getRoom(int roomId) {
-        return (Room) this.rooms.get(roomId);
     }
     
     public Course getCourse(String string) {
@@ -81,12 +71,12 @@ public class Timetable {
     }
     
     //adders/setters
-    public void addRoom(int roomId, String roomNum, String roomName) {
-        this.rooms.put(roomId, new Room(roomId, roomNum, roomName));
+    public void addRoom(int roomId, int roomNum, String roomName, String roomType) {
+        this.rooms.put(roomId, new Room(roomId, roomNum, roomName, roomType));
     }
     
-    public void addTeacher(int teacherId, String teacherName, String teacherQualification) {
-        this.teachers.put(teacherId, new Teacher(teacherId, teacherName, teacherQualification));
+    public void addTeacher(int teacherId, String teacherName) {
+        this.teachers.put(teacherId, new Teacher(teacherId, teacherName));
     }
     
     public void addStudent(int studentId, Student student) {
@@ -99,37 +89,37 @@ public class Timetable {
     
     public void addGroup(int groupId, String courseCode) {
         this.groups.put(groupId, new Group(groupId, courseCode));
-        this.numClasses++;
+        this.numClasses = 0;
     }
     
     public int getNumClasses() {
-        return numClasses;
-    }
+		return numClasses;
+	}
     
     public Room getRandomRoom() {
-     Object[] roomsArray = this.rooms.values().toArray();
+    	Object[] roomsArray = this.rooms.values().toArray();
         Room room = (Room) roomsArray[(int) (roomsArray.length * Math.random())];
         return room;
- }
+	}
     
     public void createGroups() {
-        for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
-            String[] courseRequests = student.getCourseRequests();
-            
-            for (String course: courseRequests) {
-                for (Group availableGroup: this.getGroupsAsArray()) {
-                    if (course.equals(availableGroup.getCourseCode()) == true) {
-                        availableGroup.addStudent(student.getStudentId());
-                    }
-                    //adds a new group if the course did not already have an associated group
-                    //or if the group is at max capacity
-                    else {
-                        this.addGroup(groups.size() + 1, course);
-                    }
-                }
-            }
-        }     
+    	for (int i = 0; i < students.size(); i++) {
+    		Student student = students.get(i);
+    		String[] courseRequests = student.getCourseRequests();
+    		
+    		for (String course: courseRequests) {
+    			for (Group availableGroup: this.getGroupsAsArray()) {
+    				if (course.equals(availableGroup.getCourseCode()) == true) {
+    					availableGroup.addStudent(student.getStudentId());
+    				}
+    				//adds a new group if the course did not already have an associated group
+    				//or if the group is at max capacity
+    				else {
+    					this.addGroup(groups.size() + 1, course);
+    				}
+    			}
+    		}
+    	}    	
     }
     
     //creating classes from a chromosoe
@@ -180,14 +170,14 @@ public class Timetable {
 //            int groupSize = this.getGroup(classA.getGroupId()).getGroupSize();
 //            
 //            if (roomCapacity < groupSize) {
-//             conflicts++;
+//            	conflicts++;
 //            }
             
             // Check if room is taken
             for (Class classB : this.classes) {
                 if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
                         && classA.getClassId() != classB.getClassId()) {
-                 conflicts ++;
+                	conflicts ++;
                     break;
                 }
             }
@@ -196,7 +186,7 @@ public class Timetable {
             for (Class classB : this.classes) {
                 if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
                         && classA.getClassId() != classB.getClassId()) {
-                 conflicts++;
+                	conflicts++;
                     break;
                 }
             }
@@ -204,16 +194,5 @@ public class Timetable {
         
         return conflicts;
     }
-    
-    public void printTimetable() {
-        System.out.println("Room Size: " + rooms.size());
-        System.out.println("Teacher Size: " + teachers.size());
-        System.out.println("Student Size: " + students.size());
-        System.out.println("Course Size: " + courses.size());
-        System.out.println("Group Size: " + groups.size());
-        
-        System.out.println ("Number of classes: " + numClasses);
-    }
-    
 
 }
