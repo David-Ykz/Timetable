@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Group {
     private final int groupId;
@@ -14,7 +15,7 @@ public class Group {
         this.cap = cap;
     }
 
-    public int getGroupId(){
+    public int getId(){
         return this.groupId;
     }
     
@@ -41,6 +42,29 @@ public class Group {
     
     public int getCap() {
         return this.cap;
+    }
+    
+    
+    public int findGroupGrade(HashMap<Integer, Student> studentList) {
+        HashMap<Integer, Integer> numGradeOccurrences = new HashMap<>();
+        for (Integer studentId : studentIds) {
+            int studentGrade = studentList.get(studentId).getGrade();
+            if (numGradeOccurrences.containsKey(studentGrade)) {
+                numGradeOccurrences.put(studentGrade, numGradeOccurrences.get(studentGrade) + 1);
+            } else {
+                numGradeOccurrences.put(studentGrade, 1);
+            }
+        }
+        int best = -1;
+        for (Integer grade : numGradeOccurrences.keySet()) {
+            if (best == -1) {
+                best = grade;
+            }
+            if (numGradeOccurrences.get(grade) > numGradeOccurrences.get(best)) {
+                best = grade;
+            }
+        }
+        return best;
     }
 
     

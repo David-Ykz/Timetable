@@ -60,7 +60,7 @@ class Course {
         return this.code;
     }
     
-    public String getCourseName(){
+    public String getName(){
         return this.name;
     }
     

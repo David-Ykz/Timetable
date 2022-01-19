@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 class Student {
     private int studentId;
@@ -66,15 +67,30 @@ class Student {
     }
     
     public int getStudentId() {
-        return studentId;
+        return this.studentId;
     }
     
-    public void moveIntoGroup(HashMap<Integer, Group> groupList) {
+    public int getGrade() {
+        return this.grade;
+    }
+    
+    public boolean moveIntoGroup(HashMap<Integer, Group> groupList, HashSet<Group> removeGroups) {
         for (Group group : groupList.values()) {
-            if (alternates.contains(group.getCourseCode()) && !group.isFull()) {
+            if (alternates.contains(group.getCourseCode()) && !group.isFull() && !removeGroups.contains(group)) {
                 group.addStudent(studentId);
+                alternates.remove(group.getCourseCode());
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void findNextBestCourse(HashMap<Integer, Group> groupList, HashMap<Integer, Student> studentList, HashSet<Group> removeGroups) {
+        for (Group group : groupList.values()) {
+            if (group.findGroupGrade(studentList) == this.grade && !group.isFull() && !removeGroups.contains(group)) {
+                group.addStudent(studentId);
+                return;
             }
         }
     }
-    
 }

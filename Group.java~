@@ -5,11 +5,13 @@ public class Group {
     private int groupSize;
     private final String courseCode;
     private ArrayList<Integer> studentIds = new ArrayList<>();
+    private int cap;
     
-    public Group(int groupId, String courseCode){
+    public Group(int groupId, String courseCode, int cap){
         this.groupId = groupId;
         this.courseCode = courseCode;
         this.groupSize = 0;
+        this.cap = cap;
     }
 
     public int getGroupId(){
@@ -33,6 +35,13 @@ public class Group {
         return this.studentIds;
     }
     
+    public boolean isFull() {
+        return groupSize >= cap;
+    }
+    
+    public int getCap() {
+        return this.cap;
+    }
 
     
     

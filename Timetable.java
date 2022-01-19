@@ -125,7 +125,7 @@ public class Timetable {
         for (Group group : this.getGroupsAsArray()) {
             String courseCode = group.getCourseCode();
             
-            classes[classIndex] = new Class(classIndex, group.getGroupId(), courseCode);
+            classes[classIndex] = new Class(classIndex, group.getId(), courseCode);
             
             //period
             classes[classIndex].setPeriod(chromosome[chromosomePos]);
@@ -171,7 +171,7 @@ public class Timetable {
             for (Class classB : this.classes) {
                 if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
                         && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                	conflicts ++;
+                 conflicts ++;
                     break;
                 }
             }
@@ -180,7 +180,7 @@ public class Timetable {
             for (Class classB : this.classes) {
                 if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
                         && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                	conflicts++;
+                 conflicts++;
                     break;
                 }
             }
@@ -190,11 +190,11 @@ public class Timetable {
     }
     
     public void printConflicts() {
-    	for (Class classA : this.classes) {
-    		for (Class classB : this.classes) {
+     for (Class classA : this.classes) {
+      for (Class classB : this.classes) {
                 if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                	System.out.println(this.courses.get(classA.getCourseId()).getCourseName() + " conflicts with " + this.courses.get(classB.getCourseId()).getCourseName());
+                        && classA.getClassId() != classB.getClassId()) {
+                 System.out.println(this.courses.get(classA.getCourseId()).getName() + " conflicts with " + this.courses.get(classB.getCourseId()).getName());
                     break;
                 }
             }
@@ -202,12 +202,12 @@ public class Timetable {
             // Check if teacher is available
             for (Class classB : this.classes) {
                 if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                	System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with " + this.teachers.get(classB.getTeacherId()).getTeacherName());
+                        && classA.getClassId() != classB.getClassId()) {
+                 System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with " + this.teachers.get(classB.getTeacherId()).getTeacherName());
                     break;
                 }
             }
-    	}
+     }
     }
     
     public void printTimetable() {
