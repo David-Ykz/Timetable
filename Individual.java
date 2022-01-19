@@ -27,6 +27,11 @@ public class Individual {
             int randomProfessorIndex = (int)(Math.random() * timetable.getTeachers().size());
             newChromosome[chromosomeIndex] = randomProfessorIndex;
             chromosomeIndex++;
+            
+            //add random semester
+            int randomSemester = (int)(Math.random() * (2) + 1);
+            newChromosome[chromosomeIndex] = randomSemester;
+            chromosomeIndex++;
         }
         
         this.chromosome = newChromosome;        
