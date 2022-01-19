@@ -21,16 +21,17 @@ public class Main {
         }
         
         for (Group group : groupList.values()) {
-            if (group.getGroupSize() < group.getCap() * Const.CUTOFF_THRESHOLD) {
-                for (int i = 0; i < group.getStudentIds().size(); i++) {
-                    int studentId = group.getStudentIds().get(i);
-                    Student student = studentList.get(studentId);
-                    if (!student.getAlternates().isEmpty()) {
-                        student.moveIntoGroup(groupList);
-                    }
-                }
-                groupList.remove(group);
-            }
+        	System.out.println(group.getGroupSize());
+//            if (group.getGroupSize() < group.getCap() * Const.CUTOFF_THRESHOLD) {
+//                for (int i = 0; i < group.getStudentIds().size(); i++) {
+//                    int studentId = group.getStudentIds().get(i);
+//                    Student student = studentList.get(studentId);
+//                    if (!student.getAlternates().isEmpty()) {
+//                        student.moveIntoGroup(groupList);
+//                    }
+//                }
+//                groupList.remove(group);
+//            }
         }
 
         //genetic algorithm 
