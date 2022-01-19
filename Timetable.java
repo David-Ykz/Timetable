@@ -139,6 +139,10 @@ public class Timetable {
             classes[classIndex].setTeacherId(chromosome[chromosomePos]);
             chromosomePos++;
             
+            //semester
+            classes[classIndex].setSemester(chromosome[chromosomePos]);
+            chromosomePos++;
+            
             classIndex++;
         }
         this.classes = classes;
@@ -166,8 +170,8 @@ public class Timetable {
             // Check if room is taken
             for (Class classB : this.classes) {
                 if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId()) {
-                 conflicts ++;
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
+                	conflicts ++;
                     break;
                 }
             }
@@ -175,8 +179,8 @@ public class Timetable {
             // Check if teacher is available
             for (Class classB : this.classes) {
                 if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId()) {
-                 conflicts++;
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
+                	conflicts++;
                     break;
                 }
             }
@@ -189,7 +193,7 @@ public class Timetable {
     	for (Class classA : this.classes) {
     		for (Class classB : this.classes) {
                 if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId()) {
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
                 	System.out.println(this.courses.get(classA.getCourseId()).getCourseName() + " conflicts with " + this.courses.get(classB.getCourseId()).getCourseName());
                     break;
                 }
@@ -198,7 +202,7 @@ public class Timetable {
             // Check if teacher is available
             for (Class classB : this.classes) {
                 if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId()) {
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
                 	System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with " + this.teachers.get(classB.getTeacherId()).getTeacherName());
                     break;
                 }
