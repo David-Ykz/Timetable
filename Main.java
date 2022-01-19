@@ -69,7 +69,7 @@ public class Main {
         timetable.createClasses(population.getFittest(0));
         System.out.println("Solution found in " + generation + " generations");
         System.out.println("Final solution fitness: " + population.getFittest(0).getFitness());
-        System.out.println("Clashes: " + timetable.calculateConflicts());
+        System.out.println("Clashes: " + timetable.calculateConflicts() + "\n");
         
         Class classes[] = timetable.getClasses();
         int classIndex = 1;
@@ -84,8 +84,12 @@ public class Main {
                                timetable.getRoom(bestClass.getRoomId()).getRoomNum());
             System.out.println("Teacher: " + 
                                timetable.getTeacher(bestClass.getTeacherId()).getTeacherName());
+            System.out.println("Class size: " + 
+                    			timetable.getGroup(bestClass.getGroupId()).getGroupSize());
             System.out.println("Period: " + 
                                bestClass.getPeriod());
+            System.out.println("Semester: " + 
+                    bestClass.getSemester());
             System.out.println("-----");
             classIndex++;
         }
