@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Timetable {
@@ -146,6 +147,15 @@ public class Timetable {
             classIndex++;
         }
         this.classes = classes;
+    }
+    
+    public void giveStudentsClasses() {
+    	for (Class cl: this.classes) {
+        	ArrayList<Integer> studentIds = groups.get(cl.getGroupId()).getStudentIds();
+        	for (int id: studentIds) {
+        		students.get(id).addClass(cl);
+        	}
+        }
     }
     
     //-----------------------------------------ENTIRE METHOD IS SUBJECT TO CHANGE--------------------------------------------//

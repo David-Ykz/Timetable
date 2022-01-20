@@ -138,9 +138,13 @@ class CSVReader {
     //TO BE CHANGED
     public int getCourseCap(String courseCode) {
     	
-    	//course caps
+    	//course caps (specific 
     	if (courseCode.contains("BTT") || (courseCode.contains("ICS")) || (courseCode.contains("TDJ")) || (courseCode.contains("TGJ"))) { //bbt computers
     		return 28;
+    	} else if ((courseCode.contains("TDJ")) || (courseCode.contains("TEJ"))) {	//bbt shops	
+    		return 22;
+    	} else if ((courseCode.charAt(5) == 'C') || (courseCode.charAt(5) == 'T') || (courseCode.charAt(5) == 'Q') || (courseCode.charAt(5) == 'I')) {	//CBE
+    		return 27;
     	} else if (courseCode.charAt(4) == 'D') {	//academic
     		return 29;
     	} else if  (courseCode.charAt(4) == 'P') { 	//applied
