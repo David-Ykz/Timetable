@@ -193,7 +193,7 @@ public class Timetable {
      for (Class classA : this.classes) {
       for (Class classB : this.classes) {
                 if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId()) {
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
                  System.out.println(this.courses.get(classA.getCourseId()).getName() + " conflicts with " + this.courses.get(classB.getCourseId()).getName());
                     break;
                 }
@@ -202,7 +202,7 @@ public class Timetable {
             // Check if teacher is available
             for (Class classB : this.classes) {
                 if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId()) {
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
                  System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with " + this.teachers.get(classB.getTeacherId()).getTeacherName());
                     break;
                 }

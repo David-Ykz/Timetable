@@ -74,8 +74,8 @@ class Student {
         return this.grade;
     }
     
-    public boolean moveIntoGroup(HashMap<Integer, Group> groupList, HashSet<Group> removeGroups) {
-        for (Group group : groupList.values()) {
+    public boolean moveIntoGroup(ArrayList<Group> groupList, HashSet<Group> removeGroups) {
+        for (Group group : groupList) {
             if (alternates.contains(group.getCourseCode()) && !group.isFull() && !removeGroups.contains(group)) {
                 group.addStudent(studentId);
                 alternates.remove(group.getCourseCode());
@@ -85,8 +85,8 @@ class Student {
         return false;
     }
     
-    public void findNextBestCourse(HashMap<Integer, Group> groupList, HashMap<Integer, Student> studentList, HashSet<Group> removeGroups) {
-        for (Group group : groupList.values()) {
+    public void findNextBestCourse(ArrayList<Group> groupList, HashMap<Integer, Student> studentList, HashSet<Group> removeGroups) {
+        for (Group group : groupList) {
             if (group.findGroupGrade(studentList) == this.grade && !group.isFull() && !removeGroups.contains(group)) {
                 group.addStudent(studentId);
                 return;

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Group {
-    private final int groupId;
+    private int groupId;
     private int groupSize;
     private final String courseCode;
     private ArrayList<Integer> studentIds = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Group {
         this.cap = cap;
     }
 
-    public int getId(){
+    public int getId() {
         return this.groupId;
     }
     
@@ -42,6 +42,10 @@ public class Group {
     
     public int getCap() {
         return this.cap;
+    }
+    
+    public void setId(int id) {
+    	this.groupId = id;
     }
     
     

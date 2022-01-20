@@ -5,7 +5,7 @@ public class Individual {
     public Individual(Timetable timetable) {
         int numClasses = timetable.getNumClasses();
         //the length of the chromosome is equal to the number of classes * 3 (number of genes referring to a single claass
-        int chromosomeLength = numClasses * 3;
+        int chromosomeLength = numClasses * 4;
         
         int newChromosome[] = new int[chromosomeLength];
         int chromosomeIndex = 0;

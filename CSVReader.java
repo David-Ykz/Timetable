@@ -110,7 +110,7 @@ class CSVReader {
         String title = message.get(1);
         double credits = Double.parseDouble(message.get(2));
         String type = message.get(3);
-        int cap = 30;
+        int cap = getCourseCap(code);
         Course course = new Course(courseList.size(), code, title, credits, type, cap);
         return course;
     }
@@ -133,6 +133,15 @@ class CSVReader {
         }
         String[] strings = string.split(expression, -1);
         return strings.length - 1;
+    }
+    
+    //TO BE CHANGED
+    public int getCourseCap(String courseCode) {
+    	int courseCap;
+    	
+    	courseCap = 30;
+    	
+    	return courseCap;
     }
 
     
