@@ -11,11 +11,12 @@ class Student {
     private String guardianEmail_1;
     private String guardianEmail_2;
     private int grade;
-    private ArrayList<String> courses;
+    private ArrayList<String> courseRequests;
+    private ArrayList<Class> classes;
     private int totalCourses;
     private ArrayList<String> alternates;
 
-    Student(int studentId, String name, String gender, int studentNum, String gappsAccount, String guardianEmail_1, String guardianEmail_2, int grade, ArrayList<String> courses, int totalCourses, ArrayList<String> alternates) {
+    Student(int studentId, String name, String gender, int studentNum, String gappsAccount, String guardianEmail_1, String guardianEmail_2, int grade, ArrayList<String> courseRequests, int totalCourses, ArrayList<String> alternates) {
         this.studentId = studentId;
         this.name = name;
         this.gender = gender;
@@ -24,9 +25,10 @@ class Student {
         this.guardianEmail_1 = guardianEmail_1;
         this.guardianEmail_2 = guardianEmail_2;
         this.grade = grade;
-        this.courses = courses;
+        this.courseRequests = courseRequests;
         this.totalCourses = totalCourses;
         this.alternates = alternates;
+        this.classes = new ArrayList<>();
     }
     
     public void printInfo() {
@@ -37,15 +39,13 @@ class Student {
         System.out.println("Guardian Email #1: " + guardianEmail_1);
         System.out.println("Guardian Email #2: " + guardianEmail_2);
         System.out.println("Grade: " + grade);
-        System.out.println("Courses: " + courses.toString());
+        System.out.println("Courses: " + courseRequests.toString());
         System.out.println("Total Courses: " + totalCourses);
         System.out.println("Alternates: " + alternates.toString());
     }
 
-    public void addTimetableInfo(){
-     //complete once timetable class has been figured out
-     //loop through timetable and module, and place student in a random class
-     //calculate clashes and fit score through timetable class
+    public void addClass(Class newClass){
+	    this.classes.add(newClass);
     }
 
     
@@ -54,20 +54,28 @@ class Student {
         return this.studentId;
     }
     
+    public String getName() {
+    	return this.name;
+    }
+    
     public String[] getCourseRequests() {
-        return (String[]) courses.toArray();
+        return (String[]) courseRequests.toArray();
     }
     
     public ArrayList<String> getCourses() {
-        return this.courses;
+        return this.courseRequests;
     }
     
     public ArrayList<String> getAlternates() {
         return this.alternates;
     }
     
-    public int getStudentId() {
-        return this.studentId;
+    public ArrayList<Class> getClasses() {
+        return this.classes;
+    }
+    
+    public int getStudentNum() {
+        return this.studentNum;
     }
     
     public int getGrade() {
