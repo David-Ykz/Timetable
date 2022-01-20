@@ -5,11 +5,13 @@ public class Group {
     private int groupId;
     private int groupSize;
     private final String courseCode;
+    private boolean isSingleSection;
     private ArrayList<Integer> studentIds = new ArrayList<>();
     private int cap;
     
     public Group(int groupId, String courseCode, int cap){
         this.groupId = groupId;
+        this.isSingleSection = false;
         this.courseCode = courseCode;
         this.groupSize = 0;
         this.cap = cap;
@@ -25,6 +27,10 @@ public class Group {
     
     public String getCourseCode(){
         return this.courseCode;
+    }
+    
+    public boolean getIsSingleSection() {
+    	return this.isSingleSection;
     }
     
     public void addStudent(int studentId){
@@ -46,6 +52,10 @@ public class Group {
     
     public void setId(int id) {
     	this.groupId = id;
+    }
+    
+    public void setSingleSection() {
+    	this.isSingleSection = true;
     }
     
     
