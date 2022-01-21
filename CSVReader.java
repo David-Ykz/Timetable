@@ -46,7 +46,7 @@ class CSVReader {
             while (roomDataScanner.hasNext()) {
                 Room room = createRoom(parseString(roomDataScanner.nextLine()));
                 if (room.getRoomName().equals("\"Technology room\"") == true) {
-                	System.out.println(room.getRoomNum());
+                 System.out.println(room.getRoomNum());
                 }
                 roomList.put(room.getRoomId(), room);
             }
@@ -57,6 +57,10 @@ class CSVReader {
                 Teacher teacher = createTeacher(parseString(teacherDataScanner.nextLine()));
                 teacherList.put(teacher.getTeacherId(), teacher);
             }
+            studentDataScanner.close();
+            courseDataScanner.close();
+            teacherDataScanner.close();
+            
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -140,32 +144,32 @@ class CSVReader {
     
     //TO BE CHANGED
     public int getCourseCap(String courseCode) {
-    	
-    	//course caps (specific 
-    	if (courseCode.contains("BTT") || (courseCode.contains("ICS")) || (courseCode.contains("TDJ")) || (courseCode.contains("TGJ"))) { //bbt computers
-    		return 28;
-    	} else if ((courseCode.contains("TDJ")) || (courseCode.contains("TEJ"))) {	//bbt shops	
-    		return 22;
-    	} else if ((courseCode.charAt(5) == 'C') || (courseCode.charAt(5) == 'T') || (courseCode.charAt(5) == 'Q') || (courseCode.charAt(5) == 'I')) {	//CBE
-    		return 27;
-    	} else if (courseCode.charAt(4) == 'D') {	//academic
-    		return 29;
-    	} else if  (courseCode.charAt(4) == 'P') { 	//applied
-    		return 22;
-    	} else if (courseCode.charAt(4) == 'C'){ 	// college
-    		return 28;
-    	} else if (courseCode.charAt(4) == 'L') { 	//locally developed
-    		return 16;
-    	} else if (courseCode.charAt(4) == 'O') { 	//open
-    		return 28;
-    	} else if (courseCode.charAt(4) == 'U') {	//university
-    		return 30;
-    	} else if (courseCode.charAt(4) == 'M') { 	//university/college
-    		return 30;
-    	} else if (courseCode.charAt(4) == 'E') { 	//workplace
-    		return 20;
-    	}    	
-    	return 30;
+     
+     //course caps (specific 
+     if (courseCode.contains("BTT") || (courseCode.contains("ICS")) || (courseCode.contains("TDJ")) || (courseCode.contains("TGJ"))) { //bbt computers
+      return 28;
+     } else if ((courseCode.contains("TDJ")) || (courseCode.contains("TEJ"))) { //bbt shops 
+      return 22;
+     } else if ((courseCode.charAt(5) == 'C') || (courseCode.charAt(5) == 'T') || (courseCode.charAt(5) == 'Q') || (courseCode.charAt(5) == 'I')) { //CBE
+      return 27;
+     } else if (courseCode.charAt(4) == 'D') { //academic
+      return 29;
+     } else if  (courseCode.charAt(4) == 'P') {  //applied
+      return 22;
+     } else if (courseCode.charAt(4) == 'C'){  // college
+      return 28;
+     } else if (courseCode.charAt(4) == 'L') {  //locally developed
+      return 16;
+     } else if (courseCode.charAt(4) == 'O') {  //open
+      return 28;
+     } else if (courseCode.charAt(4) == 'U') { //university
+      return 30;
+     } else if (courseCode.charAt(4) == 'M') {  //university/college
+      return 30;
+     } else if (courseCode.charAt(4) == 'E') {  //workplace
+      return 20;
+     }     
+     return 30;
     }
 
     

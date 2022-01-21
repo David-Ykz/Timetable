@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Arrays;
 
 class Student {
     private int studentId;
@@ -45,7 +46,7 @@ class Student {
     }
 
     public void addClass(Class newClass){
-	    this.classes.add(newClass);
+     this.classes.add(newClass);
     }
 
     
@@ -55,7 +56,7 @@ class Student {
     }
     
     public String getName() {
-    	return this.name;
+     return this.name;
     }
     
     public String[] getCourseRequests() {
@@ -101,4 +102,22 @@ class Student {
             }
         }
     }
+    
+    public String infoAsString() {
+        String[] sortedClasses = new String[8];
+        String message = Integer.toString(studentNum);
+        for (Class c1: this.classes) {
+            int index = c1.getPeriod() + 4 * (c1.getSemester() - 1) - 1;
+            sortedClasses[index] = c1.infoAsString();
+        }
+        for (int i = 0; i < sortedClasses.length; i++) {
+            message += ",";
+            if (sortedClasses[i] != null) {
+                message += sortedClasses[i];
+            } 
+        }
+        return message;
+    }
+        
+        
 }

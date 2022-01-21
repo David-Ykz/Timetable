@@ -1,26 +1,85 @@
-import java.util.Scanner;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class Main {
-    private static ArrayList<Student> studentList = new ArrayList<>();
-    private static ArrayList<Course> courseList = new ArrayList<>();
-    private static int studentCount = 0;
-    private static int courseCount = 0;
+	private static HashMap<Integer, Student> studentList = new HashMap<>();
+    private static HashMap<String, Course> courseList = new HashMap<>();
+    private static HashMap<Integer, Room> roomList = new HashMap<>();
+    private static HashMap<Integer, Teacher> teacherList = new HashMap<>();
+    private static HashMap<Integer, Group> groupList = new HashMap<>();
+    private static ArrayList<Group> originalGroupList = new ArrayList<>();
 
     public static void main(String[] args) {
-    	//read data from files
-        try {
-            readStudents();
-            readCourses();
-        } catch (Exception e) {
-            System.out.println(e);
-        }       
+    	Scanner input = new Scanner(System.in);
+    	CSVReader csvReader = new CSVReader("StudentDataObfuscated.csv", "Course Master List.csv", "Room Utilization.csv", "FakeTeacherList.csv");
+        studentList = csvReader.getStudentList();
+        courseList = csvReader.getCourseList();
+        roomList = csvReader.getRoomList();
+        teacherList = csvReader.getTeacherList();
+
+        for (Student student : studentList.values()) {
+            addToGroup(student);
+        }
+        
+        int total = 0;
+        
+        for (Group group : originalGroupList) {
+            total += group.getGroupSize();
+        }
+        
+        System.out.println("Before: " + total + " Size: " + originalGroupList.size());
+        
+        
+        int changes = 0;
+        HashSet<Group> removeGroups = new HashSet<>();
+        for (Group group : originalGroupList) {
+            String code = group.getCourseCode();
+            if (group.getGroupSize() < group.getCap() * Const.CUTOFF_THRESHOLD) {
+                for (int i = 0; i < group.getStudentIds().size(); i++) {
+                	changes++;
+                    int studentId = group.getStudentIds().get(i);
+                    Student student = studentList.get(studentId);
+                    if (!student.getAlternates().isEmpty()) {
+                        if (!student.moveIntoGroup(originalGroupList, removeGroups)) {
+                            student.findNextBestCourse(originalGroupList, studentList, removeGroups);
+                        }                            
+                    } else {
+                        student.findNextBestCourse(originalGroupList, studentList, removeGroups);
+                    }
+                }
+                removeGroups.add(group);
+            }
+        }
+        
+        originalGroupList.removeAll(removeGroups);
+        
+        //make new groupList
+        int groupIndex = 1;
+        
+        for (Group group : originalGroupList) {
+        	//give group a new id
+        	group.setId(groupIndex);
+        	groupList.put(groupIndex, group);
+        	groupIndex++;
+        }
+        
+        System.out.println("Percent Success Rate of Class Assignments: " + Math.round((double)(total-changes)/total * 100 * 100.0)/100.00 + "%");
+//        System.out.println("sections: " + countSections());
+        total = 0;
+        
+        for (Group group : groupList.values()) {
+            total += group.getGroupSize();
+        }
+        
+        System.out.println("After: " + total + " Size: " + groupList.size());
+
+        System.out.println("removed: " + removeGroups.size());
         
         //genetic algorithm 
-        Timetable timetable = initializeTimetable();     
-        Algorithm alg = new Algorithm(100, 0.01, 0.9, 2, 5);
+        Timetable timetable = new Timetable(roomList, teacherList, studentList, courseList, groupList); 
+        Algorithm alg = new Algorithm(200, 0.001, 0.9, 4, 5);
         Population population = alg.initPopulation(timetable);
         
         //evaluate population
@@ -29,8 +88,8 @@ public class Main {
         int generation = 1;
         
         //evolution loop
-        //THIS ENTIRE SECTION CURRENTLY DOES NOT WORK. WE FIRST HAVE TO WORK ON FITNESS ALG.
-        while (alg.isMaxFit(population) == false) {
+        System.out.println(alg.isMaxFit(population));
+        while (alg.isMaxFit(population) == false && generation < 1000) {
             //print fitness
             System.out.println("G" + generation + " Best fitness: " + population.getFittest(0).getFitness());
 
@@ -47,143 +106,112 @@ public class Main {
             generation++;
         }
         
-        System.out.println("NO ERRORS");
+        System.out.println();
+        timetable.createClasses(population.getFittest(0));
+        timetable.giveStudentsClasses();
+        System.out.println("Solution found in " + generation + " generations");
+        System.out.println("Final solution fitness: " + population.getFittest(0).getFitness());
+        System.out.println("Clashes: " + timetable.calculateConflicts() + "\n");
         
-	}
-    
-    public static int numOccurrences(String expression, String string) {
-        String[] strings = string.split(expression, -1);
-        return strings.length - 1;
-    }
-    
-    public static void readStudents() throws Exception {
-        File studentData = new File("src/StudentDataObfuscated.csv");
-        Scanner in = new Scanner(studentData);
-        CSVReader csvReader = new CSVReader();
-        in.nextLine();
-        while (in.hasNext()) {
-        	studentCount++;
-            String message = in.nextLine();
-            studentList.add(createStudent(csvReader.parseString(message)));
+        Class classes[] = timetable.getClasses();
+        int classIndex = 1;
+        
+        for (Class bestClass : classes) {
+            System.out.println("Class " + classIndex + ":");
+            System.out.println("Course: " + 
+                               timetable.getCourse(bestClass.getCourseId()).getName() + " " + timetable.getCourse(bestClass.getCourseId()).getCourseCode());
+            System.out.println("Class size: " + 
+        					   timetable.getGroup(bestClass.getGroupId()).getGroupSize());
+            System.out.println("Room: " + 
+                               timetable.getRoom(bestClass.getRoomId()).getRoomNum());
+            System.out.println("Teacher: " + 
+                               timetable.getTeacher(bestClass.getTeacherId()).getTeacherName());
+            System.out.println("Period: " + 
+                               bestClass.getPeriod());
+            System.out.println("Semester: " + 
+                    bestClass.getSemester());
+            System.out.println("-----");
+            classIndex++;
         }
-    }
-	
-    public static void readCourses() throws Exception {
-        File courseData = new File("src/CourseInfo.csv");
-        Scanner in = new Scanner(courseData);
-        CSVReader csvReader = new CSVReader();
-        in.nextLine();
-        while (in.hasNext()) {
-        	courseCount++;
-            String message = in.nextLine();
-            String courseCode = message.substring(0, message.indexOf(","));
-            if (numOccurrences("]", message) <= 3 && !courseCode.contains("PV")) {
-                courseList.add(createCourse(csvReader.parseString(message)));
+        
+        timetable.printConflicts();
+        
+        //printing out student's timetable
+        
+        while (true) {
+	        System.out.print("Enter a student identification number ('2000' to Exit): ");
+	        int inputInt = input.nextInt();
+	        
+	        if (inputInt >= 2000) {
+	        	break;
+	        }
+	        
+	        Student selectedStudent = studentList.get(inputInt);
+	        
+	        System.out.println("Name: " + selectedStudent.getName());
+	        System.out.println("Grade: " + selectedStudent.getGrade());
+	        System.out.println("Student Number: " + selectedStudent.getStudentNum());
+	        System.out.println("Gapps Email: " + selectedStudent.getStudentNum() + "@gapps.yrdsb.ca");
+	        System.out.println("Courses: " + selectedStudent.getCourses().toString());
+	        System.out.println("Alternates: " + selectedStudent.getAlternates().toString());
+	        System.out.println();
+	        
+	        for (Class cl: selectedStudent.getClasses()) {
+	            System.out.println("Course: " + 
+	                               timetable.getCourse(cl.getCourseId()).getName() + " " + timetable.getCourse(cl.getCourseId()).getCourseCode());
+	            System.out.println("Class size: " + 
+	        					   timetable.getGroup(cl.getGroupId()).getGroupSize());
+	            System.out.println("Room: " + 
+	                               timetable.getRoom(cl.getRoomId()).getRoomNum());
+	            System.out.println("Teacher: " + 
+	                               timetable.getTeacher(cl.getTeacherId()).getTeacherName());
+	            System.out.println("Period: " + 
+	                               	cl.getPeriod());
+	            System.out.println("Semester: " + 
+	                    			cl.getSemester());
+	            System.out.println("-----");
+	        }       
+        }
+        
+ }
+    
+    public static void addToGroup(Student student) {
+        for (String course : student.getCourses()) {
+            if (!courseList.containsKey(course)) {
+                return;
+            }
+            int groupIndex = availableGroupIndex(course);
+            if (groupIndex < 0) {
+                originalGroupList.add(new Group(originalGroupList.size() + 1, course, courseList.get(course).getCap()));
+                originalGroupList.get(originalGroupList.size() - 1).addStudent(student.getId());
+            } else {
+                originalGroupList.get(groupIndex).addStudent(student.getId());
             }
         }
     }
     
-    public static Student createStudent(ArrayList<String> message) {
-        String name = message.get(0);
-        name = name.substring(0, name.indexOf(",")) + " " + name.substring(name.indexOf(",") + 1);
-        String gender = message.get(1);
-        int studentNum = Integer.parseInt(message.get(2));
-        String gappsAccount = message.get(3);
-        String guardianEmail_1 = message.get(4);
-        String guardianEmail_2 = message.get(5);
-        int grade = Integer.parseInt(message.get(6));
-        ArrayList<String> courses = new ArrayList<>();
-        List<String> courseInfo = message.subList(7, 40);
-        for (int i = 0; i < courseInfo.size(); i++) {
-            if (i % 3 == 0 && !courseInfo.get(i).equals("")) {
-                courses.add(courseInfo.get(i));
-            }
-        }
-        int totalCourses = Integer.parseInt(message.get(40));
-        ArrayList<String> alternates = new ArrayList<>();
-        List<String> alternateInfo = message.subList(41, message.size());
-        for (int i = 0; i < alternateInfo.size(); i++) {
-            if (i % 3 == 0 && !alternateInfo.get(i).equals("")) {
-                alternates.add(alternateInfo.get(i));
-            }
-        }        
-        Student student = new Student(studentCount, name, gender, studentNum, gappsAccount, guardianEmail_1, guardianEmail_2, grade, courses, totalCourses, alternates);
-        return student;
-    }
-    
-    public static Course createCourse(ArrayList<String> message) {
-        String code = message.get(0);
-        String title = message.get(1);
-        int grade = Integer.parseInt(message.get(2));
-        String type = message.get(3);
-        int credits = Integer.parseInt(message.get(4));
-        ArrayList<String> prerequisites = new ArrayList<>();
-        message.set(5, message.get(5).substring(1, message.get(5).length() - 1));
-        String[] prerequisiteInfo = message.get(5).split(",", -1);
-        for (String prerequisite : prerequisiteInfo) {
-            prerequisites.add(prerequisite);
-        }
-        ArrayList<String> corequisites = new ArrayList<>();
-        message.set(6, message.get(6).substring(1, message.get(6).length() - 1));
-        String[] corequisiteInfo = message.get(6).split(",", -1);
-        for (String corequisite : corequisiteInfo) {
-            corequisites.add(corequisite);
-        }
-        String special = message.get(7);
-        if (special.equals("[]")) {
-            special = "";
-        }
-        int cap = Integer.parseInt(message.get(8));
-        Course course = new Course(courseCount, code, title, grade, type, credits, prerequisites, corequisites, special, cap);
-        return course;
-    }
-    
-    public static Timetable initializeTimetable() {
-    	Timetable timetable = new Timetable();
+    public static int countSections() {
+    	int total = 0;
     	
-    	//iniatialize rooms
-    	timetable.addRoom(1, 2005, "Science Room", "Science");
-    	timetable.addRoom(2, 2038, "Math Room", "Math");
-    	timetable.addRoom(4, 1021, "English Room", "English");
-    	timetable.addRoom(5, 1015, "Science Lab", "Science");
-    	
-    	//intialize teachers
-    	timetable.addTeacher(1, "Dr P Smith");
-    	timetable.addTeacher(2, "Mrs E Mitchell");
-    	timetable.addTeacher(3, "Dr R Williams");
-    	timetable.addTeacher(4, "Mr A Thompson");
-    	
-    	//initialize courses
-    	
-    	//intialize students and courses
-    	for (int i = 0; i < studentList.size(); i++) {
-    		timetable.addStudent(i, studentList.get(i));
-    	}   
-    	
-    	for (int i = 0; i < courseList.size(); i++) {
-    		timetable.addCourse(courseList.get(i).getCourseCode(), courseList.get(i));
+    	for (Group group: groupList.values()) {
+    		if (group.getCourseCode().charAt(4) == 'O') {
+    			System.out.println(group.getCourseCode());
+    			total += 1;
+    		}
     	}
-    	return timetable;
+    	
+    	return total;
+    }
+
+    public static int availableGroupIndex(String courseCode) {
+        int maxGroupSize = courseList.get(courseCode).getCap();
+        for (int i = 1; i < originalGroupList.size(); i++) {
+            Group group = originalGroupList.get(i);
+            if (group.getCourseCode().equals(courseCode) && group.getGroupSize() < maxGroupSize) {
+                return i;
+            }
+        }
+        return -1;
     }
     
-    // Messed up courses
-    
-	//BOH4M1,Organizational Behaviour and Human Resources,12,University/College,1,"[ENG3C1], [ENG3C2, ENG3U1], [ENG3U2, ENG3U1]",[],[],35 
-	//CGC1PV,Issues in Canadian Geography,9,Applied,1,"[]"," [ENG1PV], [MFM1PV], [SNC1PV]",,22 
-	//CHC2PV,Canadian History Since World War I,10,Applied,1,[],"[ENG2PV], [MFM2PV], [SNC2PV]",,35 
-	//ENG1PV,Language Intensive English,9,Applied,1,[] ,"[MFM1PV], [SNC1PV], [CGC1PV]",[],8 
-	//ENG2PV,Language Intensive English,10,Applied,1,[ENG1PV]  ,"[SNC2PV], [CHC2PV]",[],10 
-	//ENG3U2,Outdoor Adventure Leadership Program - UNIVERSITY LEVEL ENGLISH,11,University,1," [ENG2D1, ESLEO1]","[GPP3O2], [PAD3O2], [PPL3O2], [COP3X6]",[],28 
-	//ZSM1..,No Second Semester Courses,12,Open,0,[],[],[],[] 
-	//MFM1PV,Language Intensive Math,9,Applied,1,[],"[ENG1PV], [SNC1PV], [CGC1PV]",[],8 
-	//MFM2PV,Language Intensive Math,10,Applied,1,[MFM1PV],"[ENG2PV], [SNC2PV], [CHC2PV]",[],8 
-	//SNC1PV,Language Intensive Science,9,Applied,1,[],"[ENG1PV], [MFM1PV], [CGC1PV]",[],8 
-	//SNC2PV,Language Intensive Science,10,Applied,1,[SNC1PV],"[ENG2PV], [MFM2PV], [CHC2PV]",[],8 
-	//KCWANZ,Life Skills,9,Locally-Developed,0,[],"[GLE1OZ], [ELS2OZ]",[],16 
-	//ELS2OZ,Literacy Skills,9,Open,1,[],"[GLE1OZ], [KCWANZ]",[],29 
-	//GLE1OZ,Learning Strategies 1: Skills for Success in Secondary School,9,Open,1,[],"[ELS2OZ], [KCWANZ]",[],16 
-	//KCWBNZ,Social Skills,10,Locally-Developed,0,[],"[EPS3OZ], [GLE2OZ]",[],16 
-	//EPS3OZ,Presentation and Speaking Skills,10,Open,1,[],"[GLE2OZ], [KCWBNZ]",[],16 
-	//GLE2OZ,Learning Strategies 1: Skills for Success in Secondary School,10,Open,1,[],"[EPS3OZ], [KCWBNZ]",[],16 
 }
-
