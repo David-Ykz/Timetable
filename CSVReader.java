@@ -45,6 +45,9 @@ class CSVReader {
             Scanner roomDataScanner = new Scanner(roomData);
             while (roomDataScanner.hasNext()) {
                 Room room = createRoom(parseString(roomDataScanner.nextLine()));
+                if (room.getRoomName().equals("\"Technology room\"") == true) {
+                	System.out.println(room.getRoomNum());
+                }
                 roomList.put(room.getRoomId(), room);
             }
             // Reads teacher data

@@ -32,13 +32,13 @@ public class Main {
         System.out.println("Before: " + total + " Size: " + originalGroupList.size());
         
         
-        int movedStudents = 0;
+        int changes = 0;
         HashSet<Group> removeGroups = new HashSet<>();
         for (Group group : originalGroupList) {
             String code = group.getCourseCode();
             if (group.getGroupSize() < group.getCap() * Const.CUTOFF_THRESHOLD) {
-                movedStudents += group.getGroupSize();
                 for (int i = 0; i < group.getStudentIds().size(); i++) {
+                	changes++;
                     int studentId = group.getStudentIds().get(i);
                     Student student = studentList.get(studentId);
                     if (!student.getAlternates().isEmpty()) {
@@ -64,8 +64,9 @@ public class Main {
         	groupList.put(groupIndex, group);
         	groupIndex++;
         }
-
-        System.out.println("sections: " + countSections());
+        
+        System.out.println("Percent Success Rate of Class Assignments: " + Math.round((double)(total-changes)/total * 100 * 100.0)/100.00 + "%");
+//        System.out.println("sections: " + countSections());
         total = 0;
         
         for (Group group : groupList.values()) {
@@ -78,7 +79,7 @@ public class Main {
         
         //genetic algorithm 
         Timetable timetable = new Timetable(roomList, teacherList, studentList, courseList, groupList); 
-        Algorithm alg = new Algorithm(200, 0.0001, 0.9, 1, 5);
+        Algorithm alg = new Algorithm(200, 0.001, 0.9, 4, 5);
         Population population = alg.initPopulation(timetable);
         
         //evaluate population
@@ -88,7 +89,7 @@ public class Main {
         
         //evolution loop
         System.out.println(alg.isMaxFit(population));
-        while (alg.isMaxFit(population) == false && generation < 2000) {
+        while (alg.isMaxFit(population) == false && generation < 1000) {
             //print fitness
             System.out.println("G" + generation + " Best fitness: " + population.getFittest(0).getFitness());
 

@@ -167,58 +167,65 @@ public class Timetable {
     //-----------------------------------------------------------------------------------------------------------------------//
     public int calculateConflicts() {
         int conflicts = 0;
-        
+//        System.out.println("-----start-----");
         for (Class classA : this.classes) {
-//            // Check course capacity
-//            int roomCapacity = this.getCourse(classA.getCourseId()).getCapacity();
-//            int groupSize = this.getGroup(classA.getGroupId()).getGroupSize();
-//            
-//            if (roomCapacity < groupSize) {
-//             conflicts++;
-//            }
-            
-            // Check if room is taken
             for (Class classB : this.classes) {
+            	 // Check if room is taken
                 if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
                         && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                 conflicts ++;
-                    break;
+                	conflicts++;
+                	break;
+                }
+                // Check if teacher is available
+                if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
+                	conflicts++;
+                	break;
                 }
             }
             
-            // Check if teacher is available
-            for (Class classB : this.classes) {
-                if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                 conflicts++;
-                    break;
-                }
-            }
-        }
-        
+            //room constraints
+            if (classA.getCourseId().contains("TEJ") && !this.rooms.get(classA.getRoomId()).getRoomName().equals("\"Technology room\"")) {
+//            	System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room " + this.rooms.get(classA.getRoomId()).getRoomName());
+	        	conflicts+=15;
+	        } 
+//        	else if (classA.getCourseId().contains("PPL") && !this.rooms.get(classA.getRoomId()).getRoomName().contains("gym")) {
+//	        	conflicts+=10;
+//	        }
+            
+            //semester balancing
+        }        
         return conflicts;
     }
     
-    public void printConflicts() {
-     for (Class classA : this.classes) {
-      for (Class classB : this.classes) {
-                if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                 System.out.println(this.courses.get(classA.getCourseId()).getName() + " conflicts with " + this.courses.get(classB.getCourseId()).getName());
-                    break;
-                }
-            }
-            
-            // Check if teacher is available
-            for (Class classB : this.classes) {
-                if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-                 System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with " + this.teachers.get(classB.getTeacherId()).getTeacherName());
-                    break;
-                }
-            }
-     }
-    }
+	public void printConflicts() {
+		for (Class classA : this.classes) {
+			for (Class classB : this.classes) {
+				if (classA.getRoomId() == classB.getRoomId() && classA.getPeriod() == classB.getPeriod()
+						&& classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
+					System.out.println(this.courses.get(classA.getCourseId()).getName() + " conflicts with "
+							+ this.courses.get(classB.getCourseId()).getName());
+					break;
+				}
+			}
+
+			// Check if teacher is available
+			for (Class classB : this.classes) {
+				if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
+						&& classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
+					System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with "
+							+ this.teachers.get(classB.getTeacherId()).getTeacherName());
+						break;
+				}
+			}
+			if (classA.getCourseId().contains("TEJ") && !this.rooms.get(classA.getRoomId()).getRoomName().equals("\"Technology room\"")) {
+				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room " + this.rooms.get(classA.getRoomId()).getRoomName());
+            } 
+//			else if (classA.getCourseId().contains("PPL") && !this.rooms.get(classA.getRoomId()).getRoomName().contains("gym")) {
+//            	System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room " + this.rooms.get(classA.getRoomId()).getRoomName());
+//	        }
+		}
+	}
     
     public void printTimetable() {
         System.out.println("Room Size: " + rooms.size());
