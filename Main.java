@@ -91,7 +91,7 @@ public class Main {
         System.out.println(alg.isMaxFit(population));
         while (alg.isMaxFit(population) == false && generation < 1000) {
             //print fitness
-     //       System.out.println("G" + generation + " Best fitness: " + population.getFittest(0).getFitness());
+            System.out.println("G" + generation + " Best fitness: " + population.getFittest(0).getFitness());
 
             //apply crossover
             population = alg.crossoverPopulation(population);
@@ -116,23 +116,23 @@ public class Main {
         Class classes[] = timetable.getClasses();
         int classIndex = 1;
         
-//        for (Class bestClass : classes) {
-//            System.out.println("Class " + classIndex + ":");
-//            System.out.println("Course: " + 
-//                               timetable.getCourse(bestClass.getCourseId()).getName() + " " + timetable.getCourse(bestClass.getCourseId()).getCourseCode());
-//            System.out.println("Class size: " + 
-//                timetable.getGroup(bestClass.getGroupId()).getGroupSize());
-//            System.out.println("Room: " + 
-//                               timetable.getRoom(bestClass.getRoomId()).getRoomNum());
-//            System.out.println("Teacher: " + 
-//                               timetable.getTeacher(bestClass.getTeacherId()).getTeacherName());
-//            System.out.println("Period: " + 
-//                               bestClass.getPeriod());
-//            System.out.println("Semester: " + 
-//                    bestClass.getSemester());
-//            System.out.println("-----");
-//            classIndex++;
-//        }
+        for (Class bestClass : classes) {
+            System.out.println("Class " + classIndex + ":");
+            System.out.println("Course: " + 
+                               timetable.getCourse(bestClass.getCourseId()).getName() + " " + timetable.getCourse(bestClass.getCourseId()).getCourseCode());
+            System.out.println("Class size: " + 
+                timetable.getGroup(bestClass.getGroupId()).getGroupSize());
+            System.out.println("Room: " + 
+                               timetable.getRoom(bestClass.getRoomId()).getRoomNum());
+            System.out.println("Teacher: " + 
+                               timetable.getTeacher(bestClass.getTeacherId()).getTeacherName());
+            System.out.println("Period: " + 
+                               bestClass.getPeriod());
+            System.out.println("Semester: " + 
+                    bestClass.getSemester());
+            System.out.println("-----");
+            classIndex++;
+        }
         
         timetable.printConflicts();
         
