@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -11,8 +9,8 @@ public class Main {
     private static HashMap<Integer, Teacher> teacherList = new HashMap<>();
     private static HashMap<Integer, Group> groupList = new HashMap<>();
     private static ArrayList<Group> originalGroupList = new ArrayList<>();
-    private static HashMap<String, List<Student>> coursePreferences = new HashMap<>();
-    private static HashMap<String, List<Student>> alternatePreferences = new HashMap<>();
+    private static HashMap<String, ArrayList<Student>> coursePreferences = new HashMap<>();
+    private static HashMap<String, ArrayList<Student>> alternatePreferences = new HashMap<>();
 
     public static void main(String[] args) {
     	Scanner input = new Scanner(System.in);
@@ -22,7 +20,6 @@ public class Main {
         roomList = csvReader.getRoomList();
         teacherList = csvReader.getTeacherList();
 
-        
         for (Student student : studentList.values()) {
             addToGroup(student);
         }
@@ -52,12 +49,13 @@ public class Main {
         	alternatePreferences.put(courseName, new ArrayList<>());
         }
         
-        for(Student student: studentList.values()) {
-        	ArrayList<String> preferences = student.getAlternates();
-        	for(String course: preferences) {
-        		alternatePreferences.get(course).add(student);
-        	}
-        }
+//		IGNORE: only adding students to alternate list if they need it (can't get chosen courses)
+//        for(Student student: studentList.values()) {
+//        	ArrayList<String> preferences = student.getAlternates();
+//        	for(String course: preferences) {
+//        		alternatePreferences.get(course).add(student);
+//        	}
+//        }
 
         int changes = 0;
         int groupIndex = 1;
@@ -68,25 +66,32 @@ public class Main {
         		int remainder = requests % capacity;
         		if(remainder < capacity * Const.CUTOFF_THRESHOLD) {
         			if((requests/capacity != 0) && (capacity - (capacity * Const.CUTOFF_THRESHOLD - remainder) >= capacity * Const.CUTOFF_THRESHOLD)) {
+        				fillGroups(course, groupIndex, capacity - (int)(capacity * Const.CUTOFF_THRESHOLD - remainder)/(requests/capacity) + 1, remainder, requests); //I can explain this if you don't get it
         			}else {
         				for(int i = 0; i < coursePreferences.get(course).size(); i++) {
-            				changes++;
             				Student student = coursePreferences.get(course).get(i);
-            				if(!student.getAlternates().isEmpty()) {
-            					//move into random class
+            				if(student.getAlternates().isEmpty()) {
+            					changes++;
+            					student.findNextBestCourse(courseList, student, alternatePreferences);
+            					//check by filling alternates and leftovers (separate method)
             				}else {
-            					
+            					//check alternates
+            					ArrayList<String> alternates = student.getAlternates();
+            					for(String alternate: alternates) {
+            						alternatePreferences.get(alternate).add(student);
+            					}
+            					//check by filling alternates and leftovers(separate method)
             				}
             			}
         			}
         		}else {
-        			
-        			Group group = new Group(groupIndex, course, capacity);
+        			fillGroups(course, groupIndex, capacity, remainder, requests);
         		}
         	}
         }
         
-        HashSet<Group> removeGroups = new HashSet<>();
+//		Old Code:
+/*      HashSet<Group> removeGroups = new HashSet<>();
         for (Group group : originalGroupList) {
             String code = group.getCourseCode();
             if (group.getGroupSize() < group.getCap() * Const.CUTOFF_THRESHOLD) {
@@ -106,6 +111,7 @@ public class Main {
             }
         }
         originalGroupList.removeAll(removeGroups);
+        */
         
 //        //make new groupList
 //        int groupIndex = 1;
@@ -127,7 +133,7 @@ public class Main {
         
         System.out.println("After: " + total + " Size: " + groupList.size());
 
-        System.out.println("removed: " + removeGroups.size());
+//        System.out.println("removed: " + removeGroups.size());
         
         //genetic algorithm 
         Timetable timetable = new Timetable(roomList, teacherList, studentList, courseList, groupList); 
@@ -262,5 +268,20 @@ public class Main {
             }
         }
         return -1;
+    }
+    
+    //fill in groups for each student that requested
+    public static void fillGroups(String course, int groupIndex, int capacity, int remainder, int requests) {
+    	Group group = new Group(groupIndex, course, capacity);
+		while(requests > 0) {
+			if(group.isFull() || (group.getGroupSize() == remainder && remainder != 0)) { //create new group if current one is full, or we need to add group for leftover students
+				groupList.put(groupIndex, group);
+				groupIndex++;
+				group = new Group(groupIndex, course, capacity);
+			}else {
+				group.addStudent(coursePreferences.get(course).get(0).getId());
+				coursePreferences.remove(0);
+			}
+		}
     }
 }
