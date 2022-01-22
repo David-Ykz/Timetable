@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Arrays;
 
 class Student {
     private int studentId;
@@ -46,17 +45,15 @@ class Student {
     }
 
     public void addClass(Class newClass){
-     this.classes.add(newClass);
+	    this.classes.add(newClass);
     }
 
-    
-    
     public int getId() {
         return this.studentId;
     }
     
     public String getName() {
-     return this.name;
+    	return this.name;
     }
     
     public String[] getCourseRequests() {
@@ -94,30 +91,11 @@ class Student {
         return false;
     }
     
-    public void findNextBestCourse(ArrayList<Group> groupList, HashMap<Integer, Student> studentList, HashSet<Group> removeGroups) {
-        for (Group group : groupList) {
-            if (group.findGroupGrade(studentList) == this.grade && !group.isFull() && !removeGroups.contains(group)) {
-                group.addStudent(studentId);
-                return;
-            }
+    public void findNextBestCourse(HashMap<String, Course> courseList, Student student, HashMap<String, ArrayList<Student>> alternateList) {
+        for(String course: alternateList.keySet()) {
+        	if(alternateList.get(course).size() < courseList.get(course).getCapacity()) {
+        		alternateList.get(course).add(student);
+        	}
         }
     }
-    
-    public String infoAsString() {
-        String[] sortedClasses = new String[8];
-        String message = Integer.toString(studentNum);
-        for (Class c1: this.classes) {
-            int index = c1.getPeriod() + 4 * (c1.getSemester() - 1) - 1;
-            sortedClasses[index] = c1.infoAsString();
-        }
-        for (int i = 0; i < sortedClasses.length; i++) {
-            message += ",";
-            if (sortedClasses[i] != null) {
-                message += sortedClasses[i];
-            } 
-        }
-        return message;
-    }
-        
-        
 }
