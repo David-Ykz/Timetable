@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Arrays;
 
 class Student {
     private int studentId;
@@ -12,9 +13,10 @@ class Student {
     private String guardianEmail_2;
     private int grade;
     private ArrayList<String> courseRequests;
-    private ArrayList<Class> classes;
     private int totalCourses;
     private ArrayList<String> alternates;
+    private HashMap<Integer, Class> classes;
+    private HashSet<String> takenClasses;
 
     Student(int studentId, String name, String gender, int studentNum, String gappsAccount, String guardianEmail_1, String guardianEmail_2, int grade, ArrayList<String> courseRequests, int totalCourses, ArrayList<String> alternates) {
         this.studentId = studentId;
@@ -28,7 +30,8 @@ class Student {
         this.courseRequests = courseRequests;
         this.totalCourses = totalCourses;
         this.alternates = alternates;
-        this.classes = new ArrayList<>();
+        this.classes = new HashMap<>();
+        this.takenClasses = new HashSet<>();
     }
     
     public void printInfo() {
@@ -44,20 +47,25 @@ class Student {
         System.out.println("Alternates: " + alternates.toString());
     }
 
-    public void addClass(Class newClass){
-	    this.classes.add(newClass);
+    public void addClass(int period, Class newClass){
+    	if (!takenClasses.contains(newClass.getCourseId())) {
+	    	this.classes.put(period, newClass);
+	    	this.takenClasses.add(newClass.getCourseId());
+    	}
     }
 
+    
+    
     public int getId() {
         return this.studentId;
     }
     
     public String getName() {
-    	return this.name;
+     return this.name;
     }
     
     public String[] getCourseRequests() {
-        return (String[]) courseRequests.toArray();
+        return (String[]) courseRequests.toArray(new String[courseRequests.size()]);
     }
     
     public ArrayList<String> getCourses() {
@@ -68,7 +76,10 @@ class Student {
         return this.alternates;
     }
     
-    public ArrayList<Class> getClasses() {
+    public HashMap<Integer, Class> getClasses() {
+//    	if (this.classes.isEmpty() == false) {
+//    		System.out.println(this.classes.get(1).getClassId());
+//    	}
         return this.classes;
     }
     
@@ -98,4 +109,22 @@ class Student {
         	}
         }
     }
+    
+    public String infoAsString() {
+        String[] sortedClasses = new String[8];
+        String message = Integer.toString(studentNum);
+        for (Class c1: this.classes.values()) {
+            int index = c1.getPeriod() + 4 * (c1.getSemester() - 1) - 1;
+            sortedClasses[index] = c1.infoAsString();
+        }
+        for (int i = 0; i < sortedClasses.length; i++) {
+            message += ",";
+            if (sortedClasses[i] != null) {
+                message += sortedClasses[i];
+            } 
+        }
+        return message;
+    }
+        
+        
 }

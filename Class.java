@@ -1,20 +1,27 @@
+import java.util.ArrayList;
+
 public class Class {
     private final int classId;
-    private final int groupId;
     private final String courseCode;
     private int teacherId;
     private int roomId;
     private int period;
     private int semester;
     
-    public Class(int classId, int groupId, String courseCode){
+    private ArrayList<Student> studentList;
+    
+    public Class(int classId, String courseCode) {
         this.classId = classId;
         this.courseCode = courseCode;
-        this.groupId = groupId;
+        this.studentList = new ArrayList<>();
     }
     
     public String infoAsString() {
         return courseCode + ";" + roomId;
+    }
+    
+    public void addStudent(Student student) {
+    	this.studentList.add(student);
     }
     
     public void setTeacherId(int teacherId){
@@ -37,10 +44,6 @@ public class Class {
         return this.classId;
     }
     
-    public int getGroupId(){
-        return this.groupId;
-    }
-    
     public String getCourseId(){
         return this.courseCode;
     }
@@ -59,6 +62,10 @@ public class Class {
     
     public int getSemester() {
      return this.semester;
+    }
+    
+    public ArrayList<Student> getStudents() {
+    	return this.studentList;
     }
     
     
