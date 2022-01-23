@@ -128,7 +128,7 @@ public class Timetable {
 	}
 
 	public void giveStudentsClasses() {
-		// all accomodated courses
+		//first give students the requested courses, if possible
 		for (Student student : this.students.values()) {
 			for (String courseCode : student.getCourseRequests()) {
 				for (Class cl : this.classes) {
@@ -136,8 +136,33 @@ public class Timetable {
 					if (cl.getCourseId().equals(courseCode) && !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)	
 							&& student.getClasses().size() < 10
 							&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap()) {
-						student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
-						cl.addStudent(student);
+						boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
+						if (addedStudent == true) {
+							cl.addStudent(student);
+						}
+					}
+				}
+			}
+		}
+		//then distribute whatever is left
+		for (Student student: this.students.values()) {
+			//search for similar courses if possible (same letters different level, e.g. CGC1D2 -> CGC1DG
+			if ((student.getClasses().size() < 8 && student.getGrade() < 12) || (student.getClasses().size() < 6 && student.getGrade() == 12)) {		//if not full courseload
+				for (Class cl : this.classes) {
+					System.out.println(cl.getCourseId());
+					if (!cl.getCourseId().contains("ESL") && !cl.getCourseId().contains("PPL") && !cl.getCourseId().equals("ZREMOT")) {		//courses we don't want to fill randomly into
+						if (cl.getCourseId().contains(cl.getCourseId().substring(0,3)) && student.getClasses().size() < 9 && (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
+								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap()) 
+								&& (student.getGrade() <= Integer.parseInt(String.valueOf(cl.getCourseId().charAt(3))) + 10
+								&& (student.getGrade() >= Integer.parseInt(String.valueOf(cl.getCourseId().charAt(3))) + 8))) {
+							if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
+								break;
+							}
+							boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
+							if (addedStudent == true) {
+								cl.addStudent(student);
+							}
+						}
 					}
 				}
 			}
@@ -145,13 +170,19 @@ public class Timetable {
 			if ((student.getClasses().size() < 8 && student.getGrade() < 12) || (student.getClasses().size() < 6 && student.getGrade() == 12)) {		//if not full courseload
 				for (Class cl : this.classes) {
 					for (String alternate: student.getAlternates()){
-						if (cl.getCourseId().equals(alternate) && student.getClasses().size() < 9 && (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
-								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap())) {
-							if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
-								break;
+						if (!cl.getCourseId().contains("ESL") && !cl.getCourseId().contains("PPL") && !cl.getCourseId().equals("ZREMOT")) {	
+							if (cl.getCourseId().equals(alternate) && student.getClasses().size() < 9 && (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
+									&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap())
+									&& (student.getGrade() < Integer.parseInt(String.valueOf(cl.getCourseId().charAt(3))) + 10
+									&& (student.getGrade() >= Integer.parseInt(String.valueOf(cl.getCourseId().charAt(3))) + 8))){
+								if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
+									break;
+								}
+								boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
+								if (addedStudent == true) {
+									cl.addStudent(student);
+								}
 							}
-							student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
-							cl.addStudent(student);
 						}
 					}
 				}
@@ -159,13 +190,19 @@ public class Timetable {
 			//autofill
 			if ((student.getClasses().size() < 8 && student.getGrade() < 12) || (student.getClasses().size() < 6 && student.getGrade() == 12)) {
 				for (Class cl : this.classes) {
-					if ((student.getClasses().size()) < 9 && (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
-							&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap())) {
-						if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
-							break;
+					if (!cl.getCourseId().contains("ESL") && !cl.getCourseId().contains("PPL") && !cl.getCourseId().equals("ZREMOT")) {	
+						if ((student.getClasses().size()) < 9 && (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
+								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap()
+								&& (student.getGrade() < Integer.parseInt(String.valueOf(cl.getCourseId().charAt(3))) + 10
+								&& (student.getGrade() >= Integer.parseInt(String.valueOf(cl.getCourseId().charAt(3))) + 8)))) {
+							if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
+								break;
+							}
+							boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
+							if (addedStudent == true) {
+								cl.addStudent(student);
+							}
 						}
-						student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
-						cl.addStudent(student);
 					}
 				}
 			}
@@ -174,6 +211,8 @@ public class Timetable {
 
 	public int calculateConflicts() {
 		int conflicts = 0;
+		int semesterOneCount = 0;
+		int semesterTwoCount = 0;
 		for (Class classA : this.classes) {
 			for (Class classB : this.classes) {
 				// Check if room is taken
@@ -182,12 +221,12 @@ public class Timetable {
 					conflicts++;
 					break;
 				}
-//                // Check if teacher is available
-//                if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-//                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-//                	conflicts++;
-//                	break;
-//                }
+                // Check if teacher is available
+                if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
+                        && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
+                	conflicts++;
+                	break;
+                }
 			}
 
 			// room constraints
@@ -208,31 +247,22 @@ public class Timetable {
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("drama")) {
 				conflicts += 3;
 			}
-//            else if ((classA.getCourseId().contains("HIF") || classA.getCourseId().contains("IDC")) && !this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
-//	        	conflicts+=3;
-//	        }
-//            
+            else if ((classA.getCourseId().contains("HIF") || classA.getCourseId().contains("IDC")) && !this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
+	        	conflicts+=3;
+	        }
+            
 			// semester balancing
-			// similar classes in each semester
-
+			if (classA.getSemester() == 1) {
+				semesterOneCount++;
+			} else {
+				semesterTwoCount++;
+			}
 		}
 
-		// student clashes
-
-		// students should not have 2 classes in the same period and should have same #
-		// classes per semester
-//        for (Student student: this.students.values()) {
-//        	for (Class classA: student.getClasses()) {
-//        		for (Class classB: student.getClasses()) {
-//        			if (classA.getPeriod() == classB.getPeriod() && classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-//                    	conflicts++;
-//                    	break;
-//                    }
-//        		}
-//        	}
-//        }
-//        System.out.println(conflicts);
-
+		if (semesterOneCount/semesterTwoCount > 2 || semesterOneCount/semesterTwoCount < 1) {
+			conflicts += 100;
+		}
+		
 		return conflicts;
 	}
 
@@ -248,14 +278,15 @@ public class Timetable {
 			}
 
 //			// Check if teacher is available
-//			for (Class classB : this.classes) {
-//				if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-//						&& classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-//					System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with "
-//							+ this.teachers.get(classB.getTeacherId()).getTeacherName());
-//						break;
-//				}
-//			}
+			for (Class classB : this.classes) {
+				if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
+						&& classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
+					System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with "
+							+ this.teachers.get(classB.getTeacherId()).getTeacherName());
+						break;
+				}
+			}
+			
 			if (classA.getCourseId().contains("TEJ")
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().equals("\"Technology room\"")) {
 				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
@@ -277,9 +308,9 @@ public class Timetable {
 				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			}
-//            else if ((classA.getCourseId().contains("HIF") || classA.getCourseId().contains("IDC")) && !this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
-//            	System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room " + this.rooms.get(classA.getRoomId()).getRoomName());
-//	        }
+            else if ((classA.getCourseId().contains("HIF") || classA.getCourseId().contains("IDC")) && !this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
+            	System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room " + this.rooms.get(classA.getRoomId()).getRoomName());
+	        }
 		}
 	}
 

@@ -46,12 +46,16 @@ class Student {
         System.out.println("Total Courses: " + totalCourses);
         System.out.println("Alternates: " + alternates.toString());
     }
-
-    public void addClass(int period, Class newClass){
-    	if (!takenClasses.contains(newClass.getCourseId())) {
+    
+    //returns if adding student was successful
+    public boolean addClass(int period, Class newClass){
+    	//won't add course if a similar course is already being taken
+    	if (!takenClasses.contains(newClass.getCourseId().substring(0,3))) {
 	    	this.classes.put(period, newClass);
-	    	this.takenClasses.add(newClass.getCourseId());
+	    	this.takenClasses.add(newClass.getCourseId().substring(0,3));
+	    	return true;
     	}
+    	return false;
     }
 
     

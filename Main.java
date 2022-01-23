@@ -46,7 +46,7 @@ public class Main {
         
         //genetic algorithm 
         Timetable timetable = new Timetable(roomList, teacherList, studentList, courseList, startingClasses); 
-        Algorithm alg = new Algorithm(200, 0.001, 0.90, 1, 5);
+        Algorithm alg = new Algorithm(200, 0.0005, 0.90, 1, 5);
         Population population = alg.initPopulation(timetable);
         
         //evaluate population
@@ -82,6 +82,7 @@ public class Main {
         
         Class classes[] = timetable.getClasses();
         int classIndex = 1;
+        int totalSlots = 0;
         
         for (Class bestClass : classes) {
             System.out.println("Class " + classIndex + ":");
@@ -98,10 +99,13 @@ public class Main {
             System.out.println("Semester: " + 
                     bestClass.getSemester());
             System.out.println("-----");
+            totalSlots += timetable.getClasses()[classIndex - 1].getStudents().size();
             classIndex++;
         }
         
         timetable.printConflicts();
+        System.out.println("Total slots: " + totalSlots);
+        
         
         //printing out student's timetable
         
@@ -162,10 +166,12 @@ public class Main {
 			else {
 				//potentially create multiple classes
 				if(requests > capacity) {
+//					System.out.println(course + " " + requests + " : " + capacity);
 					//create multiple instances of the same class if feasable
-					int remainder = requests % capacity;
-					if(remainder < capacity * Const.CUTOFF_THRESHOLD) {
-						if(capacity - (capacity * Const.CUTOFF_THRESHOLD - remainder) >= capacity * Const.CUTOFF_THRESHOLD) {
+					System.out.println(course + " " + requests + " : " + capacity);
+					int averageClassSize = requests/(requests/capacity);
+					if(averageClassSize >= capacity * Const.CUTOFF_THRESHOLD) {
+						if(capacity - (capacity * Const.CUTOFF_THRESHOLD - requests%capacity) >= capacity * Const.CUTOFF_THRESHOLD) {
 							for(int i = 0; i < requests/capacity + 1; i++) {
 //								System.out.println("haa");
 								classList.put(classIndex, new Class(classIndex, course));
