@@ -11,8 +11,8 @@ public class Individual {
         int chromosomeIndex = 0;
         
         //creating a random chromosome
-        for (Group group : timetable.getGroupsAsArray()) {
-            // Add random time
+        for (Class cl: timetable.getClasses()) {
+            // Add random period
             int timeslotId = (int)(Math.random() * (4) + 1);
             newChromosome[chromosomeIndex] = timeslotId;
             chromosomeIndex++;
@@ -32,8 +32,7 @@ public class Individual {
             int randomSemester = (int)(Math.random() * (2) + 1);
             newChromosome[chromosomeIndex] = randomSemester;
             chromosomeIndex++;
-        }
-        
+        } 
         this.chromosome = newChromosome;        
     }
     

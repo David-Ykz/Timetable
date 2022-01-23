@@ -147,15 +147,15 @@ class CSVReader {
      
      //course caps (specific 
      if (courseCode.contains("BTT") || (courseCode.contains("ICS")) || (courseCode.contains("TDJ")) || (courseCode.contains("TGJ"))) { //bbt computers
-      return 28;
+    	 return 28;
      } else if ((courseCode.contains("TDJ")) || (courseCode.contains("TEJ"))) { //bbt shops 
-      return 22;
+    	 return 22;
      } else if ((courseCode.charAt(5) == 'C') || (courseCode.charAt(5) == 'T') || (courseCode.charAt(5) == 'Q') || (courseCode.charAt(5) == 'I')) { //CBE
-      return 27;
+    	 return 27;
      } else if (courseCode.charAt(4) == 'D') { //academic
-      return 29;
+    	 return 29;
      } else if  (courseCode.charAt(4) == 'P') {  //applied
-      return 22;
+    	 return 22;
      } else if (courseCode.charAt(4) == 'C'){  // college
       return 28;
      } else if (courseCode.charAt(4) == 'L') {  //locally developed
@@ -168,7 +168,9 @@ class CSVReader {
       return 30;
      } else if (courseCode.charAt(4) == 'E') {  //workplace
       return 20;
-     }     
+     } else if (courseCode.contains("AMR")) {
+    	 return 200;
+     }
      return 30;
     }
 

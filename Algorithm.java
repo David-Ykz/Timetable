@@ -34,9 +34,11 @@ public class Algorithm {
         
         //calculate fitness
         int clashes = tempTimetable.calculateConflicts();
+//        System.out.println(clashes);
         double fitness = 1 / (double) (clashes + 1); //fitness is calculated as a fraction of 1 over the number of clashes
         
         individual.setFitness(fitness);
+//        System.out.println(fitness);
         
         return fitness;
     }
@@ -86,7 +88,11 @@ public class Algorithm {
                 //loop over genes in the individual's chromosome
                 for (int j = 0; j < individual.getChromosomeLength(); j++) {
                     //randomly decides if mutation should occur
-                    if (this.mutationRate > Math.random()) {
+                	//mutation is more common for genes that refer to rooms
+                	if ((j+3 % 4 == 0) && this.mutationRate*3 > Math.random() ) {
+                		individual.setGene(j, randIndividual.getGene(j));
+                	}
+                	else if (this.mutationRate > Math.random()) {
                         //swap for random gene
                         individual.setGene(j, randIndividual.getGene(j));
                     }
