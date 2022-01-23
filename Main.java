@@ -1,9 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-
-public class Main {
-	private static HashMap<Integer, Student> studentList = new HashMap<>();
+private static HashMap<Integer, Student> studentList = new HashMap<>();
 	private static HashMap<String, Course> courseList = new HashMap<>();
 	private static HashMap<Integer, Room> roomList = new HashMap<>();
 	private static HashMap<Integer, Teacher> teacherList = new HashMap<>();
@@ -24,6 +19,20 @@ public class Main {
 		//----- code above has been deleted in this version------\\
 		//        System.out.println("removed: " + removeGroups.size());
 
+		//create classes
+		//Link course with group (Hashmap)
+				//account for single section courses
+				for(String courseName: courseList.keySet()) {
+					coursePreferences.put(courseName, new ArrayList<>());
+				}
+
+				for(Student student: studentList.values()) {
+					String[] preferences = student.getCourseRequests();
+					for(String course: preferences) {
+						coursePreferences.get(course).add(student);
+					}
+				}
+				
 		createClasses();
 		//genetic algorithm 
 		Timetable timetable = new Timetable(roomList, teacherList, studentList, courseList, groupList); 
@@ -124,19 +133,6 @@ public class Main {
 	}
 
 	public static void createClasses() {
-		//Link course with group (Hashmap)
-		//account for single section courses
-		for(String courseName: courseList.keySet()) {
-			coursePreferences.put(courseName, new ArrayList<>());
-		}
-
-		for(Student student: studentList.values()) {
-			String[] preferences = student.getCourseRequests();
-			for(String course: preferences) {
-				coursePreferences.get(course).add(student);
-			}
-		}
-		
 		int classIndex = 1;
 		int changes = 0; //use to calculate accuracy
 		for(String course: coursePreferences.keySet()) {
