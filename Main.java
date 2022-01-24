@@ -42,7 +42,7 @@ public class Main {
         //--------------Genetic algorithm----------------//
         
         Timetable timetable = new Timetable(roomList, teacherList, studentList, courseList, startingClasses);
-        Algorithm alg = new Algorithm(200, 0.0001, 0.90, 1, 5);
+        Algorithm alg = new Algorithm(200, 0.001, 0.90, 1, 5);
         Population population = alg.initPopulation(timetable);
         
         // Evaluate population
@@ -52,7 +52,7 @@ public class Main {
         
         // Evolution loop
         System.out.println(alg.isMaxFit(population));
-        while (!alg.isMaxFit(population) && generation < 3000) {
+        while (!alg.isMaxFit(population) && generation < 5000) {
             // Print fitness
             System.out.println("G" + generation + " Best fitness: " + population.getFittest(0).getFitness());
             
