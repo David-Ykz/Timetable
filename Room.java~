@@ -1,20 +1,23 @@
 public class Room {
 	private int roomId;
-	private int roomNum;
-    private String name;
-    private String type;
+	private String roomNum;
+	private String name;
 
-	Room(int roomId, int roomNum, String name, String type) {
-        this.roomNum = roomNum;
-        this.name = name;
-        this.type = type;
+	Room(int roomId, String roomNum, String roomName) {
+		this.roomId = roomId;
+		this.roomNum = roomNum;
+		this.name = roomName;
 	}
-	
+
 	public int getRoomId() {
-        return this.roomId;
-    }
-    
-    public int getRoomNum() {
-        return this.roomNum;
-    }
+		return this.roomId;
+	}
+
+	public String getRoomNum() {
+		return this.roomNum;
+	}
+
+	public String getRoomName() {
+		return this.name;
+	}
 }
