@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		CSVReader csvReader = new CSVReader("C:\\Users\\hocke\\Downloads\\Timetable-main (1)\\Timetable-main\\StudentDataObfuscated.csv", "C:\\Users\\hocke\\Downloads\\Timetable-main (1)\\Timetable-main\\Course Master List.csv","C:\\Users\\hocke\\Downloads\\Timetable-main (1)\\Timetable-main\\Room Utilization.csv", "C:\\Users\\hocke\\Downloads\\Timetable-main (1)\\Timetable-main\\FakeTeacherList.csv");
+		CSVReader csvReader = new CSVReader("StudentDataObfuscated.csv", "Course Master List.csv","Room Utilization.csv", "FakeTeacherList.csv");
 		studentList = csvReader.getStudentList();
 		courseList = csvReader.getCourseList();
 		roomList = csvReader.getRoomList();
@@ -147,7 +147,7 @@ public class Main {
 	//add all special edd courses into the special ed courses set
 	private static void addSpecialEdCourses() {
 		for(Course course: courseList.values()) {
-			if(course.getType().equals("Special Education") || course.getType().equals("English as a Second Language")) {
+			if((course.getType().equals("Special Education") || course.getType().equals("English as a Second Language")) && coursePreferences.get(course.getCode()).size() != 0) {
 				specialEd.add(course.getCode());    		
 			}
 		}
