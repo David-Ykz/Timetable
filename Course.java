@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * [Course.java] This class stores information about the different courses students can take
  * 
@@ -42,5 +40,12 @@ class Course {
     }
     public int getCap() {
         return this.cap;
+    }
+    
+    public String getType() {
+    	return this.type;
+    }
+    public String getCode() {
+    	return this.code;
     }
 }
