@@ -19,8 +19,25 @@ public class CSVWriter {
         }
     }
     
-    public void saveMasterTimetable() {
+    public void saveMasterTimetable(Timetable timetable) {
+        String[] periods = {"", "", "", "", "", "", "", ""};
         
+        for (Class bestClass : timetable.getClasses()) {
+            int index = bestClass.getPeriod() + 4 * (bestClass.getSemester() - 1) - 1;
+            String classInfo = timetable.getRoom(bestClass.getRoomId()).getRoomNum() + ";" + 
+                timetable.getCourse(bestClass.getCourseId()).getCourseCode();
+            periods[index] += classInfo + ",";
+        }
+        try {
+            File masterTimetableFile = new File("MasterTimetable.csv");
+            PrintWriter printer = new PrintWriter(masterTimetableFile);
+            for (String period : periods) {
+                printer.println(period.substring(0, period.length() - 1));
+            }
+            printer.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     
     public void createStudentTimetable() {
