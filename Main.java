@@ -13,6 +13,7 @@ public class Main {
 	private static HashMap<String, ArrayList<Student>> coursePreferences = new HashMap<>();
 	private static HashMap<String, ArrayList<Student>> alternatePreferences = new HashMap<>();
 	private static HashSet<String> specialEd = new HashSet<>();
+	private static Timetable timetable;
 	private static CSVWriter csvWriter = new CSVWriter();
 	private static boolean isAlgorithmFinished = false;
 	private static boolean runAlgorithm = false;
@@ -74,7 +75,7 @@ public class Main {
 
 		//--------------Genetic algorithm----------------//
 		
-		Timetable timetable = new Timetable(roomList, teacherList, studentList, courseList, startingClasses);
+		timetable = new Timetable(roomList, teacherList, studentList, courseList, startingClasses);
 		Algorithm alg = new Algorithm(200, 0.001, 0.90, 1, 5);
 		Population population = alg.initPopulation(timetable);
 
@@ -153,9 +154,7 @@ public class Main {
 
 			HashMap<Integer, Class> studentClasses = selectedStudent.getClasses();
 
-			for (int i = 1; i <= studentClasses.size(); i++) {
-				Class cl = studentClasses.get(i);
-
+			for (Class cl : studentClasses.values()) {
 				if (cl != null) {
 					System.out.println("Course: " + timetable.getCourse(cl.getCourseId()).getName() + " "
 							+ timetable.getCourse(cl.getCourseId()).getCourseCode());
@@ -194,16 +193,14 @@ public class Main {
 					combinedCourses.add(course.substring(0,3));
 					classIndex++;
 				} else if (requests < capacity * Const.CUTOFF_THRESHOLD && !course.contains("AMR")) {
-					// CreateAltClasses(coursePreferences.get(course), changes, course);
 				} else {
 					// Potentially create multiple classes
 					if (requests > capacity) {
 						// Create multiple instances of the same class if feasable
 						int averageClassSize = requests / (requests/capacity);
-						System.out.println(course + " " + requests + " : " + capacity + " : " + averageClassSize);
+//						System.out.println(course + " " + requests + " : " + capacity + " : " + averageClassSize);
 						if (averageClassSize >= capacity * Const.CUTOFF_THRESHOLD) {
-							if (capacity - (capacity * Const.CUTOFF_THRESHOLD - requests % capacity) >= capacity
-									* Const.CUTOFF_THRESHOLD) {
+							if (capacity - (capacity * Const.CUTOFF_THRESHOLD - requests % capacity) >= capacity * Const.CUTOFF_THRESHOLD) {
 								for (int i = 0; i < requests / capacity + 1; i++) {
 									classList.put(classIndex, new Class(classIndex, course));
 									classIndex++;
@@ -224,26 +221,6 @@ public class Main {
 			}
 		}
 	}
-
-	public static void createAltClasses(ArrayList<Student> students, int changes, String course) {
-		for (int i = coursePreferences.get(course).size() / courseList.get(course).getCapacity()
-				* courseList.get(course).getCapacity() - 1; i < coursePreferences.get(course).size()
-						% courseList.get(course).getCapacity(); i++) {
-			Student student = coursePreferences.get(course).get(i);
-			if (student.getAlternates().isEmpty()) {
-				changes++;
-				student.findNextBestCourse(courseList, student, alternatePreferences);
-				// Check by filling alternates and leftovers (separate method)
-			} else {
-				// Check alternates
-				ArrayList<String> alternates = student.getAlternates();
-				for (String alternate : alternates) {
-					alternatePreferences.get(alternate).add(student);
-				}
-				// Check by filling alternates and leftovers(separate method)
-			}
-		}
-	}
 	
 	public static void startAlgorithm() {
 		runAlgorithm = true;
@@ -254,6 +231,15 @@ public class Main {
 		if (isAlgorithmFinished) {
 			csvWriter.saveStudentData(studentList);
 			System.out.println("All student timetables saved");
+		}
+		else {
+			System.out.println("The algorithm isn't done running!");
+		}
+	}
+	
+	public static void saveMasterTimetable() {
+		if (isAlgorithmFinished) {
+			csvWriter.saveMasterTimetable(timetable);
 		}
 		else {
 			System.out.println("The algorithm isn't done running!");

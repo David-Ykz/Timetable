@@ -12,8 +12,10 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -106,7 +108,13 @@ public class ChoiceFrame extends JFrame {
 	}
 	public class masterTButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
+			Main.saveMasterTimetable();
+			
+			final JOptionPane pane = new JOptionPane("Master Timetable Saved");
+	        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
+	        d.setSize(200, 125);
+	        d.setLocationRelativeTo(null);
+	        d.setVisible(true);
 		}
 	}
 	public class individualTButtonListener implements ActionListener {
@@ -114,11 +122,23 @@ public class ChoiceFrame extends JFrame {
 			studentNumber = Integer.parseInt(t.getText());
 			Main.saveTimetableFromNumber(studentNumber);
 	        t.setText("");
+	        
+	        final JOptionPane pane = new JOptionPane("      Student Number Read\n                "+studentNumber);
+	        final JDialog d = pane.createDialog((JFrame) null, "Timetable System");
+	        d.setSize(200, 125);
+	        d.setLocationRelativeTo(null);
+	        d.setVisible(true);
 		}
 	}
 	public class allTButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Main.saveStudentTimetables();
+			
+			final JOptionPane pane = new JOptionPane("Student Timetables Saved");
+	        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
+	        d.setSize(200, 125);
+	        d.setLocationRelativeTo(null);
+	        d.setVisible(true);
 		}
 	}
 
