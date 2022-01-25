@@ -1,15 +1,21 @@
+package timetableProgram;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * [Timetable.java]
+ * Object of comprehensive timetable for the school
+ * @author Brian Zhang, Blair Wang
+ * ICS4UE
+ * @version 1.0, January 25 2022
+ */
 public class Timetable {
 	private final HashMap<Integer, Room> rooms;
 	private final HashMap<Integer, Teacher> teachers;
 	private final HashMap<Integer, Student> students;
 	private final HashMap<String, Course> courses;
 	private HashSet<String> doNotAutofill;
-
 	private Class classes[];
-
 	private int numClasses = 0;
 
 	Timetable(HashMap<Integer, Room> rooms, HashMap<Integer, Teacher> teachers, HashMap<Integer, Student> students,
@@ -263,12 +269,6 @@ public class Timetable {
 					conflicts++;
 					break;
 				}
-				// Check if teacher is available
-//				if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-//						&& classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-//					conflicts++;
-//					break;
-//				}
 			}
 
 			// Room constraints

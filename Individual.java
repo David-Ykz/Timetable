@@ -1,3 +1,11 @@
+package timetableProgram;
+/**
+ * [Individual.Java]
+ * Object of any individual attending a class
+ * @author Brian Zhang, Blair Wang
+ * ICS4UE
+ * @version 1.0, January 25 2022
+ */
 public class Individual {
 	private int[] chromosome;
 	private double fitness = -1;

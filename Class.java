@@ -1,5 +1,13 @@
+package timetableProgram;
 import java.util.ArrayList;
 
+/**
+ * [Class.java]
+ * A group of students occupying a classroom at any given period
+ * @author Brian Zhang, Blair Wang, David Ye
+ * ICS4UE
+ * @version 1.0, January 25 2022
+ */
 public class Class {
 	private final int classId;
 	private final String courseCode;

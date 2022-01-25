@@ -1,3 +1,4 @@
+package timetableProgram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -10,6 +11,13 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * [MenuFrame.java]
+ * Main menu UI of program
+ * @author Anthony Tecsa, Brian Zhang
+ * ICS4UE
+ * @version 1.0, January 25 2022
+ */
 public class MenuFrame extends JFrame{
 
 	private BufferedImage schoolImage;

@@ -1,3 +1,4 @@
+package timetableProgram;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
@@ -5,14 +6,10 @@ import java.util.List;
 import java.util.HashMap;
 
 /**
- * [CSVReader.java] This class reads and stores student and course information
- * 
- * @author Blair Wang
- * @author Brian Zhang
- * @author David Ye
- * @author Anthony Tecsa
- * @author Allen Liu
- * @version Jan 15 2022
+ * [CSVReader.java] 
+ * Reads and stores student and course information from .csv files
+ * @author Blair Wang,  Brian Zhang, David Ye
+ * @version Jan 25 2022
  */
 
 class CSVReader {

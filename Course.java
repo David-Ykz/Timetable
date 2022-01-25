@@ -1,12 +1,9 @@
+package timetableProgram;
 /**
- * [Course.java] This class stores information about the different courses students can take
- * 
+ * [Course.java] 
+ * Stores information about different courses students can take
  * @author Blair Wang
- * @author Brian Zhang
- * @author David Ye
- * @author Anthony Tecsa
- * @author Allen Liu
- * @version Jan 15 2022
+ * @version 1.0, Jan 25 2022
  */
 class Course {
     private int courseId;

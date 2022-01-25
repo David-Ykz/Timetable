@@ -1,3 +1,4 @@
+package timetableProgram;
 public class Room {
 	private int roomId;
 	private String roomNum;

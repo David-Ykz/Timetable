@@ -1,7 +1,15 @@
+package timetableProgram;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * [Student.java]
+ * Object of students in the school
+ * @author Brian Zhang, Blair Wang, Anthony Tecsa
+ * ICS4UE
+ * @version 1.0, January 25 2022
+ */
 class Student {
 	private int studentId;
 	private String name;
@@ -89,17 +97,6 @@ class Student {
 
 	public int getGrade() {
 		return this.grade;
-	}
-
-	public boolean moveIntoGroup(ArrayList<Group> groupList, HashSet<Group> removeGroups) {
-		for (Group group : groupList) {
-			if (alternates.contains(group.getCourseCode()) && !group.isFull() && !removeGroups.contains(group)) {
-				group.addStudent(studentId);
-				alternates.remove(group.getCourseCode());
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public void findNextBestCourse(HashMap<String, Course> courseList, Student student,

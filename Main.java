@@ -1,9 +1,18 @@
+package timetableProgram;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * [Main.java]
+ * Driver Method of Program
+ * Adds classes into timetable, fills students into classes, mutates timetable using genetic algorithm
+ * @author Brian Zhang, Blair Wang, David Ye, Anthony Tecsa, Allen Liu
+ * ICS4UE
+ * @version 1.0, January 25 2022
+ */
 public class Main {
 	private static HashMap<Integer, Student> studentList = new HashMap<>();
 	private static HashMap<String, Course> courseList = new HashMap<>();
@@ -33,8 +42,7 @@ public class Main {
 		dataFileName = frame.getFileName();
 		
 		Scanner input = new Scanner(System.in);
-		CSVReader csvReader = new CSVReader(dataFileName, "Course Master List.csv",
-				"Room Utilization.csv", "FakeTeacherList.csv");
+		CSVReader csvReader = new CSVReader(dataFileName, "Course Master List.csv", "Room Utilization.csv", "FakeTeacherList.csv");
 		studentList = csvReader.getStudentList();
 		courseList = csvReader.getCourseList();
 		roomList = csvReader.getRoomList();
@@ -43,17 +51,6 @@ public class Main {
 		for (String courseName : courseList.keySet()) {
 			coursePreferences.put(courseName, new ArrayList<Student>());
 		}
-		
-		int count = 0;
-		for (Student s: studentList.values()) {
-			String[] preferences = s.getCourseRequests();
-			for (String course: preferences) {
-				if (!course.equals("ZREMOT") && !course.contains("GLC"))
-				count++;
-			}
-		}
-		
-		System.out.println(count);
 
 		for (Student student : studentList.values()) {
 			String[] preferences = student.getCourseRequests();
@@ -68,9 +65,6 @@ public class Main {
 		createClasses();
 
 		Class[] startingClasses = (Class[]) classList.values().toArray(new Class[classList.size()]);
-		
-
-		System.out.println(startingClasses.length);
 
 		//--------------Genetic algorithm----------------//
 		
@@ -191,13 +185,11 @@ public class Main {
 					classList.put(classIndex, new Class(classIndex, course));
 					combinedCourses.add(course.substring(0,3));
 					classIndex++;
-				} else if (requests < capacity * Const.CUTOFF_THRESHOLD && !course.contains("AMR")) {
-				} else {
+				} else if (requests < capacity * Const.CUTOFF_THRESHOLD && !course.contains("AMR")){
 					// Potentially create multiple classes
 					if (requests > capacity) {
 						// Create multiple instances of the same class if feasable
 						int averageClassSize = requests / (requests/capacity);
-//						System.out.println(course + " " + requests + " : " + capacity + " : " + averageClassSize);
 						if (averageClassSize >= capacity * Const.CUTOFF_THRESHOLD) {
 							if (capacity - (capacity * Const.CUTOFF_THRESHOLD - requests % capacity) >= capacity * Const.CUTOFF_THRESHOLD) {
 								for (int i = 0; i < requests / capacity + 1; i++) {
@@ -209,7 +201,6 @@ public class Main {
 									classList.put(classIndex, new Class(classIndex, course));
 									classIndex++;
 								}
-								// CreateAltClasses(coursePreferences.get(course), changes, course);
 							}
 						}
 					} else {

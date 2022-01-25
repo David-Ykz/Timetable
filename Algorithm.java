@@ -1,13 +1,19 @@
+package timetableProgram;
+/**
+ * [Algorithm.java]
+ * Genetic Algorithm to solve timetabling problem
+ * @author Brian Zhang
+ * ICS4UE
+ * @version 1.0, January 25 2022
+ */
 public class Algorithm {
-
 	private int populationSize;
 	private double mutationRate;
 	private double crossoverRate;
 	private int elitismCount;
 	protected int tournamentSize;
 
-	public Algorithm(int populationSize, double mutationRate, double crossoverRate, int elitismCount,
-			int tournamentSize) {
+	public Algorithm(int populationSize, double mutationRate, double crossoverRate, int elitismCount, int tournamentSize) {
 		this.populationSize = populationSize;
 		this.mutationRate = mutationRate;
 		this.crossoverRate = crossoverRate;

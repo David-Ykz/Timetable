@@ -1,3 +1,4 @@
+package timetableProgram;
 public class Teacher {
 	private final int teacherId;
 	private final String teacherName;
