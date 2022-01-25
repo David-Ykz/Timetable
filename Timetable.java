@@ -1,10 +1,12 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Timetable {
 	private final HashMap<Integer, Room> rooms;
 	private final HashMap<Integer, Teacher> teachers;
 	private final HashMap<Integer, Student> students;
 	private final HashMap<String, Course> courses;
+	private HashSet<String> doNotAutofill;
 
 	private Class classes[];
 
@@ -18,6 +20,15 @@ public class Timetable {
 		this.courses = courses;
 		this.classes = classList;
 		this.numClasses = classList.length;
+		this.doNotAutofill = new HashSet<>();
+		this.doNotAutofill.add("ESL");
+		this.doNotAutofill.add("PPL");
+		this.doNotAutofill.add("ZRE");
+		this.doNotAutofill.add("AMR");
+		this.doNotAutofill.add("COP");
+		this.doNotAutofill.add("YYY");
+		this.doNotAutofill.add("GLE");
+		this.doNotAutofill.add("PAI");
 	}
 
 	// Makes a replica timetable
@@ -84,10 +95,18 @@ public class Timetable {
 		for (int i = 0; i < numClasses; i++) {
 
 			// Assigning period
-			this.classes[classIndex].setPeriod(chromosome[chromosomePos]);
+			if (this.classes[classIndex].getCourseId().contains("AMR")) {			// Repertoire happens after school
+				this.classes[classIndex].setPeriod(5);
+			} 
+			else {
+				this.classes[classIndex].setPeriod(chromosome[chromosomePos]);
+			}
 			chromosomePos++;
 
 			// Assigning room
+			if (this.classes[classIndex].getCourseId().contains("AMR")) {
+				this.classes[classIndex].setRoomId(27);
+			} 
 			this.classes[classIndex].setRoomId(chromosome[chromosomePos]);
 			chromosomePos++;
 
@@ -96,6 +115,13 @@ public class Timetable {
 			chromosomePos++;
 
 			// Assigning semester
+			if (this.classes[classIndex].getCourseId().contains("AMR")) {		
+				this.classes[classIndex].setSemester(1);
+			} else if (this.classes[classIndex].getCourseId().contains("MHF")) {		
+				this.classes[classIndex].setSemester(1);
+			} else if (this.classes[classIndex].getCourseId().contains("MCV")) {
+				this.classes[classIndex].setSemester(2);
+			}
 			this.classes[classIndex].setSemester(chromosome[chromosomePos]);
 			chromosomePos++;
 
@@ -112,10 +138,20 @@ public class Timetable {
 					// Ensures that there are no conflicts with same class time, class capacity, or
 					// student classes
 					if (cl.getCourseId().equals(courseCode)
-							&& !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
+							&& student.getCourseRequests()[0].charAt(0) != 'K'
+							&& !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)
 							&& student.getClasses().size() < 10
-							&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap()) {
-						boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
+							&& cl.getStudents().size() + 2 < this.courses.get(cl.getCourseId()).getCap()) {
+						boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 5, cl);
+						if (addedStudent == true) {
+							cl.addStudent(student);
+						}
+					}
+					else if (student.getCourseRequests()[0].charAt(0) == 'K' 		// Special education
+							&& cl.getCourseId().contains(courseCode.substring(0,3))
+							&& !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)) {
+						
+						boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 5, cl);
 						if (addedStudent == true) {
 							cl.addStudent(student);
 						}
@@ -123,50 +159,61 @@ public class Timetable {
 				}
 			}
 		}
+		
 		// Distribute leftover classes to students with empty time slots
+		// Similar courses
 		for (Student student : this.students.values()) {
 			// Search for similar courses if possible (same letters different level, e.g. CGC1D2 -> CGC1DG)
-			if ((student.getClasses().size() < 8 && student.getGrade() < 12)
+			if ((student.getClasses().size() < 9 && student.getGrade() < 12)
 					|| (student.getClasses().size() < 6 && student.getGrade() == 12)) { // If not full courseload
 				for (Class cl : this.classes) {
 					// There are some courses we don't want to fill randomly into
-					if (!cl.getCourseId().contains("ESL") && !cl.getCourseId().contains("PPL")
-							&& !cl.getCourseId().equals("ZREMOT") && !cl.getCourseId().contains("AMR")) {
-						if (cl.getCourseId().contains(cl.getCourseId().substring(0, 3))
+					if (!doNotAutofill.contains(cl.getCourseId().substring(0,3))) {
+						if (cl.getCourseId().contains(cl.getCourseId().substring(0, 2))
 								&& student.getClasses().size() < 9
-								&& (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
-								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap())
-								&& (student.getGrade() <= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 10))
+								&& (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)
+								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap() + 2)
+								&& (student.getGrade() <= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 9))
 								&& (student.getGrade() >= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 8))) {
 							if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
 								break;
 							}
 							
-							boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
+							boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 5, cl);
 							if (addedStudent == true) {
 								cl.addStudent(student);
 							}
 						}
 					}
+					else if (student.getCourseRequests()[0].charAt(0) == 'K' 
+							&& cl.getCourseId().charAt(0) == 'K'
+							&& !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)) {	// Special education
+						boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 5, cl);
+						if (addedStudent == true) {
+							cl.addStudent(student);
+						}
+					}
 				}
 			}
+		}
+		
+		// Alternates
+		for (Student student : this.students.values()) {
 			// Search through student's alternates
-			if ((student.getClasses().size() < 8 && student.getGrade() < 12)
+			if ((student.getClasses().size() < 9 && student.getGrade() < 12)
 					|| (student.getClasses().size() < 6 && student.getGrade() == 12)) { // If not full courseload
 				for (Class cl : this.classes) {
 					for (String alternate : student.getAlternates()) {
-						if (!cl.getCourseId().contains("ESL") && !cl.getCourseId().contains("PPL")
-								&& !cl.getCourseId().equals("ZREMOT") && !cl.getCourseId().contains("AMR")) {
+						if (!doNotAutofill.contains(cl.getCourseId().substring(0,3))) {
 							if (cl.getCourseId().equals(alternate) && student.getClasses().size() < 9
-									&& (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
-									&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap())
-									&& (student.getGrade() <= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 10))
+									&& (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)
+									&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap() + 2)
+									&& (student.getGrade() <= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 9))
 									&& (student.getGrade() >= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 8))) {
 								if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
-									break;
+									break; 
 								}
-								boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4,
-										cl);
+								boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4,cl);
 								if (addedStudent == true) {
 									cl.addStudent(student);
 								}
@@ -175,23 +222,26 @@ public class Timetable {
 					}
 				}
 			}
+		}
+		// If all other options are unavailable, autofill
+		for (Student student : this.students.values()) {
 			// If student still does not have full course load, autofill them into an available class
-			if ((student.getClasses().size() < 8 && student.getGrade() < 12)
+//			System.out.println("-----Start Alternates-----");
+//			System.out.println(student.getName());
+			if ((student.getClasses().size() < 9 && student.getGrade() < 12)
 					|| (student.getClasses().size() < 6 && student.getGrade() == 12)) {
 				for (Class cl : this.classes) {
-					if (!cl.getCourseId().contains("ESL") && !cl.getCourseId().contains("PPL")
-							&& !cl.getCourseId().equals("ZREMOT") && !cl.getCourseId().contains("AMR")) {
-						if ((student.getClasses().size()) < 9 && (!student.getClasses()
-								.containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
-								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap()
-								&& (student.getGrade() <= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 10))
+					if (!doNotAutofill.contains(cl.getCourseId().substring(0,3)) && student.getCourseRequests()[0].charAt(0) != 'K') {
+						if ((student.getClasses().size()) < 9 && (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
+								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap() + 2
+								&& (student.getGrade() <= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 9))
 								&& (student.getGrade() >= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 8)))) {
-							if (student.getGrade() == 12
-									&& student.getClasses().size() > student.getCourseRequests().length) {
+							if (student.getGrade() == 12 && student.getClasses().size() > student.getCourseRequests().length) {
 								break;
 							}
 							boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 4, cl);
 							if (addedStudent == true) {
+								System.out.println("Added " + cl.getCourseId());
 								cl.addStudent(student);
 							}
 						}
@@ -238,6 +288,9 @@ public class Timetable {
 			} else if ((classA.getCourseId().contains("ADA") || (classA.getCourseId().contains("ADD")))
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("drama")) {
 				conflicts+=4;
+			} else if ((classA.getCourseId().charAt(0) == 'K')
+					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("Special")) {
+				conflicts+=20;
 			} else if ((classA.getCourseId().contains("HIF"))
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
 				conflicts+=4;
@@ -256,6 +309,9 @@ public class Timetable {
 			} else if (!classA.getCourseId().contains("HIF") 
 					&& this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
 				conflicts+=3;
+			}  else if (classA.getCourseId().charAt(0) != 'K'
+					&& this.rooms.get(classA.getRoomId()).getRoomName().contains("Special")) {
+				conflicts+=20;
 			}
 			
 			if (classA.getSemester() == 1) {
@@ -266,13 +322,15 @@ public class Timetable {
 		}
 
 		// Make sure a similar number of courses in semester 1 and 2
-		double semesterRatio = (double) (semesterOneCount / semesterTwoCount);
-		if (semesterRatio > 1.5 || semesterRatio < 0.66666666666666) {
-			conflicts += 100;
+		if (semesterOneCount > 0 && semesterTwoCount > 0) {
+			double semesterRatio = (double) (semesterOneCount / semesterTwoCount);
+			if (semesterRatio > 1.25 || semesterRatio < 0.87) {
+				conflicts += 100;
+			}
 		}
-
 		return conflicts;
 	}
+	
 
 	public void printConflicts() {
 		for (Class classA : this.classes) {
@@ -284,16 +342,6 @@ public class Timetable {
 					break;
 				}
 			}
-
-//			// Check if teacher is available
-//			for (Class classB : this.classes) {
-//				if (classA.getTeacherId() == classB.getTeacherId() && classA.getPeriod() == classB.getPeriod()
-//						&& classA.getClassId() != classB.getClassId() && classA.getSemester() == classB.getSemester()) {
-//					System.out.println(this.teachers.get(classA.getTeacherId()).getTeacherName() + " conflicts with "
-//							+ this.teachers.get(classB.getTeacherId()).getTeacherName());
-//					break;
-//				}
-//			}
 
 			if (classA.getCourseId().contains("TEJ")
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().equals("\"Technology room\"")) {
@@ -317,6 +365,10 @@ public class Timetable {
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			} else if ((classA.getCourseId().contains("HIF"))
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
+				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+						+ this.rooms.get(classA.getRoomId()).getRoomName());
+			} else if (classA.getCourseId().charAt(0) == 'K'
+					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("Special")) {
 				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			}
