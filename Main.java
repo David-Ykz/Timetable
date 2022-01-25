@@ -1,4 +1,3 @@
-package timetableProgram;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +12,20 @@ import java.util.concurrent.TimeUnit;
  * ICS4UE
  * @version 1.0, January 25 2022
  */
+
 public class Main {
+	public static final double CUTOFF_THRESHOLD = 0.55;
+	public static final int POPULATION_SIZE = 200;
+	public static final double MUTATION_RATE = 0.001;
+	public static final double CROSSOVER_RATE = 0.90;
+	public static final int ELITISM = 1;
+	public static final int TOURNAMENT_SIZE = 5;
+	public static final int GENERATION_CAP = 5000;
+	
+	public static final String COURSE_LIST_FILE= "Course Master List.csv";
+	public static final String ROOM_LIST_FILE = "Room Utilization.csv";
+	public static final String TEACHER_LIST_FILE = "FakeTeacherList.csv";
+	
 	private static HashMap<Integer, Student> studentList = new HashMap<>();
 	private static HashMap<String, Course> courseList = new HashMap<>();
 	private static HashMap<Integer, Room> roomList = new HashMap<>();
@@ -21,8 +33,9 @@ public class Main {
 	private static HashMap<Integer, Class> classList = new HashMap<>();
 	private static HashMap<String, ArrayList<Student>> coursePreferences = new HashMap<>();
 	private static HashSet<String> specialEd = new HashSet<>();
-	private static Timetable timetable;
 	private static CSVWriter csvWriter = new CSVWriter();
+	
+	private static Timetable timetable;
 	private static boolean isAlgorithmFinished = false;
 	private static boolean runAlgorithm = false;
 	private static String dataFileName;
@@ -30,6 +43,7 @@ public class Main {
 	public static void main(String[] args) {
 		MenuFrame frame = new MenuFrame();
 		
+		// Waits for file input from the user
 		while (runAlgorithm == false) {
 			try {
 				TimeUnit.MILLISECONDS.sleep(1);
@@ -38,11 +52,10 @@ public class Main {
 			}
 		}
 		
-		
 		dataFileName = frame.getFileName();
 		
 		Scanner input = new Scanner(System.in);
-		CSVReader csvReader = new CSVReader(dataFileName, "Course Master List.csv", "Room Utilization.csv", "FakeTeacherList.csv");
+		CSVReader csvReader = new CSVReader(dataFileName, COURSE_LIST_FILE, ROOM_LIST_FILE, TEACHER_LIST_FILE);
 		studentList = csvReader.getStudentList();
 		courseList = csvReader.getCourseList();
 		roomList = csvReader.getRoomList();
@@ -69,7 +82,7 @@ public class Main {
 		//--------------Genetic algorithm----------------//
 		
 		timetable = new Timetable(roomList, teacherList, studentList, courseList, startingClasses);
-		Algorithm alg = new Algorithm(200, 0.001, 0.90, 1, 5);
+		Algorithm alg = new Algorithm(POPULATION_SIZE, MUTATION_RATE, CROSSOVER_RATE, ELITISM, TOURNAMENT_SIZE);
 		Population population = alg.initPopulation(timetable);
 
 		// Evaluate population
@@ -78,10 +91,9 @@ public class Main {
 		int generation = 1;
 
 		// Evolution loop
-		System.out.println(alg.isMaxFit(population));
-		while (!alg.isMaxFit(population) && generation < 5000) {
+		while (!alg.isMaxFit(population) && generation < GENERATION_CAP) {
 			// Print fitness
-			System.out.println("G" + generation + " Best fitness: " + population.getFittest(0).getFitness());
+			System.out.println("G: " + generation + " Best fitness: " + population.getFittest(0).getFitness());
 
 			// Apply crossover
 			population = alg.crossoverPopulation(population);
@@ -97,7 +109,9 @@ public class Main {
 		}
 		
 		isAlgorithmFinished = true;
-
+		
+		
+		// Outputting class information to the console
 		System.out.println();
 		timetable.createClasses(population.getFittest(0));
 		timetable.giveStudentsClasses();
@@ -126,12 +140,14 @@ public class Main {
 		timetable.printConflicts();
 		System.out.println("Total slots: " + totalSlots);
 
-		// Printing out student's timetable
+		// Printing out individual student timetables to the console
+		final int QUIT_INPUT = 2000;
+		
 		while (true) {
-			System.out.print("Enter a student identification number ('2000' to Exit): ");
+			System.out.print("Enter a student identification number ('0' - '1587') ('2000' to Exit): ");
 			int inputInt = input.nextInt();
 
-			if (inputInt >= 2000) {
+			if (inputInt >= QUIT_INPUT) {
 				break;
 			}
 
@@ -165,7 +181,7 @@ public class Main {
 		input.close();
 	}
 	
-	//add all special edd courses into the special ed courses set
+	// Add all special edd courses into the special ed courses set
 	private static void addSpecialEdCourses() {
 		for(Course course: courseList.values()) {
 			if((course.getType().equals("Special Education") || course.getType().equals("English as a Second Language")) && coursePreferences.get(course.getCode()).size() != 0) {
@@ -174,6 +190,7 @@ public class Main {
 		}
 	}
 
+	// Creates classes based on the amount of people who requested a course
 	public static void createClasses() {
 		int classIndex = 1;
 		HashSet<String> combinedCourses = new HashSet<>();
@@ -185,13 +202,15 @@ public class Main {
 					classList.put(classIndex, new Class(classIndex, course));
 					combinedCourses.add(course.substring(0,3));
 					classIndex++;
-				} else if (requests < capacity * Const.CUTOFF_THRESHOLD && !course.contains("AMR")){
+				} else if (requests < capacity * CUTOFF_THRESHOLD && !course.contains("AMR")) {
+				} else {
 					// Potentially create multiple classes
 					if (requests > capacity) {
 						// Create multiple instances of the same class if feasable
 						int averageClassSize = requests / (requests/capacity);
-						if (averageClassSize >= capacity * Const.CUTOFF_THRESHOLD) {
-							if (capacity - (capacity * Const.CUTOFF_THRESHOLD - requests % capacity) >= capacity * Const.CUTOFF_THRESHOLD) {
+						if (averageClassSize >= capacity * CUTOFF_THRESHOLD) {
+							// Check if we can create one extra class
+							if (capacity - (capacity * CUTOFF_THRESHOLD - requests % capacity) >= capacity * CUTOFF_THRESHOLD) {
 								for (int i = 0; i < requests / capacity + 1; i++) {
 									classList.put(classIndex, new Class(classIndex, course));
 									classIndex++;

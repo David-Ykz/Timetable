@@ -1,4 +1,3 @@
-package timetableProgram;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
@@ -8,13 +7,14 @@ import java.util.HashMap;
 /**
  * [CSVReader.java] 
  * Reads and stores student and course information from .csv files
- * @author Blair Wang,  Brian Zhang, David Ye
+ * @author  David Ye, Blair Wang,  Brian Zhang
  * @version Jan 25 2022
  */
 
 class CSVReader {
 	private static final String TAB = "\t";
 	private static final char QUOTATION = '"';
+	
 	private HashMap<Integer, Student> studentList = new HashMap<>();
 	private HashMap<String, Course> courseList = new HashMap<>();
 	private HashMap<Integer, Room> roomList = new HashMap<>();
@@ -44,9 +44,6 @@ class CSVReader {
 			Scanner roomDataScanner = new Scanner(roomData);
 			while (roomDataScanner.hasNext()) {
 				Room room = createRoom(parseString(roomDataScanner.nextLine()));
-				if (room.getRoomName().equals("\"Technology room\"") == true) {
-					System.out.println(room.getRoomNum());
-				}
 				roomList.put(room.getRoomId(), room);
 			}
 			// Reads teacher data

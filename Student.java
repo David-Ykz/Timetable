@@ -1,4 +1,3 @@
-package timetableProgram;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,6 +9,7 @@ import java.util.HashSet;
  * ICS4UE
  * @version 1.0, January 25 2022
  */
+
 class Student {
 	private int studentId;
 	private String name;

@@ -1,13 +1,19 @@
-package timetableProgram;
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -18,6 +24,7 @@ import java.io.File;
  * ICS4UE
  * @version 1.0, January 25 2022
  */
+
 public class MenuFrame extends JFrame{
 
 	private BufferedImage schoolImage;
@@ -124,7 +131,14 @@ public class MenuFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			fileName = t.getText();
 	        t.setText("");
+			
 	        Main.startAlgorithm();
+	        
+	        final JOptionPane pane = new JOptionPane("                  File Read");
+			final JDialog d = pane.createDialog((JFrame) null, "Timetable System");
+			d.setSize(200, 125);
+			d.setLocationRelativeTo(null);
+			d.setVisible(true);
 		}
 	}
 
@@ -137,8 +151,6 @@ public class MenuFrame extends JFrame{
 			setPreferredSize(new Dimension(1250, 850));
 			setFocusable(true);
 			requestFocusInWindow();
-			this.addMouseListener(new MyMouseListener());
-			this.addMouseMotionListener(new MyMouseListener());
 		}
 		/**
 		 * paintComponent
@@ -173,46 +185,6 @@ public class MenuFrame extends JFrame{
 			}
 		}
 	}
-
-
-	private static class MyMouseListener implements MouseListener, MouseMotionListener {
-		public void mouseClicked(MouseEvent e) {
-		}
-
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		public void mouseExited(MouseEvent e) {
-		}
-
-		/**
-		 * mousePressed
-		 * This method is invoked when the mouse button has been pressed on a component
-		 * @param e, MouseEvent indicates that an action occurred
-		 */
-		public void mousePressed(MouseEvent e) {
-		}
-
-		/**
-		 * mouseReleased
-		 * This method is invoked when the mouse button has been released 
-		 * @param e, MouseEvent indicates that an action occurred
-		 */
-		public void mouseReleased(MouseEvent e) {
-		}
-
-		/**
-		 * mouseDragged
-		 * This method is invoked when a mouse button is pressed on a component and then dragged
-		 * @param e, MouseEvent indicates that an action occurred
-		 */
-		public void mouseDragged(MouseEvent e) {
-		}
-
-		public void mouseMoved(MouseEvent e) {
-		}
-	}
-
 
 	public String getFileName() {
 		return fileName;

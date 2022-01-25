@@ -1,4 +1,3 @@
-package timetableProgram;
 import java.util.ArrayList;
 
 /**
@@ -8,6 +7,7 @@ import java.util.ArrayList;
  * ICS4UE
  * @version 1.0, January 25 2022
  */
+
 public class Class {
 	private final int classId;
 	private final String courseCode;

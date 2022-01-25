@@ -1,16 +1,25 @@
-package timetableProgram;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+/**
+ * [CSVWriter.java] 
+ * Outputs timetable information into .csv files
+ * @author David Ye, Brian Zhang
+ * ICS4UE
+ * @version Jan 25 2022
+ */
+
 public class CSVWriter {
 	public static final String MASTER_TIMETABLE_FILE = "MasterTimetable.csv";
 	public static final String TIMETABLE_FILE = "TimetableData.csv";
 	public static final String STUDENT_DATA_FILE = "StudentDataSorted.csv";
+	
 	public CSVWriter() {
 	}
-
+	
+	// Saves all student timetables in a single file
 	public void saveStudentData(HashMap<Integer, Student> studentList) {
 		try {
 			File studentDataFile = new File(STUDENT_DATA_FILE);
@@ -24,6 +33,7 @@ public class CSVWriter {
 		}
 	}
 	
+	// Saves a master timetable showing which classes are running during each period
 	public void saveMasterTimetable(Timetable timetable) {
         String[] periods = {Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK,};
         
@@ -38,7 +48,7 @@ public class CSVWriter {
             File masterTimetableFile = new File(MASTER_TIMETABLE_FILE);
             PrintWriter printer = new PrintWriter(masterTimetableFile);
             for (String period : periods) {
-                printer.println(period.substring(0, period.length() - 1));
+                printer.println(period.substring(0, period.length()));
             }
             printer.close();
         } catch (Exception e) {
@@ -46,6 +56,7 @@ public class CSVWriter {
         }
     }
 	
+	// Saves an individual student's timetable
 	public void createStudentTimetable(Student student) {
 		HashMap<Integer, Class> studentClasses = student.getClasses();
 		

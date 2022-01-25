@@ -1,15 +1,15 @@
-package timetableProgram;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
 
 /**
  * [Population.java]
- * Object of a group of individuals to create timetable with
+ * A collection of individuals (individual timetable solutions)
  * @author Brian Zhang
  * ICS4UE
  * @version 1.0, January 25 2022
  */
+
 public class Population {
 	private Individual population[];
 	private double populationFitness = -1;
@@ -27,15 +27,6 @@ public class Population {
 			// Create individual
 			Individual individual = new Individual(timetable);
 			// Add individual to population
-			this.population[i] = individual;
-		}
-	}
-
-	public Population(int populationSize, int chromosomeLength) {
-		this.population = new Individual[populationSize];
-
-		for (int i = 0; i < populationSize; i++) {
-			Individual individual = new Individual(chromosomeLength);
 			this.population[i] = individual;
 		}
 	}

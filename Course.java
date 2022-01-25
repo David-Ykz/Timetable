@@ -1,8 +1,8 @@
-package timetableProgram;
 /**
  * [Course.java] 
  * Stores information about different courses students can take
  * @author Blair Wang
+ * ICS4UE
  * @version 1.0, Jan 25 2022
  */
 class Course {
