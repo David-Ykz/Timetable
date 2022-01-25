@@ -11,7 +11,6 @@ public class Main {
 	private static HashMap<Integer, Teacher> teacherList = new HashMap<>();
 	private static HashMap<Integer, Class> classList = new HashMap<>();
 	private static HashMap<String, ArrayList<Student>> coursePreferences = new HashMap<>();
-	private static HashMap<String, ArrayList<Student>> alternatePreferences = new HashMap<>();
 	private static HashSet<String> specialEd = new HashSet<>();
 	private static Timetable timetable;
 	private static CSVWriter csvWriter = new CSVWriter();
@@ -227,26 +226,27 @@ public class Main {
 	}
 	
 	// Writing information to .csv files
-	public static void saveStudentTimetables() {
+	public static boolean saveStudentTimetables() {
 		if (isAlgorithmFinished) {
 			csvWriter.saveStudentData(studentList);
-			System.out.println("All student timetables saved");
+			return true;
 		}
 		else {
-			System.out.println("The algorithm isn't done running!");
+			return false;
 		}
 	}
 	
-	public static void saveMasterTimetable() {
+	public static boolean saveMasterTimetable() {
 		if (isAlgorithmFinished) {
 			csvWriter.saveMasterTimetable(timetable);
+			return true;
 		}
 		else {
-			System.out.println("The algorithm isn't done running!");
+			return false;
 		}
 	}
 	
-	public static void saveTimetableFromNumber(int studentNumber) {
+	public static boolean saveTimetableFromNumber(int studentNumber) {
 		if (isAlgorithmFinished) {
 			Student correctStudent = null;
 			for (Student student: studentList.values()) {
@@ -256,10 +256,10 @@ public class Main {
 				}
 			}
 			csvWriter.createStudentTimetable(correctStudent);
-			System.out.println(studentNumber + "'s timetable was saved!");
+			return true;
 		}
 		else {
-			System.out.println("The algorithm isn't done running!");
+			return false;
 		}
 	}
 

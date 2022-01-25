@@ -4,9 +4,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -82,11 +79,11 @@ public class ChoiceFrame extends JFrame {
 		
 		l.setBounds(100,-25,200,150);
 		l.setForeground(Color.WHITE);
-		l.setFont(new Font("Britannic Bold", Font.BOLD, 30));
-		
+		l.setFont(new Font("Britannic Bold", Font.BOLD, 30));		
 		
 		l2.setBounds(795,115,200,50);
 		t.setBounds(810,165,150,50);
+
 		
 		panel.add(l2);
 		panel.add(t);
@@ -108,37 +105,61 @@ public class ChoiceFrame extends JFrame {
 	}
 	public class masterTButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Main.saveMasterTimetable();
+			boolean didRun = Main.saveMasterTimetable();
 			
-			final JOptionPane pane = new JOptionPane("Master Timetable Saved");
-	        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
-	        d.setSize(200, 125);
-	        d.setLocationRelativeTo(null);
-	        d.setVisible(true);
+			if (didRun) {
+				final JOptionPane pane = new JOptionPane("Master Timetable Saved");
+		        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
+		        d.setSize(200, 125);
+		        d.setLocationRelativeTo(null);
+		        d.setVisible(true);
+			} else {
+				final JOptionPane pane = new JOptionPane("The Algorithm is Not Done Running");
+		        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
+		        d.setSize(200, 125);
+		        d.setLocationRelativeTo(null);
+		        d.setVisible(true);
+			}
 		}
 	}
 	public class individualTButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			studentNumber = Integer.parseInt(t.getText());
-			Main.saveTimetableFromNumber(studentNumber);
+			boolean didRun = Main.saveTimetableFromNumber(studentNumber);
 	        t.setText("");
 	        
-	        final JOptionPane pane = new JOptionPane("      Student Number Read\n                "+studentNumber);
-	        final JDialog d = pane.createDialog((JFrame) null, "Timetable System");
-	        d.setSize(200, 125);
-	        d.setLocationRelativeTo(null);
-	        d.setVisible(true);
+	        if (didRun) {
+		        final JOptionPane pane = new JOptionPane("      Student Number Read\n                "+studentNumber);
+		        final JDialog d = pane.createDialog((JFrame) null, "Timetable System");
+		        d.setSize(200, 125);
+		        d.setLocationRelativeTo(null);
+		        d.setVisible(true);
+	        } else {
+				final JOptionPane pane = new JOptionPane("The Algorithm is Not Done Running");
+		        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
+		        d.setSize(200, 125);
+		        d.setLocationRelativeTo(null);
+		        d.setVisible(true);
+			}
 		}
 	}
 	public class allTButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Main.saveStudentTimetables();
+			boolean didRun = Main.saveStudentTimetables();
 			
-			final JOptionPane pane = new JOptionPane("Student Timetables Saved");
-	        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
-	        d.setSize(200, 125);
-	        d.setLocationRelativeTo(null);
-	        d.setVisible(true);
+			if (didRun) {
+				final JOptionPane pane = new JOptionPane("Student Timetables Saved");
+		        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
+		        d.setSize(200, 125);
+		        d.setLocationRelativeTo(null);
+		        d.setVisible(true);
+			} else {
+				final JOptionPane pane = new JOptionPane("The Algorithm is Not Done Running");
+		        final JDialog d = pane.createDialog((JFrame )null, "Timetable System");
+		        d.setSize(200, 125);
+		        d.setLocationRelativeTo(null);
+		        d.setVisible(true);
+			}
 		}
 	}
 
@@ -158,8 +179,6 @@ public class ChoiceFrame extends JFrame {
 			setPreferredSize(new Dimension(1250, 850));
 			setFocusable(true);
 			requestFocusInWindow();
-			this.addMouseListener(new MyMouseListener());
-			this.addMouseMotionListener(new MyMouseListener());
 		}
 		/**
 		 * paintComponent
@@ -189,45 +208,4 @@ public class ChoiceFrame extends JFrame {
 
 		}
 	}
-
-
-
-	private static class MyMouseListener implements MouseListener, MouseMotionListener {
-		public void mouseClicked(MouseEvent e) {
-		}
-
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		public void mouseExited(MouseEvent e) {
-		}
-
-		/**
-		 * mousePressed
-		 * This method is invoked when the mouse button has been pressed on a component
-		 * @param e, MouseEvent indicates that an action occurred
-		 */
-		public void mousePressed(MouseEvent e) {
-		}
-
-		/**
-		 * mouseReleased
-		 * This method is invoked when the mouse button has been released 
-		 * @param e, MouseEvent indicates that an action occurred
-		 */
-		public void mouseReleased(MouseEvent e) {
-		}
-
-		/**
-		 * mouseDragged
-		 * This method is invoked when a mouse button is pressed on a component and then dragged
-		 * @param e, MouseEvent indicates that an action occurred
-		 */
-		public void mouseDragged(MouseEvent e) {
-		}
-
-		public void mouseMoved(MouseEvent e) {
-		}
-	}
-
 }
