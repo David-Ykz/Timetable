@@ -25,7 +25,7 @@ public class Class {
 	}
 
 	public String infoAsString() {
-		return courseCode + ";" + roomId;
+		return courseCode + Const.SEMI_COLON + roomId;
 	}
 
 	public void addStudent(Student student) {

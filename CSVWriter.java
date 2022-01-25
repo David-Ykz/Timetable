@@ -5,12 +5,15 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 
 public class CSVWriter {
+	public static final String MASTER_TIMETABLE_FILE = "MasterTimetable.csv";
+	public static final String TIMETABLE_FILE = "TimetableData.csv";
+	public static final String STUDENT_DATA_FILE = "StudentDataSorted.csv";
 	public CSVWriter() {
 	}
 
 	public void saveStudentData(HashMap<Integer, Student> studentList) {
 		try {
-			File studentDataFile = new File("StudentDataSorted.csv");
+			File studentDataFile = new File(STUDENT_DATA_FILE);
 			PrintWriter printer = new PrintWriter(studentDataFile);
 			for (Student student : studentList.values()) {
 				printer.println(student.infoAsString());
@@ -22,17 +25,17 @@ public class CSVWriter {
 	}
 	
 	public void saveMasterTimetable(Timetable timetable) {
-        String[] periods = {"", "", "", "", "", "", "", "", "", "",};
+        String[] periods = {Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK, Const.BLANK,};
         
         
         for (Class bestClass : timetable.getClasses()) {
             int index = bestClass.getPeriod() + 5 * (bestClass.getSemester() - 1) - 1;
-            String classInfo = timetable.getRoom(bestClass.getRoomId()).getRoomNum() + ";" + 
+            String classInfo = timetable.getRoom(bestClass.getRoomId()).getRoomNum() + Const.SEMI_COLON + 
                 timetable.getCourse(bestClass.getCourseId()).getCourseCode();
-            periods[index] += classInfo + ",";
+            periods[index] += classInfo + Const.COMMA;
         }
         try {
-            File masterTimetableFile = new File("MasterTimetable.csv");
+            File masterTimetableFile = new File(MASTER_TIMETABLE_FILE);
             PrintWriter printer = new PrintWriter(masterTimetableFile);
             for (String period : periods) {
                 printer.println(period.substring(0, period.length() - 1));
@@ -46,15 +49,15 @@ public class CSVWriter {
 	public void createStudentTimetable(Student student) {
 		HashMap<Integer, Class> studentClasses = student.getClasses();
 		
-		File studentDataFile = new File(student.getStudentNum() + "TimetableData.csv");
+		File studentDataFile = new File(student.getStudentNum() + TIMETABLE_FILE);
 		try {
 			PrintWriter printer = new PrintWriter(studentDataFile);
 			printer.println("Course:, Period:, Semester:");
 			for (Class cl : studentClasses.values()) {
-				String fileInput = "";
+				String fileInput = Const.BLANK;
 				if (cl != null) {
-					fileInput += cl.getCourseId() + " , ";
-					fileInput += cl.getPeriod() + ", ";
+					fileInput += cl.getCourseId() + Const.SPACE + Const.COMMA + Const.SPACE;
+					fileInput += cl.getPeriod() + Const.COMMA + Const.SPACE;
 					fileInput += cl.getSemester();
 				}
 				printer.println(fileInput);

@@ -116,7 +116,7 @@ class Student {
 			sortedClasses[index] = c1.infoAsString();
 		}
 		for (int i = 0; i < sortedClasses.length; i++) {
-			message += ",";
+			message += Const.COMMA;
 			if (sortedClasses[i] != null) {
 				message += sortedClasses[i];
 			}

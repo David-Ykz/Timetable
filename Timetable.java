@@ -101,7 +101,7 @@ public class Timetable {
 		for (int i = 0; i < numClasses; i++) {
 
 			// Assigning period
-			if (this.classes[classIndex].getCourseId().contains("AMR")) {			// Repertoire happens after school
+			if (this.classes[classIndex].getCourseId().contains("AMR")) {	// Repertoire happens after school
 				this.classes[classIndex].setPeriod(5);
 			} 
 			else {
@@ -231,9 +231,6 @@ public class Timetable {
 		}
 		// If all other options are unavailable, autofill
 		for (Student student : this.students.values()) {
-			// If student still does not have full course load, autofill them into an available class
-//			System.out.println("-----Start Alternates-----");
-//			System.out.println(student.getName());
 			if ((student.getClasses().size() < 9 && student.getGrade() < 12)
 					|| (student.getClasses().size() < 6 && student.getGrade() == 12)) {
 				for (Class cl : this.classes) {

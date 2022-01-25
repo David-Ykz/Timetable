@@ -1,7 +1,7 @@
 package timetableProgram;
 /**
  * [Individual.Java]
- * Object of any individual attending a class
+ * An individual solution to the timetabing problem
  * @author Brian Zhang, Blair Wang
  * ICS4UE
  * @version 1.0, January 25 2022
@@ -77,9 +77,9 @@ public class Individual {
 	}
 
 	public String toString() {
-		String output = "";
+		String output = Const.BLANK;
 		for (int gene = 0; gene < this.chromosome.length; gene++) {
-			output += this.chromosome[gene] + ",";
+			output += this.chromosome[gene] + Const.COMMA;
 		}
 		return output;
 	}

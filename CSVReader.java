@@ -13,6 +13,8 @@ import java.util.HashMap;
  */
 
 class CSVReader {
+	private static final String TAB = "\t";
+	private static final char QUOTATION = '"';
 	private HashMap<Integer, Student> studentList = new HashMap<>();
 	private HashMap<String, Course> courseList = new HashMap<>();
 	private HashMap<Integer, Room> roomList = new HashMap<>();
@@ -84,7 +86,7 @@ class CSVReader {
 	public Student createStudent(ArrayList<String> message) {
 		String name = message.get(0);
 		// Removes the quotation marks around the name
-		name = name.substring(0, name.indexOf(",")) + " " + name.substring(name.indexOf(",") + 1);
+		name = name.substring(0, name.indexOf(Const.COMMA)) + Const.SPACE + name.substring(name.indexOf(Const.COMMA) + 1);
 		String gender = message.get(1);
 		int studentNum = Integer.parseInt(message.get(2));
 		String gappsAccount = message.get(3);
@@ -95,7 +97,7 @@ class CSVReader {
 		ArrayList<String> courses = new ArrayList<>();
 		List<String> courseInfo = message.subList(7, 40);
 		for (int i = 0; i < courseInfo.size(); i++) {
-			if (i % 3 == 0 && !courseInfo.get(i).equals("")) {
+			if (i % 3 == 0 && !courseInfo.get(i).equals(Const.BLANK)) {
 				courses.add(courseInfo.get(i));
 			}
 		}
@@ -104,7 +106,7 @@ class CSVReader {
 		ArrayList<String> alternates = new ArrayList<>();
 		List<String> alternateInfo = message.subList(41, message.size());
 		for (int i = 0; i < alternateInfo.size(); i++) {
-			if (i % 3 == 0 && !alternateInfo.get(i).equals("")) {
+			if (i % 3 == 0 && !alternateInfo.get(i).equals(Const.BLANK)) {
 				alternates.add(alternateInfo.get(i));
 			}
 		}
@@ -126,7 +128,7 @@ class CSVReader {
 
 	public Room createRoom(ArrayList<String> message) {
 		String roomNum = message.get(0);
-		String roomName = message.get(1).replace("\t", "");
+		String roomName = message.get(1).replace(TAB, Const.BLANK);
 		return new Room(roomList.size(), roomNum, roomName);
 	}
 
@@ -183,18 +185,18 @@ class CSVReader {
 	// Takes a string and converts it into an arraylist of strings
 	public ArrayList<String> parseString(String inputMessage) {
 		ArrayList<String> outputMessage = new ArrayList<>();
-		while (inputMessage.contains(",")) {
+		while (inputMessage.contains(Const.COMMA)) {
 			// Checks if the next section to be read contains multiple values (which will be denoted with quotation marks)
-			if (inputMessage.charAt(0) == '"') {
+			if (inputMessage.charAt(0) == QUOTATION) {
 				// Removes the first quotation mark
 				inputMessage = inputMessage.substring(1);
-				outputMessage.add(inputMessage.substring(0, inputMessage.indexOf('"')));
+				outputMessage.add(inputMessage.substring(0, inputMessage.indexOf(QUOTATION)));
 				// Removes the next quotation mark along with the comma
-				inputMessage = inputMessage.substring(inputMessage.indexOf('"') + 2);
+				inputMessage = inputMessage.substring(inputMessage.indexOf(QUOTATION) + 2);
 			} else {
-				// Otherwise adds the value between the commas to the arraylist
-				outputMessage.add(inputMessage.substring(0, inputMessage.indexOf(',')));
-				inputMessage = inputMessage.substring(inputMessage.indexOf(',') + 1);
+				// Otherwise adds the value between the commas to the arraylist 
+				outputMessage.add(inputMessage.substring(0, inputMessage.indexOf(Const.COMMA)));
+				inputMessage = inputMessage.substring(inputMessage.indexOf(Const.COMMA) + 1);
 			}
 		}
 		outputMessage.add(inputMessage);
