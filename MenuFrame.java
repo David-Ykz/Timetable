@@ -39,6 +39,7 @@ public class MenuFrame extends JFrame{
 	JLabel l = new JLabel("RICHMOND HILL HIGH SCHOOL");
 	JLabel l2 = new JLabel("TIMETABLE SYSTEM");
 	JLabel l3 = new JLabel("RHHS");
+	ProgressBar progressBar = new ProgressBar(125,500);
 	JTextField t = new JTextField("Enter StudentCourseRequestFile.csv");
 	
 	public MenuFrame() {
@@ -159,7 +160,9 @@ public class MenuFrame extends JFrame{
 		 */
 		public void paintComponent(Graphics g) { 
 			super.paintComponent(g); 
+			progressBar.update(Main.getGeneration(), Const.GENERATION_CAP);
 			draw(g);
+			progressBar.draw(g);
 			repaint();
 		}
 		/**
@@ -179,8 +182,8 @@ public class MenuFrame extends JFrame{
 				g.setColor(Color.BLACK);
 				//g.fillRect(350,500,570,50);
 				g.setColor(Color.WHITE);
-				g.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				g.drawString("Authors: Allen Liu, Anthony Tecsa, Blair Wang, Brian Zhang, David Ye",  362, 555);
+				g.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				g.drawString("Authors: Allen Liu, Anthony Tecsa, Blair Wang, Brian Zhang, David Ye",  780, 660);
 
 			}
 		}

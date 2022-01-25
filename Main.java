@@ -20,7 +20,6 @@ public class Main {
 	public static final double CROSSOVER_RATE = 0.90;
 	public static final int ELITISM = 1;
 	public static final int TOURNAMENT_SIZE = 5;
-	public static final int GENERATION_CAP = 5000;
 	
 	public static final String COURSE_LIST_FILE= "Course Master List.csv";
 	public static final String ROOM_LIST_FILE = "Room Utilization.csv";
@@ -39,6 +38,8 @@ public class Main {
 	private static boolean isAlgorithmFinished = false;
 	private static boolean runAlgorithm = false;
 	private static String dataFileName;
+	
+	private static int generation = 1;;
 
 	public static void main(String[] args) {
 		MenuFrame frame = new MenuFrame();
@@ -88,10 +89,8 @@ public class Main {
 		// Evaluate population
 		alg.sumFitness(population, timetable);
 
-		int generation = 1;
-
 		// Evolution loop
-		while (!alg.isMaxFit(population) && generation < GENERATION_CAP) {
+		while (!alg.isMaxFit(population) && generation < Const.GENERATION_CAP) {
 			// Print fitness
 			System.out.println("G: " + generation + " Best fitness: " + population.getFittest(0).getFitness());
 
@@ -118,6 +117,9 @@ public class Main {
 		System.out.println("Solution found in " + generation + " generations");
 		System.out.println("Final solution fitness: " + population.getFittest(0).getFitness());
 		System.out.println("Clashes: " + timetable.calculateConflicts() + "\n");
+		
+		// For the progress bar to show 100% completion
+		generation = 5000;
 
 		Class classes[] = timetable.getClasses();
 		int classIndex = 1;
@@ -271,6 +273,10 @@ public class Main {
 		else {
 			return false;
 		}
+	}
+
+	public static int getGeneration() {
+		return generation;
 	}
 
 }

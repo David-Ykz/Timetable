@@ -18,6 +18,8 @@ public class Const {
 	public static final String TIMETABLE_FILE = "TimetableData.csv";
 	public static final String STUDENT_DATA_FILE = "StudentDataSorted.csv";
 	
+	public static final int GENERATION_CAP = 5000;
+	
 	private Const() {
 	}
 }
