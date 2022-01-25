@@ -83,13 +83,13 @@ public class Algorithm {
 			// create random individual for random gene swapping (mutation)
 			Individual randIndividual = new Individual(timetable);
 
-			// only mutates individuals which are lower in fitness
-			if (i > this.elitismCount && 0.5 > Math.random()) {
+			// only mutates individuals which are lower in fitness and only 75% of the time
+			if (i > this.elitismCount && 0.75 > Math.random()) {
 				// loop over genes in the individual's chromosome
 				for (int j = 0; j < individual.getChromosomeLength(); j++) {
 					// randomly decides if mutation should occur
 					// mutation is more common for genes that refer to rooms
-					if ((j + 3 % 4 == 0) && this.mutationRate * 100 > Math.random()) {
+					if ((j + 3 % 4 == 0) && this.mutationRate * 200 > Math.random()) {
 						individual.setGene(j, randIndividual.getGene(j));
 					} else 
 					if (this.mutationRate > Math.random()) {
