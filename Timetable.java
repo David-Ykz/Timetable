@@ -1,7 +1,3 @@
-package timetableProgram;
-import java.util.HashMap;
-import java.util.HashSet;
-
 /**
  * [Timetable.java]
  * Object of comprehensive timetable for the school
@@ -10,6 +6,9 @@ import java.util.HashSet;
  * @version 1.0, January 25 2022
  */
 public class Timetable {
+	private static final String IS_BEING_TAUGHT = " is being taught ";
+	private static final String IN_ROOM = " in room ";
+	private static final char SPECIAL_ED_CHARACTER = 'K';
 	private final HashMap<Integer, Room> rooms;
 	private final HashMap<Integer, Teacher> teachers;
 	private final HashMap<Integer, Student> students;
@@ -144,7 +143,7 @@ public class Timetable {
 					// Ensures that there are no conflicts with same class time, class capacity, or
 					// student classes
 					if (cl.getCourseId().equals(courseCode)
-							&& student.getCourseRequests()[0].charAt(0) != 'K'
+							&& student.getCourseRequests()[0].charAt(0) != SPECIAL_ED_CHARACTER
 							&& !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)
 							&& student.getClasses().size() < 10
 							&& cl.getStudents().size() + 2 < this.courses.get(cl.getCourseId()).getCap()) {
@@ -153,7 +152,7 @@ public class Timetable {
 							cl.addStudent(student);
 						}
 					}
-					else if (student.getCourseRequests()[0].charAt(0) == 'K' 		// Special education
+					else if (student.getCourseRequests()[0].charAt(0) == SPECIAL_ED_CHARACTER 		// Special education
 							&& cl.getCourseId().contains(courseCode.substring(0,3))
 							&& !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)) {
 						
@@ -191,8 +190,8 @@ public class Timetable {
 							}
 						}
 					}
-					else if (student.getCourseRequests()[0].charAt(0) == 'K' 
-							&& cl.getCourseId().charAt(0) == 'K'
+					else if (student.getCourseRequests()[0].charAt(0) == SPECIAL_ED_CHARACTER 
+							&& cl.getCourseId().charAt(0) == SPECIAL_ED_CHARACTER
 							&& !student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 5)) {	// Special education
 						boolean addedStudent = student.addClass(cl.getPeriod() + (cl.getSemester() - 1) * 5, cl);
 						if (addedStudent == true) {
@@ -234,7 +233,7 @@ public class Timetable {
 			if ((student.getClasses().size() < 9 && student.getGrade() < 12)
 					|| (student.getClasses().size() < 6 && student.getGrade() == 12)) {
 				for (Class cl : this.classes) {
-					if (!doNotAutofill.contains(cl.getCourseId().substring(0,3)) && student.getCourseRequests()[0].charAt(0) != 'K') {
+					if (!doNotAutofill.contains(cl.getCourseId().substring(0,3)) && student.getCourseRequests()[0].charAt(0) != SPECIAL_ED_CHARACTER) {
 						if ((student.getClasses().size()) < 9 && (!student.getClasses().containsKey(cl.getPeriod() + (cl.getSemester() - 1) * 4)
 								&& cl.getStudents().size() < this.courses.get(cl.getCourseId()).getCap() + 2
 								&& (student.getGrade() <= ((Character.getNumericValue(cl.getCourseId().charAt(3))) + 9))
@@ -285,7 +284,7 @@ public class Timetable {
 			} else if ((classA.getCourseId().contains("ADA") || (classA.getCourseId().contains("ADD")))
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("drama")) {
 				conflicts+=4;
-			} else if ((classA.getCourseId().charAt(0) == 'K')
+			} else if ((classA.getCourseId().charAt(0) == SPECIAL_ED_CHARACTER)
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("Special")) {
 				conflicts+=20;
 			} else if ((classA.getCourseId().contains("HIF"))
@@ -306,7 +305,7 @@ public class Timetable {
 			} else if (!classA.getCourseId().contains("HIF") 
 					&& this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
 				conflicts+=3;
-			}  else if (classA.getCourseId().charAt(0) != 'K'
+			}  else if (classA.getCourseId().charAt(0) != SPECIAL_ED_CHARACTER
 					&& this.rooms.get(classA.getRoomId()).getRoomName().contains("Special")) {
 				conflicts+=20;
 			}
@@ -342,31 +341,31 @@ public class Timetable {
 
 			if (classA.getCourseId().contains("TEJ")
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().equals("\"Technology room\"")) {
-				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+				System.out.println(classA.getClassId() + IS_BEING_TAUGHT + classA.getCourseId() + IN_ROOM
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			} else if (classA.getCourseId().contains("PPL")
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("gym")) {
-				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+				System.out.println(classA.getClassId() + IS_BEING_TAUGHT + classA.getCourseId() + IN_ROOM
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			} else if (classA.getCourseId().contains("ICS")
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("computer") && !this.rooms.get(classA.getRoomId()).getRoomName().contains("library")) {
-				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+				System.out.println(classA.getClassId() + IS_BEING_TAUGHT + classA.getCourseId() + IN_ROOM
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			} else if (classA.getCourseId().contains("AMI")
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("music")) {
-				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+				System.out.println(classA.getClassId() + IS_BEING_TAUGHT + classA.getCourseId() + IN_ROOM
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			} else if ((classA.getCourseId().contains("ADA") || (classA.getCourseId().contains("ADD")))
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("drama")) {
-				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+				System.out.println(classA.getClassId() + IS_BEING_TAUGHT + classA.getCourseId() + IN_ROOM
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			} else if ((classA.getCourseId().contains("HIF"))
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("Family")) {
-				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+				System.out.println(classA.getClassId() + IS_BEING_TAUGHT + classA.getCourseId() + IN_ROOM
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
-			} else if (classA.getCourseId().charAt(0) == 'K'
+			} else if (classA.getCourseId().charAt(0) == SPECIAL_ED_CHARACTER
 					&& !this.rooms.get(classA.getRoomId()).getRoomName().contains("Special")) {
-				System.out.println(classA.getClassId() + " is being taught " + classA.getCourseId() + " in room "
+				System.out.println(classA.getClassId() + IS_BEING_TAUGHT + classA.getCourseId() + IN_ROOM
 						+ this.rooms.get(classA.getRoomId()).getRoomName());
 			}
 		}
